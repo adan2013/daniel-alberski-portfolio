@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512px"
+   height="512px"
+   viewBox="0 0 512 512"
+   id="icons"
+   version="1.1"
+   sodipodi:docname="firebase-logo.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata8">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     id="namedview4"
+     showgrid="false"
+     inkscape:zoom="0.59385921"
+     inkscape:cx="145.55008"
+     inkscape:cy="265.39844"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="icons" />
+  <path
+     id="icon"
+     d="M 83.906875,333.71385 134.30777,10.733889 c 1.74199,-11.0149055 16.51705,-13.6172698 21.7324,-3.770773 L 210.21184,108.3491 Z M 443.78731,408.72568 394.14057,114.72224 A 11.684085,11.684085 0 0 0 374.44758,108.3491 L 69.896595,408.72568 239.16712,506.35152 a 35.243448,35.243448 0 0 0 33.89447,0 z M 306.08506,152.66365 267.27266,78.798993 a 11.535378,11.535378 0 0 0 -20.56399,0 L 76.08916,382.95696 Z"
+     style="stroke-width:1.06219" />
+</svg>

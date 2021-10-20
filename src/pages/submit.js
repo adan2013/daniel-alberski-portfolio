@@ -2,13 +2,13 @@ import React from 'react'
 import PageContainer from '../components/PageContainer/PageContainer'
 import MessageContainer from '../components/MessageContainer/MessageContainer'
 
-const NotFoundPage = () => (
+const ContactSubmitPage = () => (
   <PageContainer>
     <MessageContainer
-      title='404'
-      message='Strona nie została znaleziona'
+      title='Poszło!'
+      message='Twoja wiadomość została pomyślnie wysłana! Wkrótce na nią odpiszę 😉'
     />
   </PageContainer>
 )
 
-export default NotFoundPage
+export default ContactSubmitPage

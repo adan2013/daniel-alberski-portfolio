@@ -1,28 +1,41 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "DanielAlberskiPortfolio",
+    siteUrl: 'https://danielalberski.redark.pl',
+    title: 'Daniel Alberski - JavaScript Frontend Developer',
   },
   plugins: [
-    "gatsby-plugin-styled-components",
-    "gatsby-plugin-image",
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
     {
-      resolve: "gatsby-plugin-manifest",
+      resolve: 'gatsby-plugin-htaccess',
       options: {
-        icon: "src/images/icon.png",
+        https: true
+      }
+    },
+    'gatsby-plugin-fontawesome-css',
+    'gatsby-plugin-styled-components',
+    'gatsby-plugin-image',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Daniel Alberski',
+        short_name: 'Daniel Alberski',
+        start_url: '/',
+        background_color: '#ffffff',
+        theme_color: '#d40000',
+        display: 'minimal-ui',
+        icon: 'src/images/icon.png',
       },
     },
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "images",
-        path: "./src/images/",
+        name: 'images',
+        path: './src/images/',
       },
-      __key: "images",
+      __key: 'images',
     },
   ],
 };
