@@ -3,12 +3,8 @@ import {
     faLinkedin,
     faTwitter,
     faYoutube,
-    faHtml5,
-    faCss3Alt,
-    faJsSquare,
     faNodeJs,
     faReact,
-    faGitAlt,
     faInstagram,
 } from '@fortawesome/free-brands-svg-icons'
 import {
@@ -21,12 +17,15 @@ import CSharpLogo from './images/icons/csharp-logo.svg'
 import VisualStudioLogo from './images/icons/visual-studio-logo.svg'
 import WebStormLogo from './images/icons/webstorm-logo.svg'
 import FirebaseLogo from './images/icons/firebase-logo.svg'
+import TailwindLogo from './images/icons/tailwind-logo.svg'
+import TypeScriptLogo from './images/icons/ts-logo.svg'
+import FusionLogo from './images/icons/fusion360-logo.svg'
 
 export const seoConfig = {
     url: 'https://danielalberski.redark.pl',
-    fullTitle: 'Daniel Alberski - JavaScript Frontend Developer',
+    fullTitle: 'Daniel Alberski - Frontend Developer',
     shortTitle: 'Daniel Alberski',
-    description: 'Portfolio Daniel Alberski JavaScript Frontend Developer',
+    description: 'Portfolio Daniel Alberski Frontend Developer',
     author: 'Daniel Alberski',
 }
 
@@ -69,22 +68,22 @@ export const social = [
 ]
 
 export const skills = [
-    { id: 'html', name: 'HTML 5', icon: faHtml5, color: '#e34c26' },
-    { id: 'css', name: 'CSS 3', icon: faCss3Alt, color: '#264de4' },
-    { id: 'sql', name: 'SQL', icon: faDatabase, color: '#f29111' },
-    { id: 'js', name: 'JavaScript', icon: faJsSquare, color: '#f0db4f' },
+    { id: 'ts', name: 'TypeScript', svg: TypeScriptLogo, color: '#3178c6' },
     { id: 'nodejs', name: 'Node.js', icon: faNodeJs, color: '#3c873a' },
     { id: 'react', name: 'React', icon: faReact, color: '#51dbfb' },
     { id: 'reactnative', name: 'React Native', icon: faReact, color: '#51dbfb' },
+    { id: 'sql', name: 'SQL/NoSQL', icon: faDatabase, color: '#f29111' },
     { id: 'gatsby', name: 'Gatsby', svg: GatsbyLogo, color: '#663399' },
     { id: 'styled', name: 'Styled Components', svg: StyledComponentsLogo, color: '#db7290' },
+    { id: 'tailwind', name: 'Tailwind CSS', svg: TailwindLogo, color: '#06B6D4' },
     { id: 'firebase', name: 'Firebase', svg: FirebaseLogo, color: '#ffa611' },
-    { id: 'csharp', name: 'C# (.Net)', svg: CSharpLogo, color: '#9a4993' },
     { id: 'socketio', name: 'Socket.IO', svg: SocketIoLogo, color: '#888' },
-    { id: 'git', name: 'Git', icon: faGitAlt, color: '#f1502f' },
-    { id: 'github', name: 'GitHub', icon: faGithub, color: '#888' },
+    { id: 'csharp', name: 'C# (.Net)', svg: CSharpLogo, color: '#9a4993' },
+    // { id: 'git', name: 'Git', icon: faGitAlt, color: '#f1502f' },
+    // { id: 'github', name: 'GitHub', icon: faGithub, color: '#888' },
     { id: 'vs', name: 'Visual Studio', svg: VisualStudioLogo, color: '#b179f1' },
     { id: 'webstorm', name: 'WebStorm', svg: WebStormLogo, color: '#00c7d3' },
+    { id: 'fusion', name: 'Autodesk Fusion 360', svg: FusionLogo, color: '#ff6b00' },
     // { id: '', name: '', icon: null, svg: null, color: '#000' },
 ]
 
@@ -101,23 +100,24 @@ export const projects = [
         ],
     },
     {
-        id: 'irltracker',
-        name: 'IRL Tracker',
-        image: 'projects/irl-tracker.jpg',
-        description: 'System do śledzenia lokalizacji stworzony do prowadzenia streamów IRL. Aplikacja na telefon odbiera dane GSM/GPS, przesyła je na serwer, a następnie do widgetu z mapą widocznego na transmisji internetowej. Aplikacja ponadto obsługuje sensory tętna oraz opaski sportowe Bluetooth do pokazywania szybkości bicia serca streamera, a także posiada specjalną wbudowaną przeglądarkę czatu Twitcha. Biblioteka widgetów jest stale powiększana i posiada również wersje pozwalające na śledzenie kilku użytkowników jednocześnie np. podczas przejażdżek rowerowych.',
-        tags: ['React', 'React Native', 'Node.js', 'Firebase'],
+        id: 'smarthome',
+        name: 'System smart home',
+        image: 'projects/smarthome.jpg',
+        description: 'Frontend oraz backend do zarządzania systemem smart home opartym na Home Assistant. Interfejs napisany w Reactcie i przystosowany do obsługi na tablecie w trybie kioskowym. Automatyzacje tworzyłem początkowo w środowisku graficznym NodeRed, ale przez ich rosnącą złożoność i bugi przepisałem je do backendu Node.js. Obsługuje on teraz wszystkie moje automatyzacje, pobiera dane pogodowe oraz steruje systemem powiadomień. Home Assistant służy jedynie jako rdzeń do komunikacji z urządzeniami. Całość działa w kontenerach Dockerowych postawionych na Proxmoxie i opiera się na komunikacji ZigBee oraz MQTT.',
+        tags: ['React', 'Node.js', 'Home Assistant', 'Tailwind CSS'],
         buttons: [
-            { name: 'Strona projektu', icon: null, url: 'https://neurit.net/portfolio/irl-tracker/' },
+            { name: 'Frontend', icon: faGithub, url: 'https://github.com/adan2013/HA-Dashboard' },
+            { name: 'Backend', icon: faGithub, url: 'https://github.com/adan2013/HA-Backend' },
         ],
     },
     {
-        id: 'avc',
-        name: 'AVC',
-        image: 'projects/avc.jpg',
-        description: 'Kompleksowy system do zarządzania aeroklubami oraz szkółkami lotniczymi. Obejmuje kartoteki do zarządzania statkami powietrznymi, uprawnieniami pilotów oraz członkami klubów. Moduł chronometraża monitoruje aktualnie znajdujące się w powietrzu jednostki oraz dba o wszystkie formalności, w tym rozliczanie opłat za przelot.',
-        tags: ['React', 'Firebase', 'Algolia'],
+        id: 'irltracker',
+        name: 'IRL Tracker',
+        image: 'projects/irl-tracker.jpg',
+        description: 'System do śledzenia lokalizacji stworzony do prowadzenia streamów IRL. Aplikacja na telefon odbiera dane GSM/GPS, przesyła je na serwer, a następnie do widgetu z mapą widocznego na transmisji internetowej. Aplikacja ponadto obsługuje sensory tętna oraz opaski sportowe Bluetooth do pokazywania szybkości bicia serca streamera. Oprócz tego posiada wbudowaną przeglądarkę czatu Twitcha oraz pozwala na obsługę kilku użytkowników jednocześnie (podwójny widget widoczny na miniaturce u dołu).',
+        tags: ['React', 'React Native', 'Node.js', 'Firebase'],
         buttons: [
-            { name: 'Strona projektu', icon: null, url: 'http://avc.neurit.net' },
+            { name: 'Strona projektu', icon: null, url: 'https://neurit.net/portfolio/irl-tracker/' },
         ],
     },
     {

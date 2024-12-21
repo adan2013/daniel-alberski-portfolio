@@ -19,7 +19,6 @@ const ImageCol = styled.div`
     text-align: center;
     padding: 0 5vw;
     position: relative;
-    text-align: center;
     min-height: 250px;
 `
 
@@ -41,7 +40,7 @@ const AboutMe = () => {
                 <DescriptionCol>
                     <h2>O mnie</h2>
                     <p>
-                        Nazywam się Daniel Alberski i od prawie 10 lat interesuję się programowaniem. Obecnie pracuję jako JavaScript Frontend Developer oraz tworzę proste backendy przy użyciu Node.js i usług Firebase. W przeszłości zajmowałem się programowaniem w C#. Obecnie skupiam się na poznawaniu ekosystemu Reacta w tym Gatsby.js oraz React Native. W wolnych chwilach koduje swoje prywatne projekty, w których testuje nowe technologie i poznaję świat elektroniki dzięki wykorzystaniu Raspberry Pi oraz Arduino. Poniżej znajdziesz moje najlepsze projekty z każdej dziedziny, jaką się zajmowałem.
+                        Nazywam się Daniel Alberski i od ponad 10 lat interesuję się programowaniem. Obecnie skupiam się na frontendach napisanych w Reactcie, ale wykonywałem również projekty backendów Node.js i aplikacji w React Native lub C#. W wolnych chwilach tworzę projekty DIY oparte o Raspberry Pi, Arduino oraz wydruki 3D. Poniżej znajdziesz kilka z moich największych prywatnych projektów.
                     </p>
                 </DescriptionCol>
                 <ImageCol>
