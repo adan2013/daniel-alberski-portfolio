@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://danielalberski.redark.pl',
+    siteUrl: 'https://danielalberski.adanit.pl',
     title: 'Daniel Alberski - JavaScript Frontend Developer',
   },
   plugins: [

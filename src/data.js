@@ -22,7 +22,7 @@ import TypeScriptLogo from './images/icons/ts-logo.svg'
 import FusionLogo from './images/icons/fusion360-logo.svg'
 
 export const seoConfig = {
-    url: 'https://danielalberski.redark.pl',
+    url: 'https://danielalberski.adanit.pl',
     fullTitle: 'Daniel Alberski - Frontend Developer',
     shortTitle: 'Daniel Alberski',
     description: 'Portfolio Daniel Alberski Frontend Developer',

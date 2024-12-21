@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const CONTACT_EMAIL_API = 'https://formsubmit.co/53a196e933c0eb7206126e31ba18fd5d'
-const SUBMIT_RETURN_URL = 'https://danielalberski.redark.pl/submit'
+const SUBMIT_RETURN_URL = 'https://danielalberski.adanit.pl/submit'
 
 const Form = styled.form`
     background-color: #f2f2f2;
