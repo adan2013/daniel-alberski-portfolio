@@ -10,8 +10,16 @@ const Container = styled.div`
 
 const DescriptionCol = styled.div`
     flex: 6;
-    padding: 2vw ${props => props.theme.isMobile ? '5vw' : '2vw'} 2vw 5vw;
+    padding: 5vw ${props => props.theme.isMobile ? '5vw' : '2vw'} 5vw 5vw;
     margin-top: ${props => props.theme.isMobile ? '10px' : '40px'};
+    
+    h2 {
+        margin-top: 0;
+    }
+    
+    p {
+        margin: 0;
+    }
 `
 
 const ImageCol = styled.div`
