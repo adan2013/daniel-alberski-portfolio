@@ -12,6 +12,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import SocketIoLogo from './images/icons/socket-io-logo.svg'
 import StyledComponentsLogo from './images/icons/styled-components-logo.svg'
+import GraphQLLogo from './images/icons/graphql-logo.svg'
+import JestLogo from './images/icons/jest-logo.svg'
 import GatsbyLogo from './images/icons/gatsby-logo.svg'
 import CSharpLogo from './images/icons/csharp-logo.svg'
 import VisualStudioLogo from './images/icons/visual-studio-logo.svg'
@@ -72,8 +74,10 @@ export const skills = [
     { id: 'nodejs', name: 'Node.js', icon: faNodeJs, color: '#3c873a' },
     { id: 'react', name: 'React', icon: faReact, color: '#51dbfb' },
     { id: 'reactnative', name: 'React Native', icon: faReact, color: '#51dbfb' },
-    { id: 'sql', name: 'SQL/NoSQL', icon: faDatabase, color: '#f29111' },
+    { id: 'jest', name: 'Jest', svg: JestLogo, color: '#99425b' },
+    { id: 'graphql', name: 'GraphQL', svg: GraphQLLogo, color: '#e536ab' },
     { id: 'gatsby', name: 'Gatsby', svg: GatsbyLogo, color: '#663399' },
+    { id: 'sql', name: 'SQL/NoSQL', icon: faDatabase, color: '#f29111' },
     { id: 'styled', name: 'Styled Components', svg: StyledComponentsLogo, color: '#db7290' },
     { id: 'tailwind', name: 'Tailwind CSS', svg: TailwindLogo, color: '#06B6D4' },
     { id: 'firebase', name: 'Firebase', svg: FirebaseLogo, color: '#ffa611' },
