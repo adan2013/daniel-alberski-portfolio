@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { social } from '../../data'
+import {useTranslation} from 'react-i18next'
 
 const FooterContainer = styled.footer`
     background-color: #0f0f0f;
@@ -32,6 +33,7 @@ const IconAnchor = styled.a`
 `
 
 const Footer = () => {
+  const { t } = useTranslation()
 
     return(
         <FooterContainer>
@@ -50,7 +52,7 @@ const Footer = () => {
                     ))
                 }
             </SocialIcons>
-            © {new Date().getFullYear()} Wszystkie prawa zastrzeżone.
+            © {`${new Date().getFullYear()} ${t('footerRights')}`}
         </FooterContainer>
     )
 }

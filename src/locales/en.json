@@ -1,0 +1,49 @@
+{
+  "switchLanguage": "Switch to 🇵🇱 Polish",
+  "pageNotFound": "Page not found",
+  "backToHome": "Back to home",
+  "submitTitle": "Success!",
+  "hero1": "Hello!",
+  "hero2": "I am <0>Daniel Alberski</0>",
+  "hero3": "Frontend Developer",
+  "submitText": "Your message has been successfully sent! I will reply soon 😉",
+  "aboutMe": "About me",
+  "aboutMeText": "I began learning programming in middle school, starting with desktop applications, followed by mobile, and finally web applications. Currently, I focus on frontend work within the React ecosystem. I also have experience with Node.js, as well as C#, PHP, and React Native, which I used in my personal projects. I am the author of a mini tech blog where I discuss topics of interest and share my DIY projects that combine programming knowledge with my passion for electronics and 3D printing.",
+  "skills": "Technologies and skills",
+  "myProjects": "My projects",
+  "contact": "Contact",
+  "contactText": "Want to get in touch? Use the form beside or reach out on LinkedIn!",
+  "nameField": "Your name",
+  "emailField": "Your email",
+  "messageField": "Message content",
+  "sendButton": "Send",
+  "footerRights": "All rights reserved.",
+  "mainPageButton": "Home page",
+  "githubButton": "GitHub",
+  "screenshotsButton": "Screenshots",
+  "frontendButton": "Frontend",
+  "backendButton": "Backend",
+  "projectPageButton": "Project page",
+  "articleButton": "Article",
+  "videoButton": "Video",
+  "redark": {
+    "title": "Redark",
+    "description": "A tech blog created in 2018 with the aim of sharing knowledge in the IT field. For the first two years, it operated under WordPress with a custom PHP theme. Due to frequent stability issues and growing customization and performance needs, it was successfully migrated to React and Gatsby in 2020. The entire project became open-source and is available on GitHub, with all articles now written in MDX - Markdown files enriched with JSX syntax. This same technology stack was used to create the portfolio website you're reading."
+  },
+  "smartHome": {
+    "title": "Smart home system",
+    "description": "Frontend and backend for managing a smart home system based on Home Assistant. The interface was written in React and optimized for tablet use in kiosk mode. Initially, I created automations using the NodeRed graphical environment, but due to increasing complexity and bugs, I rewrote them to a Node.js backend. It now handles all my automations, fetches weather data, and manages the notification system. Home Assistant serves only as the core for device communication. The entire setup runs in Docker containers hosted on Proxmox, relying on WebSocket, ZigBee and MQTT communication."
+  },
+  "irlTracker": {
+    "title": "IRL Tracker",
+    "description": "A location tracking system designed for IRL streams. The phone application receives GSM/GPS data, sends it to a server, and then displays it on a map widget visible during live broadcasts. The app also supports heart rate sensors and Bluetooth fitness bands to show the streamer's heart rate. Additionally, it includes an integrated Twitch chat browser and allows simultaneous use by multiple users (dual widget visible in the thumbnail)."
+  },
+  "diyArduinoDashboard": {
+    "title": "DIY Arduino Dashboard",
+    "description": "A DIY project that served both as my introduction to electronics and as my most complex creation. The project included four elements: a telemetry interpreter for Euro Truck Simulator 2 and American Truck Simulator games written in C# and WPF; C++ code for Arduino; a gauge face generator in C# and WPF; and custom-built car gauges based on a Volkswagen Golf 4th generation. These featured 4 analog gauges, 16 warning lights, and an LCD display with a fully interactive onboard computer. The gauge faces were designed from scratch and crafted using layered materials. All program code and electrical schematics are available on GitHub. The build process and operation of the gauges are showcased on the Redark blog (Polish and English version available)."
+  },
+  "raspberryBookReader": {
+    "title": "Raspberry Book Reader",
+    "description": "An audiobook reader tailored for elderly or visually impaired users. This was my second DIY project, created for my grandmother. It features a Raspberry Pi 3 B+ and my first Python script. The system runs on Linux in a text-based interface, utilizing the VLC library. An Arduino ATtiny85 module is responsible for simple and safe power on/off control, communicating with the OS and managing the power supply. The build process and operation of the reader can be viewed on the Redark blog (Polish version only)."
+  }
+}

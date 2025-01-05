@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import ContactForm from './ContactForm'
+import {useTranslation} from 'react-i18next'
 
 const Container = styled.div`
     display: flex;
@@ -19,18 +20,14 @@ const FormCol = styled.div`
 `
 
 const Contact = () => {
+    const { t } = useTranslation()
 
     return(
         <section id='contact'>
             <Container>
                 <TextCol>
-                    <h2>Kontakt</h2>
-                    <p>
-                        Chcesz się ze mną skontaktować? Skorzystaj z formularza
-                        obok lub odezwij się na jednym z social mediów dostępnych
-                        w stopce. Znajdziesz tam również link do mojego
-                        konta <b>GitHub</b> oraz profilu na <b>LinkedIn</b>.
-                    </p>
+                    <h2>{t('contact')}</h2>
+                    <p>{t('contactText')}</p>
                 </TextCol>
                 <FormCol>
                     <ContactForm />

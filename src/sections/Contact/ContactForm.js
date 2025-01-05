@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import {useTranslation} from 'react-i18next'
 
 const CONTACT_EMAIL_API = 'https://formsubmit.co/53a196e933c0eb7206126e31ba18fd5d'
 const SUBMIT_RETURN_URL = 'https://danielalberski.adanit.pl/submit'
@@ -56,16 +57,17 @@ const SubmitButton = styled.input`
 `
 
 const ContactForm = () => {
+  const { t } = useTranslation()
 
     return(
         <Form action={CONTACT_EMAIL_API} method='POST'>
-            <Input type='text' name='name' placeholder='Twoje imię' required />
-            <Input type='email' name='email' placeholder='Twój e-mail' required />
-            <Textarea name='message' placeholder='Treść wiadomości'></Textarea>
+            <Input type='text' name='name' placeholder={t('nameField')} required />
+            <Input type='email' name='email' placeholder={t('emailField')} required />
+            <Textarea name='message' placeholder={t('messageField')}></Textarea>
             <Input type='hidden' name='_subject' value='Formularz kontaktowy portfolio' />
             <Input type='hidden' name='_next' value={SUBMIT_RETURN_URL} />
             <Input type='hidden' name='_honey' value='' />
-            <SubmitButton type='submit' value='Wyślij' />
+            <SubmitButton type='submit' value={t('sendButton')} />
         </Form>
     )
 }

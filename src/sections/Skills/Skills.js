@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { skills } from '../../data'
+import {useTranslation} from 'react-i18next'
 
 const Title = styled.h2`
     text-align: center;
@@ -55,10 +56,11 @@ const SvgImage = styled.div`
 `
 
 const Skills = () => {
+  const { t } = useTranslation()
 
     return(
         <section id='skills'>
-            <Title>Technologie i umiejętności</Title>
+            <Title>{t('skills')}</Title>
             <SkillContainer>
                 {
                     skills.map(({ id, name, icon, svg, color }) => (

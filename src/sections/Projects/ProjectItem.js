@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Tag from '../../components/Tag/Tag'
 import CTA from '../../components/CTA/CTA'
+import {useTranslation} from 'react-i18next'
 
 const Container = styled.div`
     display: flex;
@@ -58,6 +59,7 @@ const imageQuery = graphql`
 
 const ProjectItem = ({ project }) => {
     const data = useStaticQuery(imageQuery)
+    const { t } = useTranslation()
     const imageData = data.images.nodes.find(i => i.relativePath.includes(project.image))
 
     if(imageData) {
@@ -70,14 +72,14 @@ const ProjectItem = ({ project }) => {
                     </Image>
                 </ImageCol>
                 <TextCol>
-                    <Title>{project.name}</Title>
+                    <Title>{t(project.name)}</Title>
                     {
                         project.tags.map(tag => <Tag key={tag}>{tag}</Tag>)
                     }
-                    <Description>{project.description}</Description>
+                    <Description>{t(project.description)}</Description>
                     {
                         project.buttons.map(({ name, icon, url }) => (
-                            <CTA key={name} icon={icon} url={url}>{name}</CTA>
+                            <CTA key={name} icon={icon} url={url}>{t(name)}</CTA>
                         ))
                     }
                 </TextCol>

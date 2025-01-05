@@ -31,10 +31,13 @@
     "gatsby-plugin-styled-components": "^4.13.0",
     "gatsby-source-filesystem": "^3.13.0",
     "gatsby-transformer-sharp": "^3.13.0",
+    "i18next": "^24.2.0",
+    "i18next-browser-languagedetector": "^8.0.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-i18next": "^15.4.0",
     "styled-components": "^5.3.1"
   },
   "devDependencies": {

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { StaticImage } from 'gatsby-plugin-image'
+import {useTranslation} from 'react-i18next'
 
 const Container = styled.div`
     display: flex;
@@ -41,14 +42,15 @@ const ImageShadow = styled.div`
 `
 
 const AboutMe = () => {
+    const { t } = useTranslation()
 
     return(
         <section id='about-me'>
             <Container>
                 <DescriptionCol>
-                    <h2>O mnie</h2>
+                    <h2>{t('aboutMe')}</h2>
                     <p>
-                        Nazywam się Daniel Alberski i od ponad 10 lat interesuję się programowaniem. Obecnie skupiam się na frontendach napisanych w Reactcie, ale wykonywałem również projekty backendów Node.js i aplikacji w React Native lub C#. W wolnych chwilach tworzę projekty DIY oparte o Raspberry Pi, Arduino oraz wydruki 3D. Poniżej znajdziesz kilka z moich największych prywatnych projektów.
+                        {t('aboutMeText')}
                     </p>
                 </DescriptionCol>
                 <ImageCol>

@@ -1,6 +1,8 @@
 import React from 'react'
 import styled, {keyframes} from 'styled-components'
 import BackgroundAnimation from './BackgroundAnimation'
+import {Trans, useTranslation} from 'react-i18next'
+import LanguageSwitch from '../../components/LanguageSwitch/LanguageSwitch'
 
 const Container = styled.div`
     position: relative;
@@ -62,18 +64,22 @@ const Arrow = styled.div`
 `;
 
 const Hero = () => {
+    const { t } = useTranslation()
 
     return(
         <section id='start'>
             <Container>
+                <LanguageSwitch />
                 <BackgroundAnimation />
                 <CenterContent>
                     <Title>
-                        Witaj!
+                        {t('hero1')}
                         <br />
-                        Jestem <Accent>Daniel Alberski</Accent>
+                        <Trans i18nKey='hero2'>
+                            <Accent>Daniel Alberski</Accent>
+                        </Trans>
                         <br />
-                        Frontend Developer
+                        {t('hero3')}
                     </Title>
                 </CenterContent>
                 <ArrowsWrapper>

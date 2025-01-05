@@ -1,0 +1,49 @@
+{
+  "switchLanguage": "Switch to 🇬🇧 English",
+  "pageNotFound": "Strona nie została znaleziona",
+  "backToHome": "Powrót do strony głównej",
+  "submitTitle": "Poszło!",
+  "hero1": "Witaj!",
+  "hero2": "Jestem <0>Daniel Alberski</0>",
+  "hero3": "Frontend Developer",
+  "submitText": "Twoja wiadomość została pomyślnie wysłana! Wkrótce na nią odpiszę \uD83D\uDE09",
+  "aboutMe": "O mnie",
+  "aboutMeText": "Naukę programowania rozpocząłem już w gimnazjum, zaczynając od aplikacji desktopowych, przez mobilne, na webowych kończąc. Obecnie skupiam się na pracy na frontendzie w ekosystemie React. Mam również doświadczenie w Node.js, ale również w C#, PHP oraz React Native, których to używałem w swoich prywatnych projektach. Jestem autorem mini bloga technologicznego, na którym omawiam interesujące mnie zagadnienia oraz dzielę się swoimi projektami DIY łączącymi programistyczną wiedzę z pasją do elektroniki, oraz druku 3D.",
+  "skills": "Technologie i umiejętności",
+  "myProjects": "Moje projekty",
+  "contact": "Kontakt",
+  "contactText": "Chcesz się ze mną skontaktować? Skorzystaj z formularza obok lub odezwij się na LinkedIn!",
+  "nameField": "Twoje imię",
+  "emailField": "Twój e-mail",
+  "messageField": "Treść wiadomości",
+  "sendButton": "Wyślij",
+  "footerRights": "Wszelkie prawa zastrzeżone.",
+  "mainPageButton": "Strona główna",
+  "githubButton": "GitHub",
+  "screenshotsButton": "Zrzuty ekranu",
+  "frontendButton": "Frontend",
+  "backendButton": "Backend",
+  "projectPageButton": "Strona projektu",
+  "articleButton": "Artykuł",
+  "videoButton": "Wideo",
+  "redark": {
+    "title": "Redark",
+    "description": "Blog technologiczny stworzony w 2018 roku z myślą o dzieleniu się swoją wiedzą z dziedziny IT. Przez pierwsze dwa lata pracował on pod kontrolą WordPressa z autorskim motywem PHP. Z powodu częstych problemów ze stabilnością oraz rosnących potrzeb personalizacji i szybkości działania w 2020 roku został on pomyślnie przeniesiony na Reacta oraz Gatsby'ego. Cały projekt stał się open-source i jest dostępny na GitHubie, a wszystkie artykuły pisane są teraz w MDX - plikach Markdown wzbogaconych o składnię JSX. Przy pomocy tych samych technologii powstała strona portfolio, którą właśnie czytasz."
+  },
+  "smartHome": {
+    "title": "System smart home",
+    "description": "Frontend oraz backend do zarządzania systemem smart home opartym na Home Assistant. Interfejs napisany w Reactcie i przystosowany do obsługi na tablecie w trybie kioskowym. Automatyzacje tworzyłem początkowo w środowisku graficznym NodeRed, ale przez ich rosnącą złożoność i bugi przepisałem je do backendu Node.js. Obsługuje on teraz wszystkie moje automatyzacje, pobiera dane pogodowe oraz steruje systemem powiadomień. Home Assistant służy jedynie jako rdzeń do komunikacji z urządzeniami. Całość działa w kontenerach Dockerowych postawionych na Proxmoxie i opiera się na komunikacji WebSockets, ZigBee oraz MQTT."
+  },
+  "irlTracker": {
+    "title": "IRL Tracker",
+    "description": "System do śledzenia lokalizacji stworzony do prowadzenia streamów IRL. Aplikacja na telefon odbiera dane GSM/GPS, przesyła je na serwer, a następnie do widgetu z mapą widocznego na transmisji internetowej. Aplikacja ponadto obsługuje sensory tętna oraz opaski sportowe Bluetooth do pokazywania szybkości bicia serca streamera. Oprócz tego posiada wbudowaną przeglądarkę czatu Twitcha oraz pozwala na obsługę kilku użytkowników jednocześnie (podwójny widget widoczny na miniaturce u dołu)."
+  },
+  "diyArduinoDashboard": {
+    "title": "DIY Arduino Dashboard",
+    "description": "Projekt DIY, który był zarówno moim wstępem do świata elektroniki, jak i najbardziej skomplikowanym dziełem. W skład projektu wchodziły cztery elementy. Pierwszą rzeczą był napisany w C# i WPF interpreter telemetrii gier Euro Truck Simulator 2 oraz American Truck Simulator. Drugą był kod C++ dla Arduino, trzecią generator tarcz zegarów napisany w C# i WPF. Ostatnim elementem układanki były ręcznie wykonane zegary samochodowe. Powstały one na bazie Volkwagena Golfa 4. generacji i posiadały 4 zegary analogowe, 16 kontrolek ostrzegawczych oraz wyświetlacz LCD z pełni interaktywnym komputerem pokładowym. Tarcze zegarów zostały zaprojektowane przeze mnie od podstaw, a następnie wykonane z kilku sklejonych ze sobą materiałów. Kod wszystkich programów oraz schematy elektryczne są dostępne na GitHubie. Działanie oraz proces budowy zegarów można zobaczyć na blogu Redark.pl."
+  },
+  "raspberryBookReader": {
+    "title": "Raspberry Book Reader",
+    "description": "Czytnik audiobooków dostosowany do obsługi przez osoby starsze/niedowidzące. Był to mój drugi projekt DIY i stworzyłem go dla swojej babci. Sercem układu jest Raspberry Pi 3 B+ oraz mój pierwszy skrypt napisany w Pythonie. Całość pracowała na Linuxie w interfejsie tekstowym i korzystała z biblioteki VLC. Za proste oraz bezpieczne włączanie i wyłączanie mikrokomputera odpowiadał układ Arduino ATtiny85, który komunikował się z systemem operacyjnym oraz sterował zasilaniem układu. Działanie oraz proces budowy czytnika można zobaczyć na blogu Redark.pl."
+  }
+}

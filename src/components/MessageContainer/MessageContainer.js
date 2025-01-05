@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import CTA from '../CTA/CTA'
+import {useTranslation} from 'react-i18next'
 
 const MainContainer = styled.div`
     background-color: #fff;
@@ -21,12 +22,13 @@ const Message = styled.div`
 `
 
 const MessageContainer = ({ title, message }) => {
+    const { t } = useTranslation()
 
     return(
         <MainContainer>
             {title && <Title>{title}</Title>}
             {message && <Message>{message}</Message>}
-            <CTA url='/' useGatsbyNav>Powrót do strony głównej</CTA>
+            <CTA url='/' useGatsbyNav>{t('backToHome')}</CTA>
         </MainContainer>
     )
 }
