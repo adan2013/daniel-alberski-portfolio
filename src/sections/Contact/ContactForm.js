@@ -11,6 +11,11 @@ const Form = styled.form`
     padding: 16px 8px;
 `
 
+const Label = styled.div`
+    font-size: 0.8rem;
+    margin: 8px 18px 2px;
+`
+
 const Input = styled.input`
     display: block;
     width: 90%;
@@ -61,9 +66,12 @@ const ContactForm = () => {
 
     return(
         <Form action={CONTACT_EMAIL_API} method='POST'>
-            <Input type='text' name='name' placeholder={t('nameField')} required />
-            <Input type='email' name='email' placeholder={t('emailField')} required />
-            <Textarea name='message' placeholder={t('messageField')}></Textarea>
+            <Label>{t('nameField')}</Label>
+            <Input type='text' name='name' required />
+            <Label>{t('emailField')}</Label>
+            <Input type='email' name='email' required />
+            <Label>{t('messageField')}</Label>
+            <Textarea name='message'></Textarea>
             <Input type='hidden' name='_subject' value='Formularz kontaktowy portfolio' />
             <Input type='hidden' name='_next' value={SUBMIT_RETURN_URL} />
             <Input type='hidden' name='_honey' value='' />
