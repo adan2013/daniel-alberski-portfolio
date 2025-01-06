@@ -13,7 +13,9 @@ const Form = styled.form`
 
 const Label = styled.div`
     font-size: 0.8rem;
-    margin: 8px 18px 2px;
+    margin: 8px auto 2px;
+    width: 90%;
+    max-width: 600px;
 `
 
 const Input = styled.input`
