@@ -100,7 +100,8 @@ export const projects = [
         tags: ['React', 'Gatsby', 'MDX', 'WordPress'],
         buttons: [
             { name: 'mainPageButton', icon: null, url: 'https://redark.pl' },
-            { name: 'githubButton', icon: faGithub, url: 'https://github.com/adan2013/Redark-Gatsby-Blog' },
+            { name: 'gatsbyVersionButton', icon: faGithub, url: 'https://github.com/adan2013/Redark-Gatsby-Blog' },
+            { name: 'nextVersionButton', icon: faGithub, url: 'https://github.com/adan2013/redark-next' },
         ],
     },
     {

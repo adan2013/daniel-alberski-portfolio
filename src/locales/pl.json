@@ -20,6 +20,8 @@
   "footerRights": "Wszelkie prawa zastrzeżone.",
   "mainPageButton": "Strona główna",
   "githubButton": "GitHub",
+  "gatsbyVersionButton": "Gatsby",
+  "nextVersionButton": "Next.js",
   "screenshotsButton": "Zrzuty ekranu",
   "frontendButton": "Frontend",
   "backendButton": "Backend",
@@ -28,7 +30,7 @@
   "videoButton": "Wideo",
   "redark": {
     "title": "Redark",
-    "description": "Blog technologiczny stworzony w 2018 roku z myślą o dzieleniu się swoją wiedzą z dziedziny IT. Przez pierwsze dwa lata pracował on pod kontrolą WordPressa z autorskim motywem PHP. Z powodu częstych problemów ze stabilnością oraz rosnących potrzeb personalizacji i szybkości działania w 2020 roku został on pomyślnie przeniesiony na Reacta oraz Gatsby'ego. Cały projekt stał się open-source i jest dostępny na GitHubie, a wszystkie artykuły pisane są teraz w MDX - plikach Markdown wzbogaconych o składnię JSX. Przy pomocy tych samych technologii powstała strona portfolio, którą właśnie czytasz."
+    "description": "Blog technologiczny stworzony w 2018 roku z myślą o dzieleniu się swoją wiedzą z dziedziny IT. Przez pierwsze dwa lata pracował on pod kontrolą WordPressa z autorskim motywem PHP. Z powodu częstych problemów ze stabilnością oraz rosnących potrzeb personalizacji i szybkości działania w 2020 roku został on pomyślnie przeniesiony na Reacta oraz Gatsby'ego. Cały projekt stał się open-source i jest dostępny na GitHubie, a wszystkie artykuły pisane są teraz w MDX. W 2025 roku powstał również prototyp napisany w Next.js."
   },
   "smartHome": {
     "title": "System smart home",

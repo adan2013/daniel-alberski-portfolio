@@ -20,6 +20,8 @@
   "footerRights": "All rights reserved.",
   "mainPageButton": "Home page",
   "githubButton": "GitHub",
+  "gatsbyVersionButton": "Gatsby",
+  "nextVersionButton": "Next.js",
   "screenshotsButton": "Screenshots",
   "frontendButton": "Frontend",
   "backendButton": "Backend",
@@ -28,7 +30,7 @@
   "videoButton": "Video",
   "redark": {
     "title": "Redark",
-    "description": "A tech blog created in 2018 with the aim of sharing knowledge in the IT field. For the first two years, it operated under WordPress with a custom PHP theme. Due to frequent stability issues and growing customization and performance needs, it was successfully migrated to React and Gatsby in 2020. The entire project became open-source and is available on GitHub, with all articles now written in MDX - Markdown files enriched with JSX syntax. This same technology stack was used to create the portfolio website you're reading."
+    "description": "A technology blog created in 2018 with the goal of sharing knowledge in the field of IT. For the first two years, it ran on WordPress with a custom PHP theme. Due to frequent stability issues and increasing needs for customization and performance, it was successfully migrated to React and Gatsby in 2020. The entire project became open-source and is available on GitHub, with all articles now written in MDX. In 2025, a prototype built with Next.js was also created."
   },
   "smartHome": {
     "title": "Smart home system",
