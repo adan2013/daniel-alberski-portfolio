@@ -1,0 +1,130 @@
+{
+  "metadata": {
+    "description": "Programming since 2013, professionally since 2020. Frontend and React are my speciality. Explore my software, hardware, AI and 3D-printing projects."
+  },
+  "navigation": {
+    "brandLabel": "Daniel Alberski — portfolio",
+    "main": "Main navigation",
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact",
+    "switchLanguage": "Switch to Polish"
+  },
+  "site": {
+    "skipToContent": "Skip to content",
+    "footerCopyright": "© {{year}} Daniel Alberski"
+  },
+  "portfolio": {
+    "hero": {
+      "eyebrow": "PROFESSIONALLY SINCE 2020. CURIOUS SINCE 2013.",
+      "title": "SOFTWARE DEVELOPER.",
+      "lead": "I design and develop software.",
+      "sublead": "From architecture to deployment.",
+      "projects": "Explore projects",
+      "contact": "Let’s talk",
+      "portraitLabel": "Daniel’s portrait placeholder, 1:1 crop",
+      "portrait": "Portrait",
+      "greeting": "Hi, I’m Daniel.",
+      "bio": "I code out of curiosity. I build things to use them."
+    },
+    "about": {
+      "eyebrow": "ABOUT ME",
+      "title": "Frontend, architecture",
+      "titleAccent": "and personal projects.",
+      "paragraph1": "I’ve been programming since 2013 and working professionally since 2020. Frontend and the React ecosystem are where I have the most experience. They’re also the areas I most enjoy working in. My professional experience also includes backend and mobile application development.",
+      "paragraph2": "In my professional work, I’ve worked on software architecture and as a Tech Lead while continuing to write code. Architecture and implementation went hand in hand. My portfolio shows that same range: from an idea and the choice of an approach to a working project.",
+      "paragraph3": "In my personal projects, I bring together different disciplines to build things that meet practical needs. In my smart home system, I connected a React interface with Node.js logic and device communication. With PiGuard and VHS HTPC, the work also involved electronics, enclosures and 3D printing.",
+      "paragraph4": "I also worked professionally on AI-powered tools before coding assistants such as Codex and Claude Code became widely used. Today, I also use AI to help me write code. For Gauge Generator, I wrote specifications, broke the work into stages and reviewed the generated code myself. For PiGuard, AI support let me spend more time on the electronics and building the device. I describe these experiences in more detail in the individual project stories.",
+      "linkedin": "My experience on LinkedIn"
+    },
+    "projects": {
+      "eyebrow": "PERSONAL PROJECTS",
+      "title": "Different paths.",
+      "titleAccent": "The same curiosity.",
+      "intro": "From early experiments to systems used every day. Each project is a part of my journey.",
+      "caseStudy": "CASE STUDY",
+      "technologies": "Technologies",
+      "readMore": "Read the story"
+    }
+  },
+  "filters": {
+    "all": "All projects",
+    "legend": "Filter projects",
+    "hint": "Choose a path to filter the projects below.",
+    "countLabel": "Project count: {{count}}",
+    "selected": "Selected filter",
+    "show": "Show projects",
+    "summary": "{{selected}} · {{count}} of {{total}} projects"
+  },
+  "github": {
+    "eyebrow": "ACTIVITY",
+    "title": "More on GitHub.",
+    "description": "These are just some of the projects I’ve contributed to. I’m regularly active on GitHub, where you can follow my work.",
+    "visit": "Visit my GitHub"
+  },
+  "calendar": {
+    "fallback": "Visit my GitHub profile to see my repositories and recent activity.",
+    "region": "Contributions over the past 12 months — scroll horizontally to view the full graph",
+    "months": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "totalCount": "Contributions in the last year: {{count}}",
+    "less": "Less",
+    "more": "More",
+    "error": "The graph is temporarily unavailable. See my GitHub profile for current activity and repositories.",
+    "blockLabel": "{{date}} — contributions: {{count}}",
+    "scrollHint": "Scroll the graph sideways to view the full year."
+  },
+  "contact": {
+    "eyebrow": "CONTACT",
+    "title": "Something in mind?",
+    "titleAccent": "Let’s talk.",
+    "description": "Want to talk about working together or one of my projects? Send me a message — I’d like to hear more.",
+    "name": "Name",
+    "message": "Message",
+    "subject": "Portfolio — contact message",
+    "honeypot": "Leave empty",
+    "provider": "Your message is sent via FormSubmit.",
+    "sending": "Sending…",
+    "send": "Send message",
+    "success": "✓ Thank you! Your message has been sent.",
+    "error": "The message could not be sent. Please try again or contact me on LinkedIn."
+  },
+  "caseStudy": {
+    "back": "Back to projects",
+    "started": "Project started",
+    "contribution": "My contribution",
+    "technologies": "Technologies",
+    "story": "Project story",
+    "diagramLabel": "Data flow from interface to devices",
+    "tabletInterface": "Tablet interface",
+    "logic": "Logic and automations",
+    "deviceCommunication": "Device communication",
+    "navigation": "Project navigation",
+    "next": "NEXT PROJECT"
+  },
+  "video": { "caption": "The gauges in action during a simulator drive." },
+  "geometry": {
+    "flat": "PLANE",
+    "fold": "TRANSFORMATION",
+    "space": "STRUCTURE"
+  },
+  "submit": {
+    "title": "Message sent",
+    "eyebrow": "CONTACT",
+    "heading": "Thank you for your message.",
+    "description": "Your form has been sent. I’ll get back to you after reading it.",
+    "back": "Back to the portfolio"
+  }
+}

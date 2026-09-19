@@ -1,0 +1,130 @@
+{
+  "metadata": {
+    "description": "Programuję od 2013 roku, komercyjnie od 2020. Frontend i React to moja specjalizacja. Poznaj moje projekty software, hardware, AI i druku 3D."
+  },
+  "navigation": {
+    "brandLabel": "Daniel Alberski — portfolio",
+    "main": "Nawigacja główna",
+    "projects": "Projekty",
+    "about": "O mnie",
+    "contact": "Kontakt",
+    "switchLanguage": "Przełącz na angielski"
+  },
+  "site": {
+    "skipToContent": "Przejdź do treści",
+    "footerCopyright": "© {{year}} Daniel Alberski"
+  },
+  "portfolio": {
+    "hero": {
+      "eyebrow": "KOMERCYJNIE OD 2020. Z CIEKAWOŚCI OD 2013.",
+      "title": "SOFTWARE DEVELOPER.",
+      "lead": "Projektuję i rozwijam oprogramowanie.",
+      "sublead": "Od architektury po wdrożenie.",
+      "projects": "Zobacz projekty",
+      "contact": "Porozmawiajmy",
+      "portraitLabel": "Miejsce na portret Daniela, kadr 1:1",
+      "portrait": "Portret",
+      "greeting": "Cześć, jestem Daniel.",
+      "bio": "Programuję z ciekawości. Buduję, żeby używać."
+    },
+    "about": {
+      "eyebrow": "O MNIE",
+      "title": "Frontend, architektura",
+      "titleAccent": "i własne projekty.",
+      "paragraph1": "Programuję od 2013 roku, a komercyjnie pracuję od 2020. Najwięcej doświadczenia mam we frontendzie i ekosystemie React. To także obszar, w którym najbardziej lubię pracować. Moje doświadczenie komercyjne obejmuje również backend i aplikacje mobilne.",
+      "paragraph2": "W pracy zawodowej zajmowałem się architekturą oprogramowania i pełniłem rolę Tech Leada, cały czas aktywnie pisząc kod. Praca nad architekturą szła więc w parze z implementacją. W portfolio pokazuję podobny przekrój: od pomysłu i wyboru rozwiązania po działający projekt.",
+      "paragraph3": "We własnych projektach realizuję pomysły, które łączą różne dziedziny i rozwiązują konkretne potrzeby. W systemie smart home połączyłem interfejs w React z logiką w Node.js i komunikacją z urządzeniami. W PiGuardzie i VHS HTPC do kodu doszły elektronika, obudowa i druk 3D.",
+      "paragraph4": "Komercyjnie rozwijałem też narzędzia wykorzystujące AI, zanim asystenci programowania tacy jak Codex czy Claude Code zyskali szeroką popularność. Dziś korzystam z AI również podczas pisania kodu. Przy Gauge Generatorze przygotowywałem specyfikacje, dzieliłem pracę na etapy i sam sprawdzałem wygenerowany kod. W PiGuardzie wsparcie AI pozwoliło mi poświęcić więcej uwagi elektronice i wykonaniu urządzenia. Te doświadczenia opisuję szerzej przy poszczególnych projektach.",
+      "linkedin": "Moje doświadczenie na LinkedIn"
+    },
+    "projects": {
+      "eyebrow": "PRYWATNE PROJEKTY",
+      "title": "Różne ścieżki.",
+      "titleAccent": "Ta sama ciekawość.",
+      "intro": "Od pierwszych eksperymentów po systemy używane na co dzień. Każdy projekt to kawałek mojej drogi.",
+      "caseStudy": "CASE STUDY",
+      "technologies": "Technologie",
+      "readMore": "Czytaj więcej"
+    }
+  },
+  "filters": {
+    "all": "Wszystkie projekty",
+    "legend": "Filtruj projekty",
+    "hint": "Wybierz ścieżkę, aby zawęzić listę poniżej.",
+    "countLabel": "Liczba projektów: {{count}}",
+    "selected": "Wybrany filtr",
+    "show": "Pokaż projekty",
+    "summary": "{{selected}} · {{count}} z {{total}} projektów"
+  },
+  "github": {
+    "eyebrow": "AKTYWNOŚĆ",
+    "title": "Więcej na GitHubie.",
+    "description": "To tylko część projektów, w których brałem udział. Jestem stale aktywny na GitHubie — tam możesz śledzić moją pracę.",
+    "visit": "Zobacz mój GitHub"
+  },
+  "calendar": {
+    "fallback": "Moje repozytoria i aktualną aktywność znajdziesz na profilu GitHub.",
+    "region": "Kontrybucje z ostatnich 12 miesięcy — przewijaj poziomo, aby zobaczyć cały graf",
+    "months": [
+      "sty",
+      "lut",
+      "mar",
+      "kwi",
+      "maj",
+      "cze",
+      "lip",
+      "sie",
+      "wrz",
+      "paź",
+      "lis",
+      "gru"
+    ],
+    "totalCount": "Kontrybucje w ostatnim roku: {{count}}",
+    "less": "Mniej",
+    "more": "Więcej",
+    "error": "Graf jest chwilowo niedostępny. Aktualną aktywność i repozytoria zobaczysz na moim profilu GitHub.",
+    "blockLabel": "{{date}} — kontrybucje: {{count}}",
+    "scrollHint": "Przesuń graf w bok, aby zobaczyć cały rok."
+  },
+  "contact": {
+    "eyebrow": "KONTAKT",
+    "title": "Masz temat?",
+    "titleAccent": "Porozmawiajmy.",
+    "description": "Chcesz porozmawiać o współpracy albo o którymś z projektów? Napisz — chętnie poznam szczegóły.",
+    "name": "Imię",
+    "message": "Wiadomość",
+    "subject": "Portfolio — wiadomość kontaktowa",
+    "honeypot": "Pozostaw puste",
+    "provider": "Wiadomość wyślesz przez FormSubmit.",
+    "sending": "Wysyłanie…",
+    "send": "Wyślij wiadomość",
+    "success": "✓ Dziękuję! Wiadomość została wysłana.",
+    "error": "Nie udało się wysłać wiadomości. Spróbuj ponownie lub skontaktuj się ze mną przez LinkedIn."
+  },
+  "caseStudy": {
+    "back": "Wróć do projektów",
+    "started": "Początek projektu",
+    "contribution": "Mój wkład",
+    "technologies": "Technologie",
+    "story": "Historia projektu",
+    "diagramLabel": "Przepływ danych od interfejsu do urządzeń",
+    "tabletInterface": "Interfejs na tablecie",
+    "logic": "Logika i automatyzacje",
+    "deviceCommunication": "Komunikacja z urządzeniami",
+    "navigation": "Nawigacja między projektami",
+    "next": "NASTĘPNY PROJEKT"
+  },
+  "video": { "caption": "Zegary w działaniu podczas jazdy w symulatorze." },
+  "geometry": {
+    "flat": "PŁASZCZYZNA",
+    "fold": "TRANSFORMACJA",
+    "space": "KONSTRUKCJA"
+  },
+  "submit": {
+    "title": "Wiadomość wysłana",
+    "eyebrow": "KONTAKT",
+    "heading": "Dziękuję za wiadomość.",
+    "description": "Formularz został wysłany. Odezwę się, gdy zapoznam się z jego treścią.",
+    "back": "Wróć do portfolio"
+  }
+}

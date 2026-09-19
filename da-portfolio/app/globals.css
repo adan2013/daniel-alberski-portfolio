@@ -1,0 +1,74 @@
+@import "tailwindcss" source(none);
+
+@source "./";
+@source "../components";
+
+@theme inline {
+  --color-page: var(--bg);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-soft: var(--soft);
+  --color-line: var(--line);
+  --color-field: var(--border);
+  --font-body: "IBM Plex Sans", Arial, sans-serif;
+  --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
+}
+
+@theme {
+  --breakpoint-mobile: 601px;
+  --breakpoint-tablet: 801px;
+  --breakpoint-desktop: 1101px;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --bg: #f6f7fa;
+    --text: #14243b;
+    --muted: #536176;
+    --accent: #b32636;
+    --soft: #e5eaf2;
+    --line: #d5dce6;
+    --border: #758196;
+  }
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+  a,
+  button {
+    touch-action: manipulation;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+  }
+  :is(a, button, input, textarea, select):focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 5px;
+  }
+  p {
+    color: var(--muted);
+  }
+  ::selection {
+    background: var(--text);
+    color: var(--bg);
+  }
+}
+
+/* Essential fallback also covers custom scene effects and pseudo-elements. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
