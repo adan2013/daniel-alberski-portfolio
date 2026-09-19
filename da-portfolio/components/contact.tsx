@@ -108,8 +108,19 @@ export function Contact({ locale }: { locale: Locale }) {
               <Field name="_honey" tabIndex={-1} autoComplete="off" />
             </label>
           </div>
-          <div className="form-footer mt-5.5 flex items-center justify-between gap-4.5 [&>small]:max-w-40 [&>small]:text-[11px] [&>small]:text-muted max-desktop:flex-col max-desktop:items-start max-mobile:flex-row max-mobile:items-center max-mobile:[&>small]:max-w-26.25 max-mobile:[&>small]:text-[10px] max-mobile:[&>button]:gap-3.75">
-            <small>{t("contact.provider")}</small>
+          <div className="form-footer mt-5.5 flex items-center justify-between gap-4.5 [&>small]:max-w-64 [&>small]:text-[11px] [&>small]:text-muted max-desktop:flex-col max-desktop:items-start max-mobile:flex-row max-mobile:items-center max-mobile:[&>small]:max-w-34 max-mobile:[&>small]:text-[10px] max-mobile:[&>button]:gap-3.75">
+            <small>
+              {t("contact.provider")}{" "}
+              <Action
+                href="https://formsubmit.co/"
+                variant="inline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                FormSubmit
+              </Action>
+              .
+            </small>
             <Action type="submit" disabled={state === "sending"}>
               {state === "sending" ? t("contact.sending") : t("contact.send")}
             </Action>
@@ -118,7 +129,7 @@ export function Contact({ locale }: { locale: Locale }) {
             role={state === "error" ? "alert" : "status"}
             aria-live="polite"
             data-state={state}
-            className="form-status mt-4 min-h-6 text-[14px] data-[state=error]:border-l-[3px] data-[state=error]:border-[#a3182c] data-[state=error]:px-3.75 data-[state=error]:py-2 data-[state=error]:text-[#841a24]"
+            className="form-status mt-4 min-h-6 text-[14px] font-medium leading-relaxed data-[state=success]:bg-ink data-[state=success]:px-4 data-[state=success]:py-3 data-[state=success]:text-white data-[state=success]:shadow-[4px_4px_0_var(--line)] data-[state=error]:border-l-4 data-[state=error]:border-[#a3182c] data-[state=error]:bg-page data-[state=error]:px-4 data-[state=error]:py-3 data-[state=error]:text-[#841a24]"
           >
             {state === "success"
               ? t("contact.success")

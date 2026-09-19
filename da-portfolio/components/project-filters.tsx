@@ -89,16 +89,9 @@ export function ProjectFilters({
               </span>
             </span>
             {option.description && (
-              <>
-                <span className="track-description filter-muted max-mobile:col-span-full text-[13px] leading-relaxed text-muted group-aria-pressed/filter:text-white">
-                  {option.description}
-                </span>
-                <span className="mt-auto pt-1 text-[12px] font-medium underline decoration-field underline-offset-4 group-hover/filter:decoration-white group-focus-visible/filter:decoration-white group-aria-pressed/filter:decoration-white max-mobile:col-span-full">
-                  {value === option.id
-                    ? t("filters.selected")
-                    : t("filters.show")}
-                </span>
-              </>
+              <span className="track-description filter-muted max-mobile:col-span-full text-[13px] leading-relaxed text-muted group-aria-pressed/filter:text-white">
+                {option.description}
+              </span>
             )}
           </FilterButton>
         ))}

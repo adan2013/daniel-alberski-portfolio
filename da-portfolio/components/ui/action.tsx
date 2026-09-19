@@ -80,13 +80,34 @@ export function Action(props: ActionProps) {
       className,
     );
     const content = actionContent(variant, children);
+    const {
+      target: requestedTarget,
+      rel: requestedRel,
+      ...restAnchorProps
+    } = anchorProps;
+    const externalLink = /^(?:https?:)?\/\//.test(href);
+    const target = requestedTarget ?? (externalLink ? "_blank" : undefined);
+    const rel =
+      requestedRel ?? (target === "_blank" ? "noopener noreferrer" : undefined);
 
     return href.startsWith("/") && !href.startsWith("//") ? (
-      <Link href={href} className={classes} {...anchorProps}>
+      <Link
+        href={href}
+        className={classes}
+        target={target}
+        rel={rel}
+        {...restAnchorProps}
+      >
         {content}
       </Link>
     ) : (
-      <a href={href} className={classes} {...anchorProps}>
+      <a
+        href={href}
+        className={classes}
+        target={target}
+        rel={rel}
+        {...restAnchorProps}
+      >
         {content}
       </a>
     );

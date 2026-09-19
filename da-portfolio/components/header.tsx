@@ -43,14 +43,15 @@ export function Header({ locale }: { locale: Locale }) {
           className="flex shrink-0 items-center gap-5.5 text-[14px] max-tablet:gap-3 max-tablet:text-[13px] max-mobile:gap-1 max-mobile:text-[11px]"
           aria-label={t("navigation.main")}
         >
-          <Action href={`${home}#projects`}>{t("navigation.projects")}</Action>
-          <Action
-            className="about-nav max-mobile:hidden"
-            href={`${home}#about`}
-          >
+          <Action className="max-mobile:hidden" href={`${home}#about`}>
             {t("navigation.about")}
           </Action>
-          <Action href={`${home}#contact`}>{t("navigation.contact")}</Action>
+          <Action className="max-mobile:hidden" href={`${home}#projects`}>
+            {t("navigation.projects")}
+          </Action>
+          <Action className="max-mobile:hidden" href={`${home}#contact`}>
+            {t("navigation.contact")}
+          </Action>
           <Link
             className={`language relative ml-4 flex min-h-8 w-16 shrink-0 overflow-hidden rounded-none border border-field bg-page text-[12px] leading-4 font-medium transition-colors before:pointer-events-none before:absolute before:inset-0 before:bg-[#203d66] before:content-[''] hover:border-[#203d66] max-tablet:ml-0 max-mobile:w-14 max-mobile:text-[10px] ${locale === "pl" ? "before:[clip-path:polygon(0_0,55%_0,45%_100%,0_100%)]" : "before:[clip-path:polygon(55%_0,100%_0,100%_100%,45%_100%)]"}`}
             href={other}

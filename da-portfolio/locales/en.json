@@ -25,23 +25,36 @@
       "portraitLabel": "Daniel’s portrait placeholder, 1:1 crop",
       "portrait": "Portrait",
       "greeting": "Hi, I’m Daniel.",
-      "bio": "I code out of curiosity. I build things to use them."
+      "bio": "I grow by building my own projects — from interfaces to electronics and 3D printing."
     },
     "about": {
       "eyebrow": "ABOUT ME",
       "title": "Frontend, architecture",
       "titleAccent": "and personal projects.",
       "paragraph1": "I’ve been programming since 2013 and working professionally since 2020. Frontend and the React ecosystem are where I have the most experience. They’re also the areas I most enjoy working in. My professional experience also includes backend and mobile application development.",
-      "paragraph2": "In my professional work, I’ve worked on software architecture and as a Tech Lead while continuing to write code. Architecture and implementation went hand in hand. My portfolio shows that same range: from an idea and the choice of an approach to a working project.",
-      "paragraph3": "In my personal projects, I bring together different disciplines to build things that meet practical needs. In my smart home system, I connected a React interface with Node.js logic and device communication. With PiGuard and VHS HTPC, the work also involved electronics, enclosures and 3D printing.",
-      "paragraph4": "I also worked professionally on AI-powered tools before coding assistants such as Codex and Claude Code became widely used. Today, I also use AI to help me write code. For Gauge Generator, I wrote specifications, broke the work into stages and reviewed the generated code myself. For PiGuard, AI support let me spend more time on the electronics and building the device. I describe these experiences in more detail in the individual project stories.",
+      "paragraph2": "In my professional work, I’ve worked on software architecture and as a Tech Lead while continuing to write code. This taught me to look at a product more broadly, without separating architectural decisions from day-to-day implementation. My portfolio shows a similar range: from an idea and the choice of an approach to a working project.",
+      "journeyIntro": "My personal projects have gradually expanded the range of problems I can solve. ",
+      "redarkName": "Redark",
+      "redarkText": " began with a custom WordPress theme, and migrating it to React and Gatsby taught me to plan a technology change without losing a working service or its SEO. With ",
+      "dashboardName": "DIY Arduino Dashboard",
+      "dashboardText": " I moved beyond software alone — months of independent learning, building electronics and working around Arduino’s constraints showed me how code behaves in a physical device.",
+      "systemsIntro": "Over time, I began combining these experiences into larger systems. ",
+      "smartHomeName": "The smart home system",
+      "smartHomeText": " brought together React, a Node.js backend and device communication, while its daily use taught me to design tests, logging and monitoring around stability. In ",
+      "vhsName": "VHS HTPC",
+      "vhsText": ", software was joined by mechanical design, electronics and 3D printing, so the challenge was no longer just writing code but fitting the entire solution into a real enclosure.",
+      "aiPrefix": "I worked professionally on AI-powered tools before coding assistants became widespread. With ",
+      "gaugeName": "Gauge Generator 2.0",
+      "aiMiddle": " I turned that experience into a structured process: from specifications and task breakdown to independent code review. In ",
+      "piguardName": "PiGuard GSM",
+      "aiSuffix": ", AI helped me configure Linux and work out how to communicate with the modem despite the lack of documentation, while I could devote more attention to the electronics, enclosure and reliability of the entire device.",
       "linkedin": "My experience on LinkedIn"
     },
     "projects": {
       "eyebrow": "PERSONAL PROJECTS",
       "title": "Different paths.",
       "titleAccent": "The same curiosity.",
-      "intro": "From early experiments to systems used every day. Each project is a part of my journey.",
+      "intro": "From early experiments to systems used every day. Each project brought a different challenge and an opportunity to learn something new.",
       "caseStudy": "CASE STUDY",
       "technologies": "Technologies",
       "readMore": "Read the story"
@@ -52,14 +65,12 @@
     "legend": "Filter projects",
     "hint": "Choose a path to filter the projects below.",
     "countLabel": "Project count: {{count}}",
-    "selected": "Selected filter",
-    "show": "Show projects",
     "summary": "{{selected}} · {{count}} of {{total}} projects"
   },
   "github": {
     "eyebrow": "ACTIVITY",
     "title": "More on GitHub.",
-    "description": "These are just some of the projects I’ve contributed to. I’m regularly active on GitHub, where you can follow my work.",
+    "description": "These are just some of the projects I’ve created — there have been many more. On GitHub, you can explore my other repositories and follow my current work.",
     "visit": "Visit my GitHub"
   },
   "calendar": {
@@ -95,7 +106,7 @@
     "message": "Message",
     "subject": "Portfolio — contact message",
     "honeypot": "Leave empty",
-    "provider": "Your message is sent via FormSubmit.",
+    "provider": "This form is protected and handled by",
     "sending": "Sending…",
     "send": "Send message",
     "success": "✓ Thank you! Your message has been sent.",

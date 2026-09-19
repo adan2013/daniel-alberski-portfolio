@@ -25,23 +25,36 @@
       "portraitLabel": "Miejsce na portret Daniela, kadr 1:1",
       "portrait": "Portret",
       "greeting": "Cześć, jestem Daniel.",
-      "bio": "Programuję z ciekawości. Buduję, żeby używać."
+      "bio": "Rozwijam się, budując własne projekty — od interfejsów po elektronikę i druk 3D."
     },
     "about": {
       "eyebrow": "O MNIE",
       "title": "Frontend, architektura",
       "titleAccent": "i własne projekty.",
       "paragraph1": "Programuję od 2013 roku, a komercyjnie pracuję od 2020. Najwięcej doświadczenia mam we frontendzie i ekosystemie React. To także obszar, w którym najbardziej lubię pracować. Moje doświadczenie komercyjne obejmuje również backend i aplikacje mobilne.",
-      "paragraph2": "W pracy zawodowej zajmowałem się architekturą oprogramowania i pełniłem rolę Tech Leada, cały czas aktywnie pisząc kod. Praca nad architekturą szła więc w parze z implementacją. W portfolio pokazuję podobny przekrój: od pomysłu i wyboru rozwiązania po działający projekt.",
-      "paragraph3": "We własnych projektach realizuję pomysły, które łączą różne dziedziny i rozwiązują konkretne potrzeby. W systemie smart home połączyłem interfejs w React z logiką w Node.js i komunikacją z urządzeniami. W PiGuardzie i VHS HTPC do kodu doszły elektronika, obudowa i druk 3D.",
-      "paragraph4": "Komercyjnie rozwijałem też narzędzia wykorzystujące AI, zanim asystenci programowania tacy jak Codex czy Claude Code zyskali szeroką popularność. Dziś korzystam z AI również podczas pisania kodu. Przy Gauge Generatorze przygotowywałem specyfikacje, dzieliłem pracę na etapy i sam sprawdzałem wygenerowany kod. W PiGuardzie wsparcie AI pozwoliło mi poświęcić więcej uwagi elektronice i wykonaniu urządzenia. Te doświadczenia opisuję szerzej przy poszczególnych projektach.",
+      "paragraph2": "W pracy zawodowej zajmowałem się architekturą oprogramowania i pełniłem rolę Tech Leada, cały czas aktywnie pisząc kod. Dzięki temu nauczyłem się patrzeć na produkt szerzej, bez odrywania decyzji architektonicznych od codziennej implementacji. W portfolio pokazuję podobny przekrój: od pomysłu i wyboru rozwiązania po działający projekt.",
+      "journeyIntro": "Własne projekty stopniowo poszerzały zakres problemów, z którymi potrafię sobie poradzić. ",
+      "redarkName": "Redark",
+      "redarkText": " zaczął się od własnego motywu WordPressa, a jego migracja do Reacta i Gatsby’ego nauczyła mnie planować zmianę technologii bez gubienia działającego serwisu i SEO. Przy ",
+      "dashboardName": "DIY Arduino Dashboard",
+      "dashboardText": " wyszedłem poza sam software — miesiące samodzielnej nauki, budowa elektroniki i ograniczenia Arduino pokazały mi, jak kod zachowuje się w fizycznym urządzeniu.",
+      "systemsIntro": "Z czasem zacząłem łączyć te doświadczenia w większe systemy. ",
+      "smartHomeName": "System smart home",
+      "smartHomeText": " połączył React, backend Node.js i komunikację z urządzeniami, a jego codzienne użytkowanie nauczyło mnie projektować testy, logowanie i monitoring z myślą o stabilności. W ",
+      "vhsName": "VHS HTPC",
+      "vhsText": " do oprogramowania doszły konstrukcja, elektronika i druk 3D, więc problemem było już nie tylko napisanie kodu, ale zmieszczenie całego rozwiązania w realnej obudowie.",
+      "aiPrefix": "Komercyjnie rozwijałem narzędzia wykorzystujące AI jeszcze zanim asystenci kodowania stali się powszechni. Przy projekcie ",
+      "gaugeName": "Gauge Generator 2.0",
+      "aiMiddle": " przełożyłem to doświadczenie na uporządkowany proces: od specyfikacji i podziału zadań po samodzielne code review. W projekcie ",
+      "piguardName": "PiGuard GSM",
+      "aiSuffix": " AI pomogło mi skonfigurować Linuksa i rozpracować komunikację z modemem mimo braku dokumentacji, a ja mogłem poświęcić więcej uwagi elektronice, obudowie i niezawodności całego urządzenia.",
       "linkedin": "Moje doświadczenie na LinkedIn"
     },
     "projects": {
       "eyebrow": "PRYWATNE PROJEKTY",
       "title": "Różne ścieżki.",
       "titleAccent": "Ta sama ciekawość.",
-      "intro": "Od pierwszych eksperymentów po systemy używane na co dzień. Każdy projekt to kawałek mojej drogi.",
+      "intro": "Od pierwszych eksperymentów po systemy używane na co dzień. Każdy projekt był dla mnie innym wyzwaniem i okazją, żeby nauczyć się czegoś nowego.",
       "caseStudy": "CASE STUDY",
       "technologies": "Technologie",
       "readMore": "Czytaj więcej"
@@ -52,14 +65,12 @@
     "legend": "Filtruj projekty",
     "hint": "Wybierz ścieżkę, aby zawęzić listę poniżej.",
     "countLabel": "Liczba projektów: {{count}}",
-    "selected": "Wybrany filtr",
-    "show": "Pokaż projekty",
     "summary": "{{selected}} · {{count}} z {{total}} projektów"
   },
   "github": {
     "eyebrow": "AKTYWNOŚĆ",
     "title": "Więcej na GitHubie.",
-    "description": "To tylko część projektów, w których brałem udział. Jestem stale aktywny na GitHubie — tam możesz śledzić moją pracę.",
+    "description": "To tylko część projektów, które stworzyłem — było ich znacznie więcej. Na GitHubie możesz zobaczyć pozostałe repozytoria i śledzić moją bieżącą pracę.",
     "visit": "Zobacz mój GitHub"
   },
   "calendar": {
@@ -95,7 +106,7 @@
     "message": "Wiadomość",
     "subject": "Portfolio — wiadomość kontaktowa",
     "honeypot": "Pozostaw puste",
-    "provider": "Wiadomość wyślesz przez FormSubmit.",
+    "provider": "Formularz chroniony i obsługiwany przez usługę",
     "sending": "Wysyłanie…",
     "send": "Wyślij wiadomość",
     "success": "✓ Dziękuję! Wiadomość została wysłana.",

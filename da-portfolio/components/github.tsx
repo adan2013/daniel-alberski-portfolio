@@ -17,7 +17,7 @@ export function GitHub({ locale }: { locale: Locale }) {
       <div>
         <Eyebrow>03 / {t("github.eyebrow")}</Eyebrow>
         <h2 id="github-heading">{t("github.title")}</h2>
-        <p className="mt-2.5 max-w-77.5 text-[14px] max-desktop:max-w-145">
+        <p className="my-2.5 max-w-77.5 text-[14px] max-desktop:max-w-145">
           {t("github.description")}
         </p>
         <Action

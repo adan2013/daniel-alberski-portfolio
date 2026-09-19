@@ -3,6 +3,7 @@ import { Action } from "@/components/ui/action";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { PageShell } from "@/components/ui/page-shell";
 import { TagList } from "@/components/ui/tag-list";
+import Link from "next/link";
 import { useEffect, useSyncExternalStore } from "react";
 import {
   projects,
@@ -155,8 +156,27 @@ export function Portfolio({ locale }: { locale: Locale }) {
               {t("portfolio.about.paragraph1")}
             </p>
             <p>{t("portfolio.about.paragraph2")}</p>
-            <p>{t("portfolio.about.paragraph3")}</p>
-            <p>{t("portfolio.about.paragraph4")}</p>
+            <p>
+              {t("portfolio.about.journeyIntro")}
+              <strong>{t("portfolio.about.redarkName")}</strong>
+              {t("portfolio.about.redarkText")}
+              <strong>{t("portfolio.about.dashboardName")}</strong>
+              {t("portfolio.about.dashboardText")}
+            </p>
+            <p>
+              {t("portfolio.about.systemsIntro")}
+              <strong>{t("portfolio.about.smartHomeName")}</strong>
+              {t("portfolio.about.smartHomeText")}
+              <strong>{t("portfolio.about.vhsName")}</strong>
+              {t("portfolio.about.vhsText")}
+            </p>
+            <p>
+              {t("portfolio.about.aiPrefix")}
+              <strong>{t("portfolio.about.gaugeName")}</strong>
+              {t("portfolio.about.aiMiddle")}
+              <strong>{t("portfolio.about.piguardName")}</strong>
+              {t("portfolio.about.aiSuffix")}
+            </p>
           </div>
           <Action
             variant="curtain"
@@ -239,7 +259,17 @@ function ProjectCard({
       }}
     >
       <div className="project-visual flex min-w-0 items-center p-4 max-tablet:p-3 max-mobile:pb-0">
-        <Media media={p.media[0]} locale={locale} />
+        {p.caseStudy ? (
+          <Link
+            href={url}
+            className="block w-full"
+            aria-label={`${t("portfolio.projects.readMore")} — ${projectName(p, locale)}`}
+          >
+            <Media media={p.media[0]} locale={locale} />
+          </Link>
+        ) : (
+          <Media media={p.media[0]} locale={locale} />
+        )}
       </div>
       <div className="project-copy flex min-w-0 flex-col p-6 pl-4 max-tablet:p-4 max-mobile:p-4">
         <div className="project-meta mb-3 flex items-center justify-between gap-3 text-[11px] text-muted [&>span]:tracking-[0.08em]">
@@ -252,9 +282,12 @@ function ProjectCard({
         </div>
         <h3 className="mb-3 text-[28px] font-medium leading-[1.2] tracking-[-0.04em] max-tablet:text-[26px] group-[.secondary]/project:text-[26px]">
           {p.caseStudy ? (
-            <Action href={url} variant="inline">
+            <Link
+              href={url}
+              className="transition-colors duration-200 hover:text-accent focus-visible:text-accent"
+            >
               {projectName(p, locale)}
-            </Action>
+            </Link>
           ) : (
             projectName(p, locale)
           )}
@@ -275,16 +308,6 @@ function ProjectCard({
         </ul>
         {(p.caseStudy || p.links.length > 0) && (
           <div className="project-actions mt-auto flex flex-wrap items-stretch gap-2 border-t border-line pt-4">
-            {p.caseStudy && (
-              <Action
-                variant="curtain"
-                className="read-more justify-center border border-ink bg-soft text-center text-[13px] font-medium text-ink hover:border-ink focus-visible:border-ink"
-                href={url}
-              >
-                {t("portfolio.projects.readMore")}
-                <span className="sr-only"> — {projectName(p, locale)}</span>
-              </Action>
-            )}
             {(p.priority === "main" ? p.links.slice(0, 1) : p.links).map(
               (link) => (
                 <Action
@@ -296,6 +319,28 @@ function ProjectCard({
                   {link.label[locale]}
                 </Action>
               ),
+            )}
+            {p.caseStudy && (
+              <Action
+                variant="curtain"
+                className="read-more ml-auto justify-center border border-ink bg-soft text-center text-[13px] font-medium text-ink hover:border-ink focus-visible:border-ink"
+                href={url}
+              >
+                {t("portfolio.projects.readMore")}
+                <svg
+                  className="ml-2 inline-block size-4 align-[-0.2em]"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M2.5 8h10M8.5 4l4 4-4 4" />
+                </svg>
+                <span className="sr-only"> — {projectName(p, locale)}</span>
+              </Action>
             )}
           </div>
         )}
