@@ -82,8 +82,8 @@ export const projects: Project[] = [
     cardLinkCount: 2,
     caseStudy: "gauge-generator",
     summary: l(
-      "Remaster mojej aplikacji z 2019 roku, który posłużył mi do przetestowania pełnego workflow z AI: od przygotowania specyfikacji, przez szybki start i realizację projektu etapami, po własne code review.",
-      "A remaster of my 2019 application that I used to test a complete AI workflow: from writing the specification, through rapidly starting and delivering the project in stages, to conducting my own code review.",
+      "Na tym remasterze aplikacji z 2019 roku przetestowałem workflow z AI: od specyfikacji i szybkiego startu po pracę etapami. Sam podejmowałem decyzje architektoniczne i robiłem końcowe code review.",
+      "I used this remaster of my 2019 application to test an AI workflow, from the specification and a quick start through staged development. I made the architectural decisions and conducted the final code review myself.",
     ),
     premise: l(
       "Od aplikacji desktopowej do edytora w przeglądarce.",
@@ -166,8 +166,8 @@ export const projects: Project[] = [
     priority: "secondary",
     tags: ["OpenSCAD", "3D modeling"],
     summary: l(
-      "Parametryczny generator paletek do cieni powstał jako wspólny projekt rodzeństwa. AI wsparło tworzenie skryptu OpenSCAD oraz precyzyjne przełożenie geometrii i układu elementów na model 3D. W ciągu dwóch dni powstała działająca wersja, opublikowana w internecie i gotowa do wydrukowania.",
-      "A parametric eyeshadow-palette generator created as a sibling collaboration. AI supported the OpenSCAD scripting process and the precise translation of geometry and component layouts into a 3D model. A working version was completed and published online within two days, ready to be printed.",
+      "Razem z siostrą zrobiliśmy ten generator w dwa dni. Skrypt OpenSCAD pozwala zmieniać geometrię i układ paletki, a następnie wygenerować model gotowy do druku. AI pomogło przy kodzie i modelowaniu.",
+      "My sister and I built this generator in two days. The OpenSCAD script lets users change the palette geometry and layout, then generate a printable model. AI helped with the code and modelling.",
     ),
     premise: l(
       "Parametryczny model gotowy do druku.",
@@ -198,8 +198,8 @@ export const projects: Project[] = [
     cardLinkCount: 2,
     caseStudy: "vhs-htpc",
     summary: l(
-      "Celem projektu było zachowanie rodzinnego magnetowidu i nadanie mu nowej funkcji jako komputera multimedialnego. Największym wyzwaniem było wielopoziomowe rozplanowanie podzespołów laptopa w ciasnej obudowie oraz rozwiązanie problemów z ich mechaniczną i elektroniczną kompatybilnością. Własnoręcznie polutowany sterownik oparty na ESP8266 komunikuje się z aplikacją Windows, łącząc wyświetlacz, pilot i komputer w jeden system. Urządzenie działa do dziś.",
-      "The goal was to preserve the family VCR and give it a new purpose as a media PC. The main challenge was planning a multi-level arrangement of laptop components inside the compact enclosure and resolving their mechanical and electronic compatibility issues. A hand-soldered ESP8266-based controller communicates with a Windows application, connecting the display, remote and computer into one system. The device remains in use today.",
+      "Rodzinny magnetowid został przebudowany na komputer multimedialny. Podzespoły laptopa trzeba było rozmieścić na kilku poziomach w ciasnej obudowie i dopasować mechanicznie oraz elektrycznie. Polutowany ręcznie sterownik ESP8266 komunikuje się z aplikacją Windows i obsługuje wyświetlacz oraz pilot. Urządzenie działa do dziś.",
+      "The family VCR was rebuilt as a media PC. The laptop components had to fit on several levels inside the compact enclosure and work together mechanically and electrically. A hand-soldered ESP8266 controller communicates with a Windows application and operates the display and remote. The device remains in use today.",
     ),
     premise: l(
       "Komputer wewnątrz rodzinnego magnetowidu.",
@@ -244,8 +244,8 @@ export const projects: Project[] = [
     cardLinkCount: 2,
     caseStudy: "smart-home",
     summary: l(
-      "Dedykowany system smart home do codziennej obsługi domu i automatyzacji dopasowanych do indywidualnych potrzeb. Łączy React, Node.js i Home Assistant, uwzględniając ograniczenia zewnętrznych narzędzi oraz integrację różnych urządzeń smart. Przeniesienie złożonej logiki z Node-RED do backendu uporządkowało architekturę, a testy, logi i monitoring zapewniają stabilne działanie.",
-      "A dedicated smart home system for everyday home control and automations tailored to individual needs. It combines React, Node.js and Home Assistant while accounting for external-tool constraints and integrations with different smart devices. Moving complex logic from Node-RED into the backend simplified the architecture, while tests, logs and monitoring keep it stable.",
+      "Dedykowany system smart home do codziennej obsługi domu. Frontend w Reakcie i backend w Node.js współpracują z Home Assistantem oraz urządzeniami różnych producentów. Przeniesienie logiki z Node-RED do własnego backendu uprościło rozwój i diagnostykę systemu.",
+      "A dedicated smart home system for everyday use. The React frontend and Node.js backend work with Home Assistant and devices from different manufacturers. Moving the logic from Node-RED to a custom backend made the system easier to develop and diagnose.",
     ),
     premise: l(
       "Kompletny system. Od interfejsu na tablecie po urządzenia w domu.",
@@ -279,8 +279,8 @@ export const projects: Project[] = [
     priority: "secondary",
     tags: ["Raspberry Pi", "Python", "ATtiny85", "Audio", "Accessibility"],
     summary: l(
-      "Dedykowany czytnik audiobooków powstał dla osoby starszej i niedowidzącej, dla której standardowe urządzenia były zbyt skomplikowane. Proste fizyczne sterowanie ułatwia samodzielną obsługę, a Raspberry Pi z aplikacją w Pythonie i układem ATtiny85 zapewnia bezpieczne włączanie oraz wyłączanie. Punktem wyjścia były potrzeby konkretnego użytkownika, nie lista funkcji.",
-      "A dedicated audiobook player designed for an older, visually impaired person who found standard devices too complicated. Simple physical controls enable independent use, while a Raspberry Pi running a Python application and an ATtiny85 circuit provide safe startup and shutdown. The project began with a specific user’s needs, not a feature list.",
+      "Dedykowany czytnik audiobooków powstał dla starszej, niedowidzącej osoby, dla której standardowe urządzenia były zbyt skomplikowane. Duże fizyczne przyciski ułatwiają samodzielną obsługę, a Raspberry Pi z aplikacją w Pythonie i układem ATtiny85 odpowiada za bezpieczne włączanie i wyłączanie.",
+      "A dedicated audiobook player created for an older, visually impaired person who found standard devices too complicated. Large physical buttons make it easier to use independently, while a Raspberry Pi running a Python application and an ATtiny85 circuit handle safe startup and shutdown.",
     ),
     premise: l(
       "Audiobooki z prostą obsługą.",
@@ -318,8 +318,8 @@ export const projects: Project[] = [
     caseStudy: "arduino-dashboard",
     video: "KW6sZINNi9Y",
     summary: l(
-      "Celem było przeniesienie telemetrii z ETS2 i ATS na fizyczne zegary samochodowe. Kompletny system połączył ręcznie wykonaną elektronikę i tarcze, interpreter telemetrii oraz generator tarcz (Gauge Generator) w C#/WPF, a także firmware Arduino w C++. Ograniczenia sprzętowe wymagały dużej dbałości o wydajność i optymalizację całego rozwiązania.",
-      "The goal was to bring telemetry from ETS2 and ATS to physical vehicle gauges. The complete system combined handmade electronics and gauge faces, a C#/WPF telemetry interpreter and gauge-face generator (Gauge Generator), and Arduino firmware written in C++. Hardware constraints required careful attention to performance and optimisation across the entire system.",
+      "Fizyczne zegary samochodowe pokazują telemetrię z ETS2 i ATS. Całość obejmuje ręcznie wykonaną elektronikę i tarcze, aplikację C#/WPF z generatorem tarcz (Gauge Generator) oraz firmware Arduino w C++. Ograniczenia sprzętowe wymusiły optymalizację całego systemu.",
+      "Physical vehicle gauges display telemetry from ETS2 and ATS. The project includes handmade electronics and gauge faces, a C#/WPF application with the Gauge Generator, and Arduino firmware written in C++. Hardware constraints required optimisation across the entire system.",
     ),
     premise: l(
       "Fizyczne zegary dla wirtualnej ciężarówki.",
@@ -361,8 +361,8 @@ export const projects: Project[] = [
     priority: "secondary",
     tags: ["React Native", "Expo", "Mobile", "Bluetooth LE"],
     summary: l(
-      "Prywatny MVP powstał dla streamera prowadzącego transmisje IRL, aby połączyć dane z telefonu i sensorów z warstwą graficzną streamu. Aplikacja przesyłała lokalizację do widżetu mapy i odbierała pomiar tętna przez Bluetooth LE. Projekt pozwolił sprawdzić React Native i Expo w rzeczywistym scenariuszu transmisji mobilnej.",
-      "A private MVP created for an IRL streamer to connect phone and sensor data with the stream’s visual layer. The application sent location data to a map widget and received heart-rate readings over Bluetooth LE. The project tested React Native and Expo in a real mobile-streaming scenario.",
+      "Prywatny MVP dla streamera prowadzącego transmisje IRL. Aplikacja w React Native i Expo przesyłała lokalizację z telefonu do widżetu mapy oraz odbierała pomiar tętna przez Bluetooth LE, aby oba dane były widoczne na streamie.",
+      "A private MVP for an IRL streamer. The React Native and Expo application sent phone location data to a map widget and received heart-rate readings over Bluetooth LE, making both visible on the stream.",
     ),
     premise: l(
       "Lokalizacja i tętno na transmisji.",
@@ -386,8 +386,8 @@ export const projects: Project[] = [
     tags: ["React", "Gatsby", "Next.js", "MDX", "PHP / WordPress", "SEO"],
     caseStudy: "redark",
     summary: l(
-      "Blog technologiczny powstał jako miejsce do dzielenia się wiedzą i dokumentowania projektów. Migracja z autorskiego motywu WordPress do Reacta, Gatsby i MDX ograniczyła nakład pracy związany z utrzymaniem oraz usunęła zależność od wtyczek, zachowując adresy artykułów i SEO. Dodatkowa wersja w Next.js posłużyła jako eksperyment technologiczny.",
-      "A technology blog created as a place to share knowledge and document projects. Migrating from a custom WordPress theme to React, Gatsby and MDX reduced maintenance work and removed plugin dependencies while preserving article URLs and SEO. An additional Next.js version served as a technology experiment.",
+      "Blog technologiczny do publikowania artykułów i dokumentowania projektów. Migracja z autorskiego motywu WordPress do Reacta, Gatsby i MDX usunęła zależność od wtyczek i zmniejszyła nakład pracy bez zmiany adresów artykułów i utraty SEO. Powstała też osobna wersja w Next.js.",
+      "A technology blog for publishing articles and documenting projects. Migrating from a custom WordPress theme to React, Gatsby and MDX removed plugin dependencies and reduced maintenance without changing article URLs or losing SEO. A separate Next.js version was also created.",
     ),
     premise: l(
       "Mniej utrzymania. Więcej miejsca na dzielenie się wiedzą.",
