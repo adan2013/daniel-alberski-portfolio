@@ -94,7 +94,14 @@ export const projects: Project[] = [
       "Specifications, architecture, AI-assisted implementation and code review",
     ),
     media: [
-      media("Gauge Generator — widok edytora", "Gauge Generator — editor view"),
+      {
+        label: l(
+          "Gauge Generator — widok edytora",
+          "Gauge Generator — editor view",
+        ),
+        ratio: "16/10" as const,
+        src: "/projects/gauge-generator.jpg",
+      },
       media(
         "Warstwy, podgląd i eksport — zbliżenie interfejsu",
         "Layers, preview and export — interface detail",
@@ -141,10 +148,14 @@ export const projects: Project[] = [
       "Electronics, modem integration, AI-assisted software and 3D enclosure",
     ),
     media: [
-      media(
-        "PiGuard — obudowa i wnętrze",
-        "PiGuard — enclosure and internal components",
-      ),
+      {
+        label: l(
+          "PiGuard — obudowa na ścianie",
+          "PiGuard — wall-mounted enclosure",
+        ),
+        ratio: "16/10" as const,
+        src: "/projects/piguard.jpg",
+      },
       media(
         "PiGuard — elektronika i połączenia",
         "PiGuard — electronics and connections",
@@ -174,7 +185,13 @@ export const projects: Project[] = [
       "A parametric, printable model.",
     ),
     role: l("Modelowanie z AI", "AI-assisted modelling"),
-    media: [media("Paletki — gotowe wydruki", "Palettes — finished prints")],
+    media: [
+      {
+        label: l("Paletki — gotowe wydruki", "Palettes — finished prints"),
+        ratio: "16/10" as const,
+        src: "/projects/palettes.jpg",
+      },
+    ],
     links: [
       link(
         "MakerWorld",
@@ -210,10 +227,14 @@ export const projects: Project[] = [
       "Spatial planning, mechanical design, soldered electronics and ESP8266–Windows integration",
     ),
     media: [
-      media(
-        "VHS HTPC — działający komputer w obudowie magnetowidu",
-        "VHS HTPC — working computer in a VCR enclosure",
-      ),
+      {
+        label: l(
+          "VHS HTPC — obudowa magnetowidu i podzespoły",
+          "VHS HTPC — VCR enclosure and components",
+        ),
+        ratio: "16/10" as const,
+        src: "/projects/vhs-htpc.jpg",
+      },
       media(
         "VHS HTPC — trzy warstwy podzespołów",
         "VHS HTPC — three layers of components",
@@ -256,10 +277,14 @@ export const projects: Project[] = [
       "Frontend, backend architecture, automations and integrations",
     ),
     media: [
-      media(
-        "Smart home — interfejs na tablecie",
-        "Smart home — tablet interface",
-      ),
+      {
+        label: l(
+          "Smart home — interfejs na tablecie",
+          "Smart home — tablet interface",
+        ),
+        ratio: "16/10" as const,
+        src: "/projects/smart-home.jpg",
+      },
       media(
         "Smart home — szczegóły panelu sterowania",
         "Smart home — control-panel detail",
@@ -288,10 +313,14 @@ export const projects: Project[] = [
     ),
     role: l("Software i elektronika", "Software and electronics"),
     media: [
-      media(
-        "Czytnik audiobooków — urządzenie i przyciski",
-        "Audiobook player — device and controls",
-      ),
+      {
+        label: l(
+          "Czytnik audiobooków — urządzenie i przyciski",
+          "Audiobook player — device and controls",
+        ),
+        ratio: "16/10" as const,
+        src: "/projects/book-reader.jpg",
+      },
     ],
     links: [
       link(
@@ -330,10 +359,14 @@ export const projects: Project[] = [
       "Electronics, gauge faces, C#/WPF telemetry and C++ firmware",
     ),
     media: [
-      media(
-        "Arduino Dashboard — kompletny zestaw zegarów",
-        "Arduino Dashboard — complete gauge assembly",
-      ),
+      {
+        label: l(
+          "Arduino Dashboard — kompletny zestaw zegarów",
+          "Arduino Dashboard — complete gauge assembly",
+        ),
+        ratio: "16/10" as const,
+        src: "/projects/arduino-dashboard.jpg",
+      },
       media(
         "Arduino Dashboard — elektronika i ręcznie wykonane tarcze",
         "Arduino Dashboard — electronics and handmade gauge faces",
@@ -370,10 +403,14 @@ export const projects: Project[] = [
     ),
     role: l("Aplikacja mobilna i integracja", "Mobile app and integration"),
     media: [
-      media(
-        "IRL Tracker — aplikacja i mapa transmisji",
-        "IRL Tracker — app and stream map",
-      ),
+      {
+        label: l(
+          "IRL Tracker — aplikacja i mapa transmisji",
+          "IRL Tracker — app and stream map",
+        ),
+        ratio: "16/10" as const,
+        src: "/projects/irl-tracker.jpg",
+      },
     ],
     links: [],
   },
@@ -398,7 +435,11 @@ export const projects: Project[] = [
       "Theme, migration, frontend, content and SEO verification",
     ),
     media: [
-      media("Redark — strona główna bloga", "Redark — blog homepage"),
+      {
+        label: l("Redark — strona główna bloga", "Redark — blog homepage"),
+        ratio: "16/10" as const,
+        src: "/projects/redark.jpg",
+      },
       media(
         "Redark — widok artykułu i nawigacja",
         "Redark — article and navigation",

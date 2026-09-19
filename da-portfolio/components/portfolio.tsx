@@ -108,21 +108,15 @@ export function Portfolio({ locale }: { locale: Locale }) {
           </div>
           <div className="hero-person mt-11.5 flex items-center gap-5 [&_strong]:text-[17px] [&_strong]:font-medium [&_p]:mt-0.75 [&_p]:max-w-75 [&_p]:text-[14px] max-desktop:mt-8 max-tablet:gap-3.5 max-tablet:[&_strong]:text-[15px] max-tablet:[&_p]:text-[12px] max-mobile:mt-7.5 max-mobile:[&_strong]:text-[16px] max-mobile:[&_p]:text-[13px] max-mobile:[&_p]:max-w-58.75">
             <div
-              className="portrait flex h-28 basis-28 shrink-0 grow-0 flex-col items-center justify-center gap-0.5 bg-[#e5e5e5] text-[#525252] [&>span]:text-[10px] max-tablet:h-22 max-tablet:basis-22"
+              className="portrait h-28 basis-28 shrink-0 grow-0 overflow-hidden max-tablet:h-22 max-tablet:basis-22"
               role="img"
               aria-label={t("portfolio.hero.portraitLabel")}
             >
-              <svg
-                width="40"
-                height="49"
-                viewBox="0 0 32 39"
-                fill="none"
-                aria-hidden="true"
-              >
-                <circle cx="16" cy="10" r="8" stroke="currentColor" />
-                <path d="M1 38v-4a15 15 0 0 1 30 0v4" stroke="currentColor" />
-              </svg>
-              <span>{t("portfolio.hero.portrait")}</span>
+              <img
+                src="/avatar.png"
+                alt="Daniel Alberski"
+                className="h-full w-full object-cover"
+              />
             </div>
             <div>
               <strong>{t("portfolio.hero.greeting")}</strong>
