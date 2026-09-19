@@ -12,9 +12,9 @@ Praca nad tym projektem wychodziła daleko poza napisanie aplikacji: rozmieszcze
 
 ## Drugi problem: własny wyświetlacz i menu
 
-Stworzyłem swój pierwszy sterownik wyświetlacza segmentowego. Dodałem menu obsługiwane pilotem, żeby urządzenie dało się wygodnie obsługiwać podczas oglądania wideo.
+Polutowałem swój pierwszy sterownik wyświetlacza segmentowego. Dodałem menu obsługiwane pilotem, żeby urządzenie dało się wygodnie obsługiwać podczas oglądania wideo.
 
-W projekcie wykorzystałem kontroler ESP8266. Aplikacja w C# odpowiada za obsługę pilota i wyświetlacza. W ten sposób połączyłem komputer, elektronikę i fizyczne elementy sterujące w jedną całość.
+Układ z ESP8266 komunikuje się z aplikacją C# działającą w Windowsie. Wspólnie obsługują pilota i wyświetlacz, łącząc komputer, elektronikę i fizyczne elementy sterujące w jedną całość.
 
 [media:2]
 

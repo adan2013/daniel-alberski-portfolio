@@ -12,9 +12,9 @@ This project went well beyond writing an application: component placement matter
 
 ## The second problem: a display driver and menu
 
-I created my first segment-display driver. I added a remote-controlled menu so the device would be convenient to use while watching videos.
+I soldered my first segment-display controller. I added a remote-controlled menu so the device would be convenient to use while watching videos.
 
-The project uses an ESP8266 controller. A C# application handles the remote and display. This brought the computer, electronics and physical controls together into one system.
+The ESP8266 circuit communicates with a C# application running on Windows. Together they handle the remote and display, bringing the computer, electronics and physical controls into one system.
 
 [media:2]
 
