@@ -266,8 +266,8 @@ export const projects: Project[] = [
     cardLinkCount: 2,
     caseStudy: "smart-home",
     summary: l(
-      "Dedykowany system smart home do codziennej obsługi domu. Frontend w Reakcie i backend w Node.js współpracują z Home Assistantem oraz urządzeniami różnych producentów. Przeniesienie logiki z Node-RED do własnego backendu uprościło rozwój i diagnostykę systemu.",
-      "A dedicated smart home system for everyday use. The React frontend and Node.js backend work with Home Assistant and devices from different manufacturers. Moving the logic from Node-RED to a custom backend made the system easier to develop and diagnose.",
+      "Własny system do codziennej obsługi domu przez tablet, telefony i fizyczne piloty. Frontend w Reakcie komunikuje się z testowanym backendem Node.js, który obsługuje ponad 300 encji Home Assistanta, automatyzacje, powiadomienia i monitoring urządzeń.",
+      "A custom system for everyday home control from a tablet, phones and physical remotes. The React frontend communicates with a tested Node.js backend that handles more than 300 Home Assistant entities, automations, notifications and device monitoring.",
     ),
     premise: l(
       "Kompletny system. Od interfejsu na tablecie po urządzenia w domu.",
@@ -280,17 +280,38 @@ export const projects: Project[] = [
     media: [
       {
         label: l(
-          "Smart home — interfejs na tablecie",
-          "Smart home — tablet interface",
+          "Smart home — tablet zamontowany na ścianie",
+          "Smart home — wall-mounted tablet",
         ),
         ratio: "16/10" as const,
+        src: "/projects/smart-home-tablet.jpg",
+      },
+      {
+        label: l(
+          "Przepływ danych między dashboardem, backendem i Home Assistantem",
+          "Data flow between the dashboard, backend and Home Assistant",
+        ),
+        ratio: "16/9" as const,
+        fit: "contain" as const,
+        src: "/projects/smart-home-data-flow.png",
+      },
+      {
+        label: l(
+          "Dashboard — pogoda, aktywne powiadomienie i skróty do sekcji",
+          "Dashboard — weather, an active notification and section shortcuts",
+        ),
+        ratio: "16/9" as const,
+        fit: "contain" as const,
         src: "/projects/smart-home.jpg",
       },
-      media(
-        "Smart home — szczegóły panelu sterowania",
-        "Smart home — control-panel detail",
-        "16/9",
-      ),
+      {
+        label: l(
+          "Smart home — sześcioprzyciskowy pilot oświetlenia w salonie",
+          "Smart home — six-button living-room lighting remote",
+        ),
+        ratio: "16/9" as const,
+        src: "/projects/smart-home-remote.jpg",
+      },
     ],
     links: [
       link("Frontend", "Frontend", "https://github.com/adan2013/HA-Dashboard"),
@@ -382,6 +403,7 @@ export const projects: Project[] = [
           "Arduino Dashboard — onboard computer screens",
         ),
         ratio: "1/1" as const,
+        fit: "contain" as const,
         src: "/projects/arduino-dashboard-lcd-screens.jpg",
       },
       {
