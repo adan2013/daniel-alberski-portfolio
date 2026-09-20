@@ -275,7 +275,9 @@ test("English routes have English document language and complete articles", asyn
   for (const p of projects.filter((p) => p.caseStudy)) {
     await page.goto(`/en/projects/${p.slug}`);
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
-    await expect(page.locator(".case-body h2")).toHaveCount(4);
+    expect(await page.locator(".case-body h2").count()).toBeGreaterThanOrEqual(
+      4,
+    );
   }
 });
 
@@ -329,7 +331,9 @@ test("scene progresses through three states; video player loads without activati
     await expect(player).toHaveAttribute("loading", "eager");
     await expect(player).toHaveAttribute(
       "title",
-      "DIY Arduino Dashboard — ETS2 / ATS",
+      prefix
+        ? "DIY Arduino Dashboard — The gauges in action during a simulator drive."
+        : "DIY Arduino Dashboard — Zegary w działaniu podczas jazdy w symulatorze.",
     );
     for (const width of [360, 1440]) {
       await page.setViewportSize({ width, height: 1000 });

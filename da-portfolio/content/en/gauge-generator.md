@@ -1,21 +1,49 @@
-## Why revisit a tool from 2019?
+## A tool built for physical gauges
 
-I wrote the first Gauge Generator in C# as a desktop tool for designing gauge faces. I wanted to bring it to the browser: no installation, a more convenient interface and more flexibility when working with files. It was also an opportunity to use the AI-assisted workflow I had developed across three commercial projects.
+The first Gauge Generator grew out of [DIY Arduino Dashboard](/en/projects/arduino-dashboard) in 2019. I was building a physical gauge cluster for Euro Truck Simulator and needed custom faces with different scales, indicators and markings from the car instrument cluster I was using as a base. Drawing every variation by hand soon stopped making sense, so I wrote a desktop application in C# to generate them.
 
-## Small stages with a clear definition of done
+The application let me assemble a face from layers, configure its scales and export the finished image as a PNG. I had built it for one specific project, but I released the code and documentation. Years later, I found references from people using it to make their own gauges and scales. The idea had proved useful outside my workshop too.
 
-The migration involved more than asking AI to rewrite an application. I read the original code and used it to write detailed feature specifications. I divided the plan into small stages, each with its own definition of done, so I could check features incrementally without overloading the AI context window.
+[media:2]
 
-Between stages, I reviewed the code myself. I checked the architecture and whether the implementation matched my intentions, then fed what I learned into the next specifications. AI took part throughout development; direction, planning and reviewing the solution remained my responsibility.
+## Returning seven years later
 
-## An editor built around designing a gauge face
+I returned to Gauge Generator in 2026 because I wanted a small project where I could test my AI-assisted development workflow away from large commercial systems. I already understood the domain, had a working version for reference and could judge whether the new implementation behaved as intended.
 
-A React interface replaced the ageing desktop UI. I added interactive elements and undo/redo. Layers and a live preview make it possible to work on the composition and immediately see the effect of changes.
+I did not carry over the old code or data model. I kept the idea and operating principles, then rebuilt the application as a browser-based editor. The entire project took exactly one week of work in the afternoons. During that week, I completed the editor, landing page, documentation, example projects and videos showing how those examples were built.
+
+To fit that scope into a week, I worked with AI on a specification derived from the behaviour of the original application. I then divided it into small stages, each with its own definition of done. After every stage, I ran the project, checked the result and reviewed the code. Only then did I revise the plan for the next part.
+
+## AI accelerated the work without setting its direction
+
+The old application was a useful reference, but its semantics did not always belong in the new design. AI tended to preserve earlier divisions or introduce abstractions where a simpler model suited a browser editor better. I had to keep checking both the code and the architectural direction.
+
+The validation system exposed this problem clearly. One early implementation split its rules across several stages and ran them after every keystroke. As a result, the form rejected many temporary states that naturally occur while entering a valid value. Users could not finish typing because the application tried to validate incomplete input.
+
+I moved control of validation into one place and delayed it until the complete value was available. I treated generated code as a proposal. The specification and regular reviews let me move quickly without giving up control over the application's behaviour.
+
+## The mathematics behind the face
+
+Value mapping required the most design work. A linear scale distributes equal changes in value at equal intervals, but not every instrument behaves that way. In version 2.0, I added logarithmic scales and custom mappings based on multi-segment curves.
+
+The custom curve editor works much like a fan-curve editor in a computer's BIOS. Users can split and join segments to control how much room each part of the value range occupies on the face. They can give more space to a section that needs finer detail and compress values that do not. The resulting mapping becomes the shared foundation for ticks, numbers, arcs, labels and needles, keeping every dependent element aligned.
+
+I verified the calculations manually and with the unit tests in the repository. Manual checks helped me assess the editor's behaviour and the appearance of the scale, while the tests covered calculations and edge cases. Visual inspection alone was not enough: a small mapping error affected every layer connected to the Range.
+
+## Editing directly on the preview
+
+The new React interface separates Ranges from visual layers. A Range describes geometry and value mapping but does not appear in the finished artwork. Visual layers use it as a shared coordinate system. Available layers include tick and numeric scales, arcs, labels, needles, shapes, lines and icons.
 
 [media:1]
 
-## The result: a browser and an open format
+Properties can be changed in the sidebar, while many elements also provide handles directly on the preview. Dragging a handle and changing its corresponding field edit the same project data. The result appears immediately on a canvas fitted to the available space. For more involved projects, users can hide, duplicate and reorder layers, temporarily isolate an element, and undo or redo changes.
 
-The application runs without installation and uses an open data format. The first version exported only PNG; the new one also exports SVG and PDF. Both the working editor and its documentation are publicly available.
+[media:3]
 
-For me, the key change was bringing an existing tool of my own to an environment where it is easier to run and develop further. AI helped do the work, while detailed specifications and my own code reviews kept me in control of the result.
+The editor uses physical dimensions measured in millimetres, which matters when a gauge face is intended for printing. Finished work can be exported as PNG, SVG or PDF. SVG keeps the artwork in vector form, while PDF can produce either the complete design or individual layers for printing.
+
+## No account and no proprietary project format
+
+The application runs entirely in the browser and requires no registration. Projects and automatic snapshots remain local instead of being sent to a cloud service. An editable project is a readable JSON document that users can download, keep and open again later.
+
+I consider Gauge Generator 2.0 a completed experiment. In one week, I tested a process built around a jointly written specification, short stages and regular reviews. The result is a public tool that anyone can use without installing or paying for anything. I am not planning another major development phase, but the code remains open to fixes and contributions.

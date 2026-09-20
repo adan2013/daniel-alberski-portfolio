@@ -101,13 +101,33 @@ export const projects: Project[] = [
           "Gauge Generator — editor view",
         ),
         ratio: "16/10" as const,
+        fit: "contain" as const,
         src: "/projects/gauge-generator.jpg",
       },
-      media(
-        "Warstwy, podgląd i eksport — zbliżenie interfejsu",
-        "Layers, preview and export — interface detail",
-        "16/9",
-      ),
+      {
+        label: l(
+          "Edycja wskazówki za pomocą właściwości i uchwytów na podglądzie",
+          "Editing a needle with properties and on-canvas handles",
+        ),
+        ratio: "16/10" as const,
+        fit: "contain" as const,
+        src: "/projects/gauge-generator-layer-properties.png",
+      },
+      {
+        label: l(
+          "Gauge Generator 1.0 — desktopowy interfejs z 2019 roku",
+          "Gauge Generator 1.0 — 2019 desktop interface",
+        ),
+        ratio: "16/10" as const,
+        fit: "contain" as const,
+        src: "/projects/gauge-generator-legacy.png",
+      },
+      {
+        label: l("Wybór typów warstw wizualnych", "Visual layer type picker"),
+        ratio: "16/10" as const,
+        fit: "contain" as const,
+        src: "/projects/gauge-generator-layer-picker.png",
+      },
     ],
     links: [
       link(
