@@ -28,11 +28,6 @@ export type Project = {
   video?: string;
 };
 const l = (pl: string, en: string): Localized => ({ pl, en });
-const media = (
-  pl: string,
-  en: string,
-  ratio: Media["ratio"] = "16/10",
-): Media => ({ label: l(pl, en), ratio });
 const link = (pl: string, en: string, url: string) => ({
   label: l(pl, en),
   url,
@@ -177,15 +172,40 @@ export const projects: Project[] = [
         ratio: "16/10" as const,
         src: "/projects/piguard.jpg",
       },
-      media(
-        "PiGuard — elektronika i połączenia",
-        "PiGuard — electronics and connections",
-      ),
-      media(
-        "PiGuard — panel konfiguracji i stan czujek",
-        "PiGuard — settings panel and sensor status",
-        "16/9",
-      ),
+      {
+        label: l(
+          "PiGuard — panel sterowania, stan wejść i logi",
+          "PiGuard — control panel, input states and logs",
+        ),
+        ratio: "16/10",
+        fit: "contain",
+        src: "/projects/piguard-control-panel.jpg",
+      },
+      {
+        label: l(
+          "PiGuard — lutowana płytka i prowadzenie przewodów",
+          "PiGuard — soldered board and cable routing",
+        ),
+        ratio: "16/10",
+        src: "/projects/piguard-interior.jpg",
+      },
+      {
+        label: l(
+          "PiGuard — pokrywa ze stacyjką i ściągawką funkcji oraz okablowania",
+          "PiGuard — lid with key switch and function and wiring reference",
+        ),
+        ratio: "16/10",
+        fit: "contain",
+        src: "/projects/piguard-lid-wiring-guide.jpg",
+      },
+      {
+        label: l(
+          "PiGuard — alarm na ścianie ze zdjętą pokrywą",
+          "PiGuard — wall-mounted alarm with the lid removed",
+        ),
+        ratio: "16/10",
+        src: "/projects/piguard-installed-open.jpg",
+      },
     ],
     links: [link("GitHub", "GitHub", "https://github.com/adan2013/PiGuard")],
   },
