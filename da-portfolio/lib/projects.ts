@@ -6,6 +6,7 @@ export type Track = "software" | "hardware" | "ai" | "3d";
 export type Media = {
   label: Localized;
   ratio: "16/10" | "16/9" | "1/1";
+  fit?: "cover" | "contain";
   src?: string;
   alt?: Localized;
 };
@@ -367,10 +368,31 @@ export const projects: Project[] = [
         ratio: "16/10" as const,
         src: "/projects/arduino-dashboard.jpg",
       },
-      media(
-        "Arduino Dashboard — elektronika i ręcznie wykonane tarcze",
-        "Arduino Dashboard — electronics and handmade gauge faces",
-      ),
+      {
+        label: l(
+          "Arduino Dashboard — interpreter telemetrii w C#",
+          "Arduino Dashboard — telemetry interpreter in C#",
+        ),
+        ratio: "16/9" as const,
+        src: "/projects/arduino-dashboard-telemetry-interpreter.jpg",
+      },
+      {
+        label: l(
+          "Arduino Dashboard — ekrany komputera pokładowego",
+          "Arduino Dashboard — onboard computer screens",
+        ),
+        ratio: "1/1" as const,
+        src: "/projects/arduino-dashboard-lcd-screens.jpg",
+      },
+      {
+        label: l(
+          "Arduino Dashboard — schemat elektryczny projektu",
+          "Arduino Dashboard — project electrical diagram",
+        ),
+        ratio: "16/9" as const,
+        fit: "contain" as const,
+        src: "/projects/arduino-dashboard-wiring-diagram.jpg",
+      },
     ],
     links: [
       link(
@@ -423,8 +445,8 @@ export const projects: Project[] = [
     tags: ["React", "Gatsby", "Next.js", "MDX", "PHP / WordPress", "SEO"],
     caseStudy: "redark",
     summary: l(
-      "Blog technologiczny do publikowania artykułów i dokumentowania projektów. Migracja z autorskiego motywu WordPress do Reacta, Gatsby i MDX usunęła zależność od wtyczek i zmniejszyła nakład pracy bez zmiany adresów artykułów i utraty SEO. Powstała też osobna wersja w Next.js.",
-      "A technology blog for publishing articles and documenting projects. Migrating from a custom WordPress theme to React, Gatsby and MDX removed plugin dependencies and reduced maintenance without changing article URLs or losing SEO. A separate Next.js version was also created.",
+      "Blog technologiczny, na którym dzielę się wiedzą i dokumentuję własne projekty. W 2020 roku przeniosłem około 80 artykułów z WordPressa do Gatsby i MDX, zachowując ich adresy i przygotowując serwis pod SEO. Napisałem też narzędzia do migracji, kontroli linków i publikowania strony.",
+      "A technology blog where I share knowledge and document my projects. In 2020, I moved around 80 articles from WordPress to Gatsby and MDX, preserving their URLs and preparing the site for search engines. I also wrote tools for the migration, link checking and deployment.",
     ),
     premise: l(
       "Mniej utrzymania. Więcej miejsca na dzielenie się wiedzą.",
@@ -440,11 +462,38 @@ export const projects: Project[] = [
         ratio: "16/10" as const,
         src: "/projects/redark.jpg",
       },
-      media(
-        "Redark — widok artykułu i nawigacja",
-        "Redark — article and navigation",
-        "16/9",
-      ),
+      {
+        label: l(
+          "Pierwsza wersja Redarka — własny motyw WordPress",
+          "The first Redark version — a custom WordPress theme",
+        ),
+        ratio: "1/1",
+        src: "/projects/redark-wordpress.jpg",
+      },
+      {
+        label: l(
+          "Artykuł w Markdownie i jego podgląd",
+          "A Markdown article and its preview",
+        ),
+        ratio: "16/9",
+        src: "/projects/redark-markdown.jpg",
+      },
+      {
+        label: l(
+          "Pipeline Redarka w Buddy Works",
+          "Redark pipeline in Buddy Works",
+        ),
+        ratio: "16/9",
+        src: "/projects/redark-buddy.jpg",
+      },
+      {
+        label: l(
+          "Własny proces wdrożenia — konsola i raport e-mail",
+          "Custom deployment process — console and email report",
+        ),
+        ratio: "16/9",
+        src: "/projects/redark-deployment.jpg",
+      },
     ],
     links: [
       link("Otwórz blog", "Open blog", "https://redark.pl"),

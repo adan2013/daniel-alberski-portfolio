@@ -11,7 +11,7 @@ export function Media({
 }) {
   return (
     <figure
-      className="media relative min-w-0 w-full overflow-hidden bg-[#e5e5e5] text-[#525252] before:pointer-events-none before:absolute before:top-0 before:left-1/2 before:h-full before:w-px before:bg-[#d4d4d4] before:content-[''] after:pointer-events-none after:absolute after:top-1/2 after:left-0 after:h-px after:w-full after:bg-[#d4d4d4] after:content-[''] [&_img]:z-2 [&_img]:object-cover"
+      className="media relative min-w-0 w-full overflow-hidden"
       style={{ aspectRatio: media.ratio }}
     >
       {media.src ? (
@@ -20,6 +20,7 @@ export function Media({
           alt={media.alt?.[locale] ?? media.label[locale]}
           fill
           sizes="(max-width: 700px) 100vw, 60vw"
+          style={{ objectFit: media.fit === "contain" ? "contain" : "cover" }}
           preload={priority}
         />
       ) : (
