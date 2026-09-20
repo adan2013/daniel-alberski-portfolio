@@ -108,7 +108,12 @@ export async function CaseStudy({
           }
           if (part === "[video]")
             return p.video ? (
-              <Video key={i} id={p.video} locale={locale} />
+              <Video
+                key={i}
+                id={p.video}
+                locale={locale}
+                title={`${projectName(p, locale)} — ${t("video.caption")}`}
+              />
             ) : null;
           if (part === "[architecture]")
             return (

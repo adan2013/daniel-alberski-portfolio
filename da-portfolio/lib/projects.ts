@@ -216,12 +216,12 @@ export const projects: Project[] = [
     cardLinkCount: 2,
     caseStudy: "vhs-htpc",
     summary: l(
-      "Rodzinny magnetowid został przebudowany na komputer multimedialny. Podzespoły laptopa trzeba było rozmieścić na kilku poziomach w ciasnej obudowie i dopasować mechanicznie oraz elektrycznie. Polutowany ręcznie sterownik ESP8266 komunikuje się z aplikacją Windows i obsługuje wyświetlacz oraz pilot. Urządzenie działa do dziś.",
-      "The family VCR was rebuilt as a media PC. The laptop components had to fit on several levels inside the compact enclosure and work together mechanically and electrically. A hand-soldered ESP8266 controller communicates with a Windows application and operates the display and remote. The device remains in use today.",
+      "Retro magnetowid został przebudowany na komputer multimedialny. Podzespoły laptopa trzeba było rozmieścić na kilku poziomach w ciasnej obudowie i dopasować mechanicznie oraz elektrycznie. Polutowany ręcznie sterownik ESP8266 komunikuje się z aplikacją Windows i obsługuje wyświetlacz oraz pilot. Urządzenie działa do dziś.",
+      "A retro VCR was rebuilt as a media PC. The laptop components had to fit on several levels inside the compact enclosure and work together mechanically and electrically. A hand-soldered ESP8266 controller communicates with a Windows application and operates the display and remote. The device remains in use today.",
     ),
     premise: l(
-      "Komputer wewnątrz rodzinnego magnetowidu.",
-      "A computer inside our family VCR.",
+      "Komputer wewnątrz retro magnetowidu.",
+      "A computer inside a retro VCR.",
     ),
     role: l(
       "Planowanie przestrzenne, konstrukcja, lutowanie elektroniki i integracja ESP8266 z Windowsem",
@@ -236,16 +236,32 @@ export const projects: Project[] = [
         ratio: "16/10" as const,
         src: "/projects/vhs-htpc.jpg",
       },
-      media(
-        "VHS HTPC — trzy warstwy podzespołów",
-        "VHS HTPC — three layers of components",
-      ),
-      media(
-        "Wyświetlacz segmentowy — menu sterowane pilotem",
-        "Segment display — remote-controlled menu",
-        "16/9",
-      ),
+      {
+        label: l(
+          "VHS HTPC — montaż płyty głównej laptopa",
+          "VHS HTPC — laptop motherboard installation",
+        ),
+        ratio: "16/10" as const,
+        src: "/projects/vhs-htpc-motherboard-install.jpg",
+      },
+      {
+        label: l(
+          "VHS HTPC — jednostka sterująca z ESP8266",
+          "VHS HTPC — ESP8266 control unit",
+        ),
+        ratio: "16/9" as const,
+        src: "/projects/vhs-htpc-control-unit.jpg",
+      },
+      {
+        label: l(
+          "VHS HTPC — sterownik wyświetlacza segmentowego",
+          "VHS HTPC — segment display driver",
+        ),
+        ratio: "16/9" as const,
+        src: "/projects/vhs-htpc-lcd-driver.jpg",
+      },
     ],
+    video: "vgGN3KrSJ-c",
     links: [
       link(
         "Artykuł",
