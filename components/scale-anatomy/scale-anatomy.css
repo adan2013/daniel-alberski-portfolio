@@ -1,0 +1,242 @@
+.scale-anatomy {
+  color: var(--scale-ink);
+  min-width: 0;
+  --scale-paper: #fcfaf5;
+  --scale-enamel: #e4e5df;
+  --scale-metal: #d2d6d4;
+  --scale-metal-side: #a3aaa9;
+  --scale-ink: #46524f;
+  --scale-faint: #9da7a2;
+  --scale-cavity: #757f7c;
+  --scale-red: #b32636;
+  --scale-card: #eff1ed;
+}
+.scale-stage path,
+.scale-stage circle,
+.scale-stage ellipse,
+.scale-stage rect {
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.scale-shadow {
+  fill: url(#scale-shadow);
+  stroke: none;
+}
+.scale-fill,
+.scale-metal,
+.scale-screw circle {
+  fill: var(--scale-metal);
+  stroke: var(--scale-ink);
+  stroke-width: 0.8;
+}
+.scale-shade-0 {
+  fill: #a8afad;
+}
+.scale-shade-1 {
+  fill: #b8bfbc;
+}
+.scale-shade-2 {
+  fill: #c9ceca;
+}
+.scale-shade-3 {
+  fill: #d9ddd6;
+}
+.scale-top {
+  fill: #e5e8e0;
+}
+.scale-edge {
+  fill: none;
+  stroke: var(--scale-ink);
+  stroke-width: 0.8;
+}
+.scale-seam {
+  fill: none;
+  stroke: var(--scale-faint);
+  stroke-width: 0.8;
+}
+.scale-enamel {
+  fill: var(--scale-enamel);
+  stroke: var(--scale-ink);
+  stroke-width: 1;
+}
+.scale-metal-side {
+  fill: var(--scale-metal-side);
+  stroke: var(--scale-ink);
+  stroke-width: 0.8;
+}
+.scale-cavity,
+.scale-vent {
+  fill: var(--scale-cavity);
+  stroke: var(--scale-ink);
+  stroke-width: 0.8;
+}
+.scale-screw path {
+  stroke: var(--scale-ink);
+  stroke-width: 0.7;
+}
+.scale-spring {
+  fill: none;
+  stroke: #bfc7bf;
+  stroke-width: 2;
+}
+.scale-bezel {
+  fill: #bcc3bd;
+  stroke: var(--scale-ink);
+  stroke-width: 1;
+}
+.scale-rim {
+  fill: #e5e6dc;
+  stroke: #8e9991;
+  stroke-width: 0.8;
+}
+.scale-paper {
+  fill: var(--scale-paper);
+  stroke: #7e8a83;
+  stroke-width: 1.5;
+}
+.scale-dial-rule {
+  fill: none;
+  stroke: #9ba39b;
+  stroke-width: 0.65;
+}
+.scale-tick {
+  fill: none;
+  stroke: #7b857b;
+  stroke-width: 0.8;
+}
+.scale-tick-major {
+  fill: none;
+  stroke: var(--scale-ink);
+  stroke-width: 1.5;
+}
+.scale-numerals {
+  fill: var(--scale-ink);
+  font:
+    14px Georgia,
+    serif;
+}
+.scale-dial-label {
+  fill: var(--scale-ink);
+  font:
+    14px Georgia,
+    serif;
+}
+.scale-capacity {
+  font: 6px monospace;
+  letter-spacing: 1.2px;
+}
+.scale-warning {
+  fill: none;
+  stroke: var(--scale-red);
+  stroke-width: 4;
+}
+.scale-needle {
+  fill: var(--scale-red);
+  stroke: #8f2532;
+  stroke-width: 0.6;
+}
+.scale-needle-shadow {
+  fill: #28362d;
+  opacity: 0.15;
+}
+.scale-counterweight {
+  fill: var(--scale-red);
+}
+.scale-hub {
+  fill: #5a6761;
+  stroke: #38463f;
+  stroke-width: 0.8;
+}
+.scale-calibration {
+  fill: none;
+  stroke: #7a857b;
+  stroke-width: 0.9;
+}
+.scale-connector {
+  fill: none;
+  stroke: #9ca79e;
+  stroke-width: 0.85;
+}
+.scale-terminal {
+  fill: var(--scale-card);
+  stroke: #7b887e;
+  stroke-width: 1;
+}
+.scale-layer-row {
+  fill: #f8f9f6;
+  stroke: #ccd2ca;
+  stroke-width: 0.8;
+}
+.scale-layer-heading {
+  fill: #788577;
+  font: 9px monospace;
+  letter-spacing: 1.5px;
+}
+.scale-layer-index {
+  fill: #7b877d;
+  font: 9px monospace;
+}
+.scale-layer-label {
+  fill: var(--scale-ink);
+  font-size: 13px;
+}
+.scale-still-hint,
+.scale-mobile-legend {
+  display: none;
+}
+.scale-anatomy[data-reduced="true"] .scale-scroll-hint {
+  display: none;
+}
+.scale-anatomy[data-reduced="true"] .scale-still-hint {
+  display: inline;
+}
+@media (max-width: 1000px) {
+  .scale-mobile-legend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 16px;
+    max-width: 390px;
+    width: 100%;
+    margin: 16px auto 0;
+    font-size: 11px;
+    color: var(--muted);
+    list-style: none;
+    padding: 0;
+  }
+  .scale-mobile-legend span {
+    font: 9px monospace;
+    margin-right: 8px;
+    color: var(--accent);
+  }
+}
+@media (max-height: 660px) and (max-width: 1000px) {
+  .scale-mobile-legend {
+    display: none;
+  }
+}
+.scale-weight {
+  --scale-metal: #717974;
+  --scale-ink: #3f4943;
+  --scale-faint: #818b83;
+}
+.scale-weight .scale-shade-0 {
+  fill: #58625b;
+}
+.scale-weight .scale-shade-1 {
+  fill: #69736b;
+}
+.scale-weight .scale-shade-2 {
+  fill: #7c857b;
+}
+.scale-weight .scale-shade-3 {
+  fill: #90988b;
+}
+.scale-weight .scale-top {
+  fill: #a4ac9e;
+}
+.scale-weight-label {
+  fill: #f3f1df;
+  font:
+    12px Georgia,
+    serif;
+}

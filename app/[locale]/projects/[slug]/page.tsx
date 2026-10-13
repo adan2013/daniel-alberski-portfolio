@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { caseStudyAnimations } from "@/components/case-study-animations";
 import { CaseStudy } from "@/components/case-study";
 import { locales } from "@/lib/i18n";
 import { projects, projectName } from "@/lib/projects";
@@ -41,5 +42,13 @@ export default async function Page({
     (candidate) => candidate.slug === slug && candidate.caseStudy,
   );
   if (!project) notFound();
-  return <CaseStudy project={project} locale={locale} />;
+  const Animation = caseStudyAnimations[project.slug];
+  return (
+    <CaseStudy
+      key={project.slug}
+      project={project}
+      locale={locale}
+      animation={Animation ? <Animation locale={locale} /> : null}
+    />
+  );
 }

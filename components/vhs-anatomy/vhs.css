@@ -1,0 +1,85 @@
+.vhs-anatomy {
+  width: 100%;
+}
+.vh-stage {
+  overflow: hidden;
+}
+.vh-solid {
+  --vh-top: #d9dfd3;
+  --vh-fill: #b8c3b5;
+  --vh-0: #98a897;
+  --vh-1: #a8b7a5;
+  --vh-2: #bdc8b8;
+  --vh-3: #cbd3c4;
+  --vh-stroke: #637862;
+}
+.vh-dark {
+  --vh-top: #64715f;
+  --vh-fill: #435342;
+  --vh-0: #334833;
+  --vh-1: #425540;
+  --vh-2: #50614b;
+  --vh-3: #5d6d55;
+  --vh-stroke: #2b422e;
+}
+.vh-pcb {
+  --vh-top: #8fa781;
+  --vh-fill: #728b68;
+  --vh-0: #5e7755;
+  --vh-1: #6e875e;
+  --vh-2: #819972;
+  --vh-3: #8fa57e;
+  --vh-stroke: #4e6c49;
+}
+.vh-fill {
+  fill: var(--vh-fill);
+}
+.vh-top {
+  fill: var(--vh-top);
+}
+.vh-shade-0 {
+  fill: var(--vh-0);
+}
+.vh-shade-1 {
+  fill: var(--vh-1);
+}
+.vh-shade-2 {
+  fill: var(--vh-2);
+}
+.vh-shade-3 {
+  fill: var(--vh-3);
+}
+.vh-edge {
+  fill: none;
+  stroke: var(--vh-stroke);
+  stroke-width: 0.75;
+  stroke-linejoin: round;
+}
+.vh-seam {
+  fill: none;
+  stroke: var(--vh-stroke);
+  stroke-width: 0.4;
+  opacity: 0.65;
+}
+.vh-bezel {
+  fill: #52634f;
+  stroke: #8a9a80;
+  stroke-width: 0.7;
+}
+.vh-screws circle {
+  fill: #d2d8c7;
+  stroke: #788b70;
+  stroke-width: 0.7;
+}
+.vh-screws path {
+  fill: none;
+  stroke: #657a5f;
+  stroke-width: 0.65;
+}
+.vh-label {
+  font-family: var(--font-geist-mono), monospace;
+  fill: #435a3c;
+}
+.vh-brand {
+  fill: #c6cfbb;
+}

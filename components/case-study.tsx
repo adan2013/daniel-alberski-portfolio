@@ -2,7 +2,7 @@ import { Action } from "@/components/ui/action";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { PageShell } from "@/components/ui/page-shell";
 import { TagList } from "@/components/ui/tag-list";
-import { Suspense } from "react";
+import { Suspense, type ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import {
   projects,
@@ -19,12 +19,15 @@ import { localizedPath, projectPath } from "@/lib/localized-routes";
 import { Media } from "./media";
 import { BackToProjects, NextProjectLink } from "./case-navigation";
 import { Video } from "./video";
+import { CaseStudyStory } from "./case-study-story";
 export async function CaseStudy({
   project: p,
   locale,
+  animation,
 }: {
   project: Project;
   locale: Locale;
+  animation?: ReactNode;
 }) {
   const t = createTranslator(locale);
   const source = await readCaseStudy(p, locale);
@@ -89,74 +92,76 @@ export async function CaseStudy({
           ))}
         </div>
       </header>
-      <div className="case-cover group/cover mx-auto max-w-250">
-        <Media
-          media={{ ...p.media[0], ratio: "16/9" }}
-          locale={locale}
-          priority
-        />
-      </div>
-      <article
-        className="case-body mx-auto my-16.25 max-w-185 [&_h2]:mt-13 [&_h2]:mb-5 [&_h2]:text-[30px] [&_h2]:font-medium [&_h2]:leading-tight [&_h2]:tracking-[-0.035em] [&_p]:mb-5.5 [&_p]:text-[18px] [&_p]:leading-[1.75] [&_ul]:pl-5.5 [&_ul]:text-[18px] [&_ul]:text-muted [&_li]:mb-2.5 [&>.media]:my-9.5 [&>.video]:my-9.5 max-mobile:mt-9 max-mobile:[&_h2]:mt-9.5 max-mobile:[&_h2]:text-[27px] max-mobile:[&_p]:text-[17px] print:max-w-full"
-        aria-label={t("caseStudy.story")}
-      >
-        {parts.map((part, i) => {
-          const match = part.match(/^\[media:(\d+)\]$/);
-          if (match) {
-            const m = p.media[Number(match[1])];
-            return m ? <Media key={i} media={m} locale={locale} /> : null;
-          }
-          if (part === "[video]")
-            return p.video ? (
-              <Video
-                key={i}
-                id={p.video}
-                locale={locale}
-                title={`${projectName(p, locale)} — ${t("video.caption")}`}
-              />
-            ) : null;
-          if (part === "[architecture]")
+      <CaseStudyStory locale={locale} animation={animation}>
+        <div className="case-cover group/cover mx-auto max-w-250">
+          <Media
+            media={{ ...p.media[0], ratio: "16/9" }}
+            locale={locale}
+            priority
+          />
+        </div>
+        <article
+          className="case-body mx-auto my-16.25 max-w-185 [&_h2]:mt-13 [&_h2]:mb-5 [&_h2]:text-[30px] [&_h2]:font-medium [&_h2]:leading-tight [&_h2]:tracking-[-0.035em] [&_p]:mb-5.5 [&_p]:text-[18px] [&_p]:leading-[1.75] [&_ul]:pl-5.5 [&_ul]:text-[18px] [&_ul]:text-muted [&_li]:mb-2.5 [&>.media]:my-9.5 [&>.video]:my-9.5 max-mobile:mt-9 max-mobile:[&_h2]:mt-9.5 max-mobile:[&_h2]:text-[27px] max-mobile:[&_p]:text-[17px] print:max-w-full"
+          aria-label={t("caseStudy.story")}
+        >
+          {parts.map((part, i) => {
+            const match = part.match(/^\[media:(\d+)\]$/);
+            if (match) {
+              const m = p.media[Number(match[1])];
+              return m ? <Media key={i} media={m} locale={locale} /> : null;
+            }
+            if (part === "[video]")
+              return p.video ? (
+                <Video
+                  key={i}
+                  id={p.video}
+                  locale={locale}
+                  title={`${projectName(p, locale)} — ${t("video.caption")}`}
+                />
+              ) : null;
+            if (part === "[architecture]")
+              return (
+                <div
+                  key={i}
+                  className="system-diagram my-8.75 flex items-center justify-between gap-3 border border-line bg-white p-6.25 text-[14px] [&_span]:text-center [&_small]:block [&_small]:text-[11px] [&_small]:text-muted max-mobile:flex-col max-mobile:gap-4 max-mobile:[&>b]:rotate-90"
+                  aria-label={t("caseStudy.diagramLabel")}
+                >
+                  <span>
+                    React
+                    <small>{t("caseStudy.tabletInterface")}</small>
+                  </span>
+                  <b aria-hidden="true">↔</b>
+                  <span>
+                    Node.js
+                    <small>{t("caseStudy.logic")}</small>
+                  </span>
+                  <b aria-hidden="true">↔</b>
+                  <span>
+                    Home Assistant
+                    <small>{t("caseStudy.deviceCommunication")}</small>
+                  </span>
+                </div>
+              );
             return (
-              <div
+              <ReactMarkdown
                 key={i}
-                className="system-diagram my-8.75 flex items-center justify-between gap-3 border border-line bg-white p-6.25 text-[14px] [&_span]:text-center [&_small]:block [&_small]:text-[11px] [&_small]:text-muted max-mobile:flex-col max-mobile:gap-4 max-mobile:[&>b]:rotate-90"
-                aria-label={t("caseStudy.diagramLabel")}
+                components={{
+                  a: ({ href, children }) =>
+                    href ? (
+                      <Action href={href} variant="inline">
+                        {children}
+                      </Action>
+                    ) : (
+                      children
+                    ),
+                }}
               >
-                <span>
-                  React
-                  <small>{t("caseStudy.tabletInterface")}</small>
-                </span>
-                <b aria-hidden="true">↔</b>
-                <span>
-                  Node.js
-                  <small>{t("caseStudy.logic")}</small>
-                </span>
-                <b aria-hidden="true">↔</b>
-                <span>
-                  Home Assistant
-                  <small>{t("caseStudy.deviceCommunication")}</small>
-                </span>
-              </div>
+                {part}
+              </ReactMarkdown>
             );
-          return (
-            <ReactMarkdown
-              key={i}
-              components={{
-                a: ({ href, children }) =>
-                  href ? (
-                    <Action href={href} variant="inline">
-                      {children}
-                    </Action>
-                  ) : (
-                    children
-                  ),
-              }}
-            >
-              {part}
-            </ReactMarkdown>
-          );
-        })}
-      </article>
+          })}
+        </article>
+      </CaseStudyStory>
       <nav
         className="case-end flex items-center justify-between gap-7.5 border-t border-line pt-9 pb-16.25 text-[14px] [&_small]:mb-1.5 [&_small]:block [&_small]:text-[11px] [&_small]:text-muted max-mobile:flex-col max-mobile:items-start max-mobile:gap-5 max-mobile:pb-8.75"
         aria-label={t("caseStudy.navigation")}

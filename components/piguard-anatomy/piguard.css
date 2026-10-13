@@ -1,0 +1,107 @@
+.piguard-anatomy {
+  width: 100%;
+}
+.pg-stage {
+  overflow: hidden;
+}
+.pg-solid-fill {
+  fill: #404943;
+}
+.pg-shade-0 {
+  fill: #343d37;
+}
+.pg-shade-1 {
+  fill: #3c453f;
+}
+.pg-shade-2 {
+  fill: #475149;
+}
+.pg-shade-3 {
+  fill: #535c52;
+}
+.pg-solid-top {
+  fill: #60695d;
+}
+.pg-solid-edge {
+  fill: none;
+  stroke: #242f28;
+  stroke-width: 0.9;
+}
+.pg-solid-seam {
+  fill: none;
+  stroke: #8c9485;
+  stroke-width: 0.5;
+}
+.pg-lid {
+  fill: #3e4840;
+  stroke: #1f2c23;
+  stroke-width: 1.2;
+}
+.pg-lid-seam {
+  fill: none;
+  stroke: #697361;
+  stroke-width: 0.6;
+}
+.pg-brand {
+  font-family: Arial, sans-serif;
+  font-weight: 500;
+  font-size: 48px;
+  letter-spacing: -2px;
+  fill: #d0d5c5;
+}
+.pg-gsm {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  text-anchor: middle;
+  fill: #414c40;
+}
+.pg-person {
+  stroke: #596650;
+  stroke-width: 1.15;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.pg-skin {
+  fill: #e9e9d9;
+}
+.pg-dark {
+  fill: #364337;
+  stroke: #27392c;
+}
+.pg-detail {
+  fill: none;
+  stroke: #89947c;
+  stroke-width: 1;
+}
+.pg-expression {
+  fill: none;
+  stroke: #394b36;
+  stroke-width: 2;
+}
+.pg-message {
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+}
+.pg-sender {
+  fill: #42543d;
+  font-size: 13px;
+  font-weight: 600;
+}
+.pg-time {
+  fill: #7b8971;
+  font-size: 11px;
+}
+.pg-message-text {
+  fill: #33472f;
+  font-size: 19px;
+}
+@media print {
+  .piguard-anatomy [data-pg="scene"],
+  .piguard-anatomy [data-pg="incoming"] {
+    display: none;
+  }
+  .piguard-anatomy [data-pg="recipient"],
+  .piguard-anatomy [data-pg="message"] {
+    opacity: 1;
+  }
+}
