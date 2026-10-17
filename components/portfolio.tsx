@@ -177,6 +177,7 @@ export function Portfolio({ locale }: { locale: Locale }) {
             tone="accent"
             className="text-link mt-8 border border-accent text-[14px] font-medium text-accent"
             href="https://www.linkedin.com/in/daniel-alberski/"
+            icon="linkedin"
           >
             {t("portfolio.about.linkedin")}
           </Action>
@@ -302,23 +303,22 @@ function ProjectCard({
         </ul>
         {(p.caseStudy || p.links.length > 0) && (
           <div className="project-actions mt-auto flex flex-wrap items-stretch gap-2 border-t border-line pt-4 max-mobile:gap-1.5">
-            {(p.priority === "main"
-              ? p.links.slice(0, p.cardLinkCount ?? 1)
-              : p.links
-            ).map((link) => (
-              <Action
-                variant="curtain"
-                key={link.url}
-                href={link.url}
-                className="external-link justify-center border border-field bg-transparent text-center text-[13px] font-medium text-ink hover:border-ink focus-visible:border-ink max-mobile:min-h-10 max-mobile:px-2 max-mobile:py-2 max-mobile:text-[11px]"
-              >
-                {link.label[locale]}
-              </Action>
-            ))}
+            {!p.caseStudy &&
+              p.links.map((link) => (
+                <Action
+                  variant="curtain"
+                  key={link.url}
+                  href={link.url}
+                  icon={link.icon}
+                  className="external-link justify-center border border-field bg-transparent text-center text-[13px] font-medium text-ink hover:border-ink focus-visible:border-ink max-mobile:min-h-10 max-mobile:px-2 max-mobile:py-2 max-mobile:text-[11px]"
+                >
+                  {link.label[locale]}
+                </Action>
+              ))}
             {p.caseStudy && (
               <Action
-                variant="curtain"
-                className="read-more ml-auto justify-center border border-ink bg-soft text-center text-[13px] font-medium text-ink hover:border-ink focus-visible:border-ink max-mobile:min-h-10 max-mobile:px-2 max-mobile:py-2 max-mobile:text-[11px] max-mobile:[&_svg]:ml-1.5 max-mobile:[&_svg]:size-3.5"
+                variant="primary"
+                className="read-more ml-auto text-center text-[13px] max-mobile:min-h-10 max-mobile:px-2 max-mobile:py-2 max-mobile:text-[11px] max-mobile:[&_svg]:ml-1.5 max-mobile:[&_svg]:size-3.5"
                 href={url}
               >
                 {t("portfolio.projects.readMore")}

@@ -2,6 +2,8 @@
 
 Pierwszy Gauge Generator powstał w 2019 roku na potrzeby [DIY Arduino Dashboard](/projects/arduino-dashboard). Budowałem wtedy fizyczny zestaw zegarów do Euro Truck Simulatora i potrzebowałem własnych tarcz: z innymi skalami, kontrolkami i oznaczeniami niż w liczniku samochodowym, który służył mi za bazę. Rysowanie każdego wariantu ręcznie szybko przestało mieć sens, więc napisałem w C# desktopowe narzędzie do generowania takich grafik.
 
+[hero]
+
 Program pozwalał składać tarczę z warstw, ustawiać skale i eksportować gotowy obraz do PNG. Zrobiłem go dla konkretnego projektu, ale udostępniłem kod i dokumentację. Po kilku latach znalazłem w internecie odwołania osób, które używały aplikacji do własnych zegarów i skal. Pomysł okazał się przydatny również poza moim warsztatem.
 
 [media:2]

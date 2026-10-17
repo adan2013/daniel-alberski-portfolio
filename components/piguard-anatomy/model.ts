@@ -6,26 +6,30 @@ const ease = (p: number, a: number, b: number) => {
   return t * t * (3 - 2 * t);
 };
 
+export const guardStops = [0, 0.23, 0.37, 0.58, 0.9, 1] as const;
+export const guardStepDurations = [1000, 1000, 1000, 2400, 1000] as const;
+
 // Narrative timing, not measured sensor latency or SMS delivery time.
+// Fades finish before a scene stop or start after it, never resting halfway.
 export function guardPose(p: number) {
   return {
     intruder: ease(p, 0.08, 0.23),
     detection: ease(p, 0.23, 0.28),
-    alarm: ease(p, 0.28, 0.34) * (1 - ease(p, 0.51, 0.57)),
-    fear: ease(p, 0.32, 0.4),
+    // Sending the notification does not disarm the local alarm.
+    alarm: ease(p, 0.28, 0.34),
+    fear: ease(p, 0.32, guardStops[2]),
     departure: ease(p, 0.4, 0.54),
-    outgoing: ease(p, 0.38, 0.43) * (1 - ease(p, 0.51, 0.58)),
-    firstScene: 1 - ease(p, 0.55, 0.62),
+    outgoing: ease(p, 0.38, 0.43) * (1 - ease(p, guardStops[3], 0.62)),
+    firstScene: 1 - ease(p, guardStops[3], 0.62),
     recipient: ease(p, 0.62, 0.69),
-    arrival: ease(p, 0.67, 0.83),
-    incoming: ease(p, 0.67, 0.71) * (1 - ease(p, 0.81, 0.87)),
+    // Land at the phone, then fade out before the receiving scene settles.
+    arrival: ease(p, 0.67, 0.88),
+    incoming: ease(p, 0.67, 0.71) * (1 - ease(p, 0.88, guardStops[4])),
     phone: ease(p, 0.78, 0.88),
-    message: ease(p, 0.87, 0.94),
+    message: ease(p, guardStops[4], 0.94),
     shock: ease(p, 0.93, 0.985),
   };
 }
-export const guardPhase = (p: number) =>
-  p < 0.08 ? 0 : p < 0.25 ? 1 : p < 0.38 ? 2 : p < 0.62 ? 3 : p < 0.93 ? 4 : 5;
 
 export const guardCopy: Record<
   Locale,
@@ -40,8 +44,8 @@ export const guardCopy: Record<
   }
 > = {
   pl: {
-    title: "PiGuard GSM",
-    hint: "Przewiń lub przesuń suwak",
+    title: "Powiadamianie o włamaniu",
+    hint: "Wybierz scenę strzałkami lub suwakiem",
     control: "Przebieg alarmu PiGuard",
     description:
       "PiGuard czuwa z migającą czerwoną diodą. Z prawej strony wchodzi złodziej. Czujnik PIR zapala czerwoną diodę i pojawia się wykrzyknik. Alarm wibruje, a przestraszony intruz widzi wysyłany sygnał GSM. Właściciel wyjmuje telefon, odczytuje SMS o ruchu w pomieszczeniu i reaguje zaskoczeniem.",
@@ -57,8 +61,8 @@ export const guardCopy: Record<
     now: "teraz",
   },
   en: {
-    title: "PiGuard GSM",
-    hint: "Scroll or drag the slider",
+    title: "Intrusion notifications",
+    hint: "Choose a scene with the arrows or slider",
     control: "PiGuard alarm sequence",
     description:
       "PiGuard is armed with a blinking red LED. A burglar enters from the right. The PIR sensor lights red and an exclamation mark appears. The alarm shakes, and the startled intruder sees a GSM signal being sent. The owner takes out a phone, reads a motion alert and looks shocked.",

@@ -1,4 +1,5 @@
 import type { Locale } from "./i18n";
+import type { LinkIconName } from "./link-icons";
 
 export type { Locale } from "./i18n";
 export type Localized = Record<Locale, string>;
@@ -18,19 +19,19 @@ export type Project = {
   tracks: Track[];
   priority: "main" | "secondary";
   tags: string[];
-  cardLinkCount?: number;
   summary: Localized;
   premise: Localized;
   role: Localized;
   media: Media[];
-  links: { label: Localized; url: string }[];
+  links: { label: Localized; url: string; icon: LinkIconName }[];
   caseStudy?: string;
   video?: string;
 };
 const l = (pl: string, en: string): Localized => ({ pl, en });
-const link = (pl: string, en: string, url: string) => ({
+const link = (pl: string, en: string, url: string, icon: LinkIconName) => ({
   label: l(pl, en),
   url,
+  icon,
 });
 export const tracks: { id: Track; name: Localized; description: Localized }[] =
   [
@@ -75,7 +76,6 @@ export const projects: Project[] = [
     tracks: ["software", "ai"],
     priority: "main",
     tags: ["React", "SVG", "PDF", "AI workflow", "Graphics"],
-    cardLinkCount: 2,
     caseStudy: "gauge-generator",
     summary: l(
       "Na tym remasterze aplikacji z 2019 roku przetestowałem workflow z AI: od specyfikacji i szybkiego startu po pracę etapami. Sam podejmowałem decyzje architektoniczne i robiłem końcowe code review.",
@@ -129,17 +129,25 @@ export const projects: Project[] = [
         "Landing page",
         "Landing page",
         "https://gauge-generator.adanit.pl/",
+        "globe",
       ),
-      link("GitHub", "GitHub", "https://github.com/adan2013/Gauge-Generator"),
+      link(
+        "GitHub",
+        "GitHub",
+        "https://github.com/adan2013/Gauge-Generator",
+        "github",
+      ),
       link(
         "Dokumentacja",
         "Documentation",
         "https://gauge-generator.adanit.pl/docs/en",
+        "document",
       ),
       link(
         "Wypróbuj aplikację",
         "Try the app",
         "https://gauge-generator.adanit.pl/app",
+        "globe",
       ),
     ],
   },
@@ -207,7 +215,9 @@ export const projects: Project[] = [
         src: "/projects/piguard-installed-open.jpg",
       },
     ],
-    links: [link("GitHub", "GitHub", "https://github.com/adan2013/PiGuard")],
+    links: [
+      link("GitHub", "GitHub", "https://github.com/adan2013/PiGuard", "github"),
+    ],
   },
   {
     slug: "palettes",
@@ -238,11 +248,13 @@ export const projects: Project[] = [
         "MakerWorld",
         "MakerWorld",
         "https://makerworld.com/en/models/1420749-customizable-magnetic-eyeshadow-palette#profileId-1476063",
+        "globe",
       ),
       link(
         "GitHub",
         "GitHub",
         "https://github.com/adan2013/eyeshadow-palette-openscad",
+        "github",
       ),
     ],
   },
@@ -253,7 +265,6 @@ export const projects: Project[] = [
     tracks: ["software", "hardware", "3d"],
     priority: "main",
     tags: ["ESP8266", "C#", "Druk 3D"],
-    cardLinkCount: 2,
     caseStudy: "vhs-htpc",
     summary: l(
       "Retro magnetowid został przebudowany na komputer multimedialny. Podzespoły laptopa trzeba było rozmieścić na kilku poziomach w ciasnej obudowie i dopasować mechanicznie oraz elektrycznie. Polutowany ręcznie sterownik ESP8266 komunikuje się z aplikacją Windows i obsługuje wyświetlacz oraz pilot. Urządzenie działa do dziś.",
@@ -307,8 +318,14 @@ export const projects: Project[] = [
         "Artykuł",
         "Article (PL only)",
         "https://redark.pl/vhs-htpc-project",
+        "document",
       ),
-      link("GitHub", "GitHub", "https://github.com/adan2013/vhs-htpc"),
+      link(
+        "GitHub",
+        "GitHub",
+        "https://github.com/adan2013/vhs-htpc",
+        "github",
+      ),
     ],
   },
   {
@@ -319,7 +336,6 @@ export const projects: Project[] = [
     tracks: ["software"],
     priority: "main",
     tags: ["React", "Node.js", "Home Assistant", "Zigbee", "Docker"],
-    cardLinkCount: 2,
     caseStudy: "smart-home",
     summary: l(
       "Własny system do codziennej obsługi domu przez tablet, telefony i fizyczne piloty. Frontend w Reakcie komunikuje się z testowanym backendem Node.js, który obsługuje ponad 300 encji Home Assistanta, automatyzacje, powiadomienia i monitoring urządzeń.",
@@ -370,8 +386,18 @@ export const projects: Project[] = [
       },
     ],
     links: [
-      link("Frontend", "Frontend", "https://github.com/adan2013/HA-Dashboard"),
-      link("Backend", "Backend", "https://github.com/adan2013/HA-Backend"),
+      link(
+        "Frontend",
+        "Frontend",
+        "https://github.com/adan2013/HA-Dashboard",
+        "github",
+      ),
+      link(
+        "Backend",
+        "Backend",
+        "https://github.com/adan2013/HA-Backend",
+        "github",
+      ),
     ],
   },
   {
@@ -405,13 +431,15 @@ export const projects: Project[] = [
         "GitHub",
         "GitHub",
         "https://github.com/adan2013/RaspberryBookReader",
+        "github",
       ),
       link(
         "Artykuł",
         "Article (PL only)",
         "https://redark.pl/diy-raspberry-book-reader",
+        "document",
       ),
-      link("Demo wideo", "Video demo", "https://youtu.be/_oJZlEEj5N0"),
+      link("Demo wideo", "Video demo", "https://youtu.be/_oJZlEEj5N0", "video"),
     ],
   },
   {
@@ -421,7 +449,6 @@ export const projects: Project[] = [
     tracks: ["software", "hardware"],
     priority: "main",
     tags: ["Arduino", "C++", "C# / WPF", "SPI", "Gaming"],
-    cardLinkCount: 3,
     caseStudy: "arduino-dashboard",
     video: "KW6sZINNi9Y",
     summary: l(
@@ -477,13 +504,15 @@ export const projects: Project[] = [
         "GitHub",
         "GitHub",
         "https://github.com/adan2013/DIY-Arduino-Dashboard",
+        "github",
       ),
       link(
         "Artykuł",
         "Article (PL/EN)",
         "https://redark.pl/diy-arduino-dashboard-ets-ats",
+        "document",
       ),
-      link("Demo wideo", "Video demo", "https://youtu.be/KW6sZINNi9Y"),
+      link("Demo wideo", "Video demo", "https://youtu.be/KW6sZINNi9Y", "video"),
     ],
   },
   {
@@ -574,16 +603,18 @@ export const projects: Project[] = [
       },
     ],
     links: [
-      link("Otwórz blog", "Open blog", "https://redark.pl"),
+      link("Otwórz blog", "Open blog", "https://redark.pl", "globe"),
       link(
         "GitHub · Gatsby",
         "GitHub · Gatsby",
         "https://github.com/adan2013/Redark-Gatsby-Blog",
+        "github",
       ),
       link(
         "GitHub · Next.js",
         "GitHub · Next.js",
         "https://github.com/adan2013/redark-next",
+        "github",
       ),
     ],
   },

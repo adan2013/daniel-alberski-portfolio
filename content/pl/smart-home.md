@@ -2,6 +2,8 @@
 
 Zbudowałem smart home do codziennego użytku przez wszystkich domowników. Główny panel działa na tablecie zamontowanym na ścianie w trybie Fully Kiosk, ten sam dashboard jest dostępny na telefonach jako aplikacja PWA, a najczęstsze czynności można wykonać tradycyjnymi pilotami w pomieszczeniach.
 
+[hero]
+
 Home Assistant dobrze radzi sobie z komunikacją z urządzeniami różnych producentów, ale jego standardowy interfejs nie odpowiadał mojemu sposobowi korzystania z domu. Zamiast dopasowywać potrzeby do gotowego układu, napisałem własny frontend w React. Mogłem sam ustalić hierarchię informacji, wygląd kafelków oraz zachowanie elementów przygotowanych pod ekran dotykowy. Wolę napisać potrzebną funkcję niż długo szukać obejścia w cudzym interfejsie.
 
 Projekt obejmuje też backend w Node.js. To w nim działa logika automatyzacji, system powiadomień i monitoring urządzeń. Home Assistant pozostał warstwą pośredniczącą między kodem a sprzętem, w tym urządzeniami Zigbee i integracjami korzystającymi z MQTT.

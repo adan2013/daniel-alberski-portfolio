@@ -1,0 +1,155 @@
+.smart-home-anatomy {
+  width: 100%;
+}
+.sh-stage {
+  overflow: hidden;
+}
+.sh-hardware {
+  stroke: #637b52;
+  stroke-width: 0.9;
+  stroke-linejoin: round;
+}
+.sh-focus {
+  fill: #e0e8cf;
+  fill-opacity: 0;
+  stroke: #829a6d;
+  stroke-width: 1.4;
+  stroke-opacity: 0;
+}
+[data-sh-node][data-active="true"] .sh-focus {
+  fill-opacity: 0.72;
+  stroke-opacity: 1;
+}
+.sh-stage text {
+  font-family: var(--font-geist-sans, Arial), sans-serif;
+}
+.sh-label {
+  font-size: 18px;
+  font-weight: 600;
+  fill: #415b37;
+  text-anchor: middle;
+}
+.sh-sub-label,
+.sh-edge-label {
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 12px;
+  fill: #718364;
+  text-anchor: middle;
+}
+.sh-state {
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 12px;
+  font-weight: 600;
+  fill: #48643b;
+  text-anchor: middle;
+  stroke: none;
+}
+.sh-device-label {
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 8.5px;
+  font-weight: 500;
+  fill: #445b35;
+  stroke: none;
+}
+.sh-notification-heading {
+  font-size: 7px;
+  font-weight: 600;
+  fill: #526940;
+  stroke: none;
+}
+.sh-notification-count {
+  font-size: 7px;
+  font-weight: 600;
+  text-anchor: middle;
+  fill: #526940;
+  stroke: none;
+}
+.sh-notification-body {
+  font-size: 6.9px;
+  font-weight: 600;
+  fill: #7f632f;
+  stroke: none;
+}
+.sh-link {
+  fill: none;
+  stroke: #b3c0a5;
+  stroke-width: 1.4;
+}
+.sh-radio-link {
+  stroke-dasharray: 3 5;
+}
+.sh-command-link {
+  fill: none;
+  stroke: #a17a45;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.sh-feedback-link {
+  fill: none;
+  stroke: #597c48;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.sh-wireless {
+  fill: none;
+  stroke: #a17a45;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+.sh-packet rect {
+  fill: #eadbb9;
+  stroke: #9b7440;
+  stroke-width: 1.2;
+}
+.sh-packet text {
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 12px;
+  font-weight: 600;
+  fill: #70532c;
+  text-anchor: middle;
+}
+.sh-packet-check {
+  fill: none;
+  stroke: #456231;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.sh-return rect {
+  fill: #dae7bd;
+  stroke: #5b7c45;
+}
+.sh-return text {
+  fill: #456231;
+}
+.sh-legend-command {
+  stroke: #a17a45;
+  stroke-width: 3;
+}
+.sh-legend-return {
+  stroke: #597c48;
+  stroke-width: 3;
+}
+.sh-legend-label {
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 10px;
+  fill: #6b7c5e;
+}
+/* Server pose: keep command/return tracks empty until the progress model paints. */
+.sh-active-links path {
+  stroke-dasharray: 0 1000;
+}
+
+.sh-wireless-return {
+  stroke: #597c48;
+}
+
+/* Direction is a paint boundary: dashed paths and SVG markers are separate paint
+   operations, so returning must remove the command layer from rendering entirely. */
+.smart-home-anatomy[data-direction="reverse"] .sh-command-link {
+  display: none;
+  marker-end: none;
+}
+.smart-home-anatomy[data-direction="reverse"] [data-sh-base] {
+  marker-end: none;
+}

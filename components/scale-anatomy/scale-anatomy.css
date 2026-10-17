@@ -54,20 +54,51 @@
   stroke: var(--scale-faint);
   stroke-width: 0.8;
 }
-.scale-enamel {
-  fill: var(--scale-enamel);
-  stroke: var(--scale-ink);
-  stroke-width: 1;
-}
 .scale-metal-side {
   fill: var(--scale-metal-side);
   stroke: var(--scale-ink);
   stroke-width: 0.8;
 }
-.scale-cavity,
-.scale-vent {
+.scale-housing-surface {
+  fill: #929e96;
+}
+.scale-housing-well {
   fill: var(--scale-cavity);
+}
+.scale-housing-well-seam {
+  fill: none;
+  stroke: #53605b;
+  stroke-width: 0.8;
+}
+.scale-housing-front-structure {
+  fill: #d3d9d1;
   stroke: var(--scale-ink);
+  stroke-width: 0.8;
+}
+.scale-housing-front-seam {
+  fill: none;
+  stroke: #66736b;
+  stroke-width: 0.8;
+}
+.scale-housing-panel-depth {
+  fill: #87938c;
+}
+.scale-housing-lip {
+  fill: var(--scale-enamel);
+}
+.scale-housing-cut-face {
+  fill: #9ca69f;
+  stroke: var(--scale-ink);
+  stroke-width: 0.8;
+}
+.scale-housing-edge,
+.scale-housing-seam {
+  fill: none;
+  stroke: var(--scale-ink);
+  stroke-width: 1;
+}
+.scale-housing-seam {
+  stroke: var(--scale-faint);
   stroke-width: 0.8;
 }
 .scale-screw path {
@@ -180,15 +211,8 @@
   fill: var(--scale-ink);
   font-size: 13px;
 }
-.scale-still-hint,
 .scale-mobile-legend {
   display: none;
-}
-.scale-anatomy[data-reduced="true"] .scale-scroll-hint {
-  display: none;
-}
-.scale-anatomy[data-reduced="true"] .scale-still-hint {
-  display: inline;
 }
 @media (max-width: 1000px) {
   .scale-mobile-legend {

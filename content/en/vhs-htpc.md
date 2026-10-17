@@ -2,6 +2,8 @@
 
 VHS HTPC started from a simple need. I wanted a convenient way to watch video on a TV from a device that would not become another black box next to the media cabinet. I had an old laptop available. It was no longer practical as a portable machine, but it still had a strong processor and enough headroom for everyday online playback. Instead of buying a new mini PC, I decided to give that hardware a second life.
 
+[hero]
+
 The second part of the idea was a retro Panasonic NV-J35HQ VCR. I remember this device from childhood, so building something new inside that enclosure had extra meaning for me. I wanted to keep its recognizable look while turning it into a functional media computer with custom controls.
 
 From day one, this was never going to be a "drop in a board and done" project. The VCR interior is tight, and the motherboard from a 17-inch Asus K75VJ is large and long. Every mechanical decision affected the next one: board placement, power routing, port access, cooling, and space for the control electronics.

@@ -2,6 +2,8 @@
 
 Uruchomiłem Redarka w 2018 roku, żeby dzielić się wiedzą o komputerach i oprogramowaniu. Z czasem zacząłem tam również dokumentować własne projekty: Arduino Dashboard, czytnik audiobooków na Raspberry Pi czy VHS HTPC. Zależało mi na publikowaniu opisów, do których sam chciałbym trafić podczas rozwiązywania podobnego problemu.
 
+[hero]
+
 Pierwsza wersja działała na WordPressie. Znałem ten system i mogłem szybko uruchomić serwis, ale gotowe motywy mi nie odpowiadały, więc napisałem własny w PHP. Pozwolił mi wystartować, choć wraz z rozwojem bloga rosła też ilość kodu i liczba obejść potrzebnych do wprowadzania kolejnych zmian.
 
 [media:1]

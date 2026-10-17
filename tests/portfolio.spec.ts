@@ -74,6 +74,37 @@ test("four filters preserve chronology, six case studies and three secondary car
   await expect(page.locator(".project-card")).toHaveCount(9);
 });
 
+test("case study cards have only a red read more action", async ({ page }) => {
+  for (const prefix of ["", "/en"]) {
+    await page.goto(prefix || "/");
+    for (const project of projects.filter((p) => p.caseStudy)) {
+      const actions = page.locator(`#${project.slug} .project-actions`);
+      const readMore = actions.locator(".read-more");
+      await expect(actions.locator("a")).toHaveCount(1);
+      await expect(readMore).toHaveAttribute(
+        "href",
+        `${prefix}/projects/${project.slug}`,
+      );
+      await expect(readMore).toHaveCSS("background-color", "rgb(179, 38, 54)");
+      await expect(readMore).toHaveCSS("color", "rgb(255, 255, 255)");
+      await expect(readMore).toHaveCSS("border-top-color", "rgb(179, 38, 54)");
+    }
+    for (const project of projects.filter(
+      (p) => !p.caseStudy && p.links.length > 0,
+    )) {
+      const links = page.locator(
+        `#${project.slug} .project-actions .external-link`,
+      );
+      await expect(links).toHaveCount(project.links.length);
+      expect(
+        await links.evaluateAll((elements) =>
+          elements.map((e) => e.getAttribute("href")),
+        ),
+      ).toEqual(project.links.map((link) => link.url));
+    }
+  }
+});
+
 test("return from case study restores filter and reading position", async ({
   page,
 }) => {
@@ -275,6 +306,7 @@ test("English routes have English document language and complete articles", asyn
   for (const p of projects.filter((p) => p.caseStudy)) {
     await page.goto(`/en/projects/${p.slug}`);
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    await expect(page.locator(".case-cover")).toHaveCount(0);
     expect(await page.locator(".case-body h2").count()).toBeGreaterThanOrEqual(
       4,
     );

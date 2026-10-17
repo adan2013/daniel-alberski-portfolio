@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import type { Locale } from "@/lib/projects";
 import { CaseStudyFigure } from "../case-study-figure";
 import { useCaseStudyProgress } from "../use-case-study-progress";
-import { guardCopy, guardPhase, guardPose } from "./model";
+import { guardCopy, guardPose, guardStepDurations, guardStops } from "./model";
 
 function setup(host: HTMLDivElement) {
   const parts = Object.fromEntries(
@@ -27,13 +27,13 @@ function setup(host: HTMLDivElement) {
     opacity("sensor-led", p.detection);
     opacity("alert", p.detection);
     transform("alert", `translate(0 ${-8 * p.detection})`);
-    const shake = still ? 0 : Math.sin(time * 40) * 1.6 * p.alarm;
+    const shake = still ? 0 : Math.sin(time * 32) * 0.35 * p.alarm;
     transform("device", `rotate(${shake} 185 256)`);
-    // Small, local LED pulse: faster when the local alarm is sounding.
+    // A distinct light pulse, slower than the subtle mechanical vibration.
     const pulse = still
       ? 1
-      : 0.45 +
-        0.55 * (0.5 + 0.5 * Math.sin(time * Math.PI * (2 + 6 * p.alarm)));
+      : 0.12 +
+        0.88 * (0.5 + 0.5 * Math.sin(time * Math.PI * (2 + 3 * p.alarm)));
     opacity("led", pulse);
     opacity("outgoing", p.outgoing);
     transform(
@@ -78,9 +78,9 @@ export function PiGuardLive({
   message: ReactNode;
 }) {
   const copy = guardCopy[locale];
-  const { root, readout, slider, onProgressChange } = useCaseStudyProgress({
-    phases: copy.phases,
-    phaseAt: guardPhase,
+  const { root, scene, onSceneChange } = useCaseStudyProgress({
+    stops: guardStops,
+    stepDurations: guardStepDurations,
     setup,
   });
   return (
@@ -88,11 +88,11 @@ export function PiGuardLive({
       <CaseStudyFigure
         title={copy.title}
         hint={copy.hint}
-        initialReadout={`01 / 06 · ${copy.phases[0]}`}
-        readoutRef={readout}
-        progressRef={slider}
+        phases={copy.phases}
+        scene={scene}
         progressLabel={copy.control}
-        onProgressChange={onProgressChange}
+        onSceneChange={onSceneChange}
+        locale={locale}
       >
         <svg
           viewBox="0 0 640 560"
@@ -101,6 +101,17 @@ export function PiGuardLive({
           aria-label={copy.description}
         >
           <defs>
+            <radialGradient id="pg-led-glow">
+              <stop stopColor="#ff343e" stopOpacity=".7" />
+              <stop offset=".4" stopColor="#ff343e" stopOpacity=".35" />
+              <stop offset="1" stopColor="#ff343e" stopOpacity="0" />
+            </radialGradient>
+            <radialGradient id="pg-led-light">
+              <stop stopColor="#fff2df" />
+              <stop offset=".3" stopColor="#ffb3a1" />
+              <stop offset=".65" stopColor="#ff454c" />
+              <stop offset="1" stopColor="#e51c2b" />
+            </radialGradient>
             <radialGradient id="pg-shadow">
               <stop stopColor="#4c6148" stopOpacity=".18" />
               <stop offset="1" stopColor="#4c6148" stopOpacity="0" />

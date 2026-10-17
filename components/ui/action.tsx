@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { LinkIconName } from "@/lib/link-icons";
 import type {
   ButtonHTMLAttributes,
   ComponentPropsWithoutRef,
@@ -7,7 +8,7 @@ import type {
 import { cx } from "./class-names";
 import "./action.css";
 
-type ActionVariant = "ghost" | "inline" | "primary" | "curtain";
+type ActionVariant = "ghost" | "inline" | "primary" | "curtain" | "tile";
 type ActionTone = "default" | "accent";
 type ActionCommonProps = {
   variant?: ActionVariant;
@@ -18,6 +19,7 @@ type ActionCommonProps = {
 type ActionAnchorProps = ActionCommonProps &
   Omit<ComponentPropsWithoutRef<"a">, "children" | "className" | "href"> & {
     href: string;
+    icon?: LinkIconName;
   };
 type ActionButtonProps = ActionCommonProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children" | "className"> & {
@@ -42,6 +44,7 @@ const actionVariantClasses: Record<ActionVariant, string> = {
     animatedActionClasses,
     "min-h-11 before:bg-[var(--curtain-color,var(--text))]",
   ),
+  tile: "group/action relative isolate flex min-h-36 min-w-0 flex-col items-start justify-between gap-6 overflow-hidden border border-field bg-white p-5 text-left text-[17px] leading-snug font-medium tracking-tight text-ink no-underline transition-colors duration-320 ease-out before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:origin-bottom before:scale-y-0 before:bg-accent before:transition-transform before:duration-320 before:ease-out before:content-[''] hover:border-accent hover:text-white hover:before:scale-y-100 focus-visible:border-accent focus-visible:text-white focus-visible:before:scale-y-100 max-mobile:min-h-32 max-mobile:p-4 max-mobile:text-[16px]",
 };
 const actionToneClasses: Record<ActionTone, string> = {
   default: "",
@@ -69,6 +72,55 @@ function GitHubIcon() {
   );
 }
 
+function LinkedInIcon() {
+  return (
+    <svg
+      className="linkedin-icon size-[1.1em] shrink-0"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.75H4.98V9.2h2.95v9.55ZM6.45 7.9a1.71 1.71 0 1 1 0-3.42 1.71 1.71 0 0 1 0 3.42Zm12.3 10.85H15.8V14.1c0-1.11-.02-2.54-1.55-2.54-1.55 0-1.79 1.21-1.79 2.46v4.73H9.51V9.2h2.83v1.3h.04c.39-.74 1.36-1.52 2.8-1.52 3 0 3.57 1.98 3.57 4.55v5.22Z" />
+    </svg>
+  );
+}
+
+function SourceIcon({ icon }: { icon: LinkIconName }) {
+  if (icon === "github") return <GitHubIcon />;
+  if (icon === "linkedin") return <LinkedInIcon />;
+
+  return (
+    <svg
+      className="size-[1.1em] shrink-0"
+      viewBox="0 0 40 40"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      {icon === "video" ? (
+        <>
+          <rect x="4" y="8" width="32" height="24" rx="4" />
+          <path d="m17 14 10 6-10 6V14Z" />
+        </>
+      ) : icon === "document" ? (
+        <>
+          <path d="M8 4h16l8 8v24H8V4Zm16 0v8h8M14 19h12M14 25h12M14 31h8" />
+        </>
+      ) : (
+        <>
+          <circle cx="20" cy="20" r="16" />
+          <ellipse cx="20" cy="20" rx="7" ry="16" />
+          <path d="M5 14h30M5 26h30" />
+        </>
+      )}
+    </svg>
+  );
+}
+
 function actionContent(variant: ActionVariant, children: ReactNode) {
   return variant === "primary" || variant === "curtain" ? (
     <ActionLabel>{children}</ActionLabel>
@@ -81,6 +133,7 @@ export function Action(props: ActionProps) {
   if ("href" in props && props.href !== undefined) {
     const {
       href,
+      icon,
       variant = "ghost",
       tone = "default",
       className,
@@ -101,17 +154,25 @@ export function Action(props: ActionProps) {
     const target = requestedTarget ?? (externalLink ? "_blank" : undefined);
     const rel =
       requestedRel ?? (target === "_blank" ? "noopener noreferrer" : undefined);
-    const isGitHubLink = /^(?:https?:)?\/\/(?:www\.)?github\.com(?:\/|$)/i.test(
-      href,
-    );
-    const labeledContent = isGitHubLink ? (
-      <span className="inline-flex items-center gap-2">
-        <GitHubIcon />
-        {children}
-      </span>
-    ) : (
-      children
-    );
+    const sourceIcon = icon ? <SourceIcon icon={icon} /> : null;
+    const labeledContent =
+      variant === "tile" ? (
+        <>
+          {sourceIcon && (
+            <span className="text-accent transition-colors duration-320 group-hover/action:text-white group-focus-visible/action:text-white [&>svg]:size-10 [&>svg]:shrink-0">
+              {sourceIcon}
+            </span>
+          )}
+          <span>{children}</span>
+        </>
+      ) : sourceIcon ? (
+        <span className="inline-flex items-center gap-2">
+          {sourceIcon}
+          {children}
+        </span>
+      ) : (
+        children
+      );
     const content = actionContent(variant, labeledContent);
 
     return href.startsWith("/") && !href.startsWith("//") ? (

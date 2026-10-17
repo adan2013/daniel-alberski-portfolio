@@ -15,8 +15,13 @@ export function Footer() {
         {t("site.footerCopyright", { year: new Date().getFullYear() })}
       </span>
       <div>
-        <Action href="https://github.com/adan2013">GitHub</Action>
-        <Action href="https://www.linkedin.com/in/daniel-alberski/">
+        <Action href="https://github.com/adan2013" icon="github">
+          GitHub
+        </Action>
+        <Action
+          href="https://www.linkedin.com/in/daniel-alberski/"
+          icon="linkedin"
+        >
           LinkedIn
         </Action>
       </div>

@@ -110,7 +110,13 @@
     "sending": "Sending…",
     "send": "Send message",
     "success": "✓ Thank you! Your message has been sent.",
-    "error": "The message could not be sent. Please try again or contact me on LinkedIn."
+    "error": "The message could not be sent. Please try again or contact me on LinkedIn.",
+    "coffee": {
+      "eyebrow": "SUPPORT MY WORK",
+      "title": "Like what I create?",
+      "description": "If one of my projects inspired you or you simply enjoyed it, you can support my work by buying me a coffee.",
+      "linkLabel": "Support Daniel on Buy Me a Coffee (opens in a new tab)"
+    }
   },
   "caseStudy": {
     "back": "Back to projects",

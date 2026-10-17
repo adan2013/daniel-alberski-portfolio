@@ -1,4 +1,5 @@
-import type { ReactNode, Ref } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import type { Locale } from "@/lib/projects";
 import "./case-study-figure.css";
 
 export function CaseStudyFigure({
@@ -6,22 +7,22 @@ export function CaseStudyFigure({
   title,
   children,
   hint,
-  initialReadout,
-  readoutRef,
-  progressRef,
+  phases,
+  scene,
   progressLabel,
-  onProgressChange,
+  onSceneChange,
+  locale,
   legend,
 }: {
   number?: string;
   title: string;
   children: ReactNode;
   hint: ReactNode;
-  initialReadout: string;
-  readoutRef: Ref<HTMLOutputElement>;
-  progressRef: Ref<HTMLInputElement>;
+  phases: readonly string[];
+  scene: number;
   progressLabel: string;
-  onProgressChange: (progress: number) => void;
+  onSceneChange: (scene: number, transition: "scrub" | "step") => void;
+  locale: Locale;
   legend?: ReactNode;
 }) {
   return (
@@ -34,23 +35,59 @@ export function CaseStudyFigure({
         {children}
         <div className="case-figure-card-footer">
           {hint}
-          <output ref={readoutRef} data-readout aria-live="off">
-            {initialReadout}
-          </output>
+          <div className="case-figure-arrows">
+            <button
+              type="button"
+              className="case-figure-arrow"
+              aria-label={
+                locale === "pl" ? "Poprzednia scena" : "Previous scene"
+              }
+              disabled={scene === 0}
+              onClick={() => onSceneChange(scene - 1, "step")}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m14.5 5-7 7 7 7" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              className="case-figure-arrow"
+              aria-label={locale === "pl" ? "Następna scena" : "Next scene"}
+              disabled={scene === phases.length - 1}
+              onClick={() => onSceneChange(scene + 1, "step")}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m9.5 5 7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
-        <input
-          ref={progressRef}
-          className="case-figure-progress"
-          type="range"
-          min="0"
-          max="100"
-          step="1"
-          defaultValue="0"
-          aria-label={progressLabel}
-          onChange={(event) =>
-            onProgressChange(Number(event.target.value) / 100)
+        <div
+          className="case-figure-controls"
+          style={
+            {
+              "--scene-percent": `${(scene / (phases.length - 1)) * 100}%`,
+            } as CSSProperties
           }
-        />
+        >
+          <input
+            className="case-figure-progress"
+            type="range"
+            min="0"
+            max={phases.length - 1}
+            step="1"
+            value={scene}
+            aria-label={progressLabel}
+            aria-valuetext={phases[scene]}
+            onChange={(event) =>
+              onSceneChange(Number(event.target.value), "scrub")
+            }
+          />
+          <div className="case-figure-track" aria-hidden="true">
+            <span className="case-figure-track-fill" />
+            <span className="case-figure-thumb" />
+          </div>
+        </div>
       </div>
       {legend}
     </figure>

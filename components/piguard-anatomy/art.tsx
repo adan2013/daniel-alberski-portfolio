@@ -102,11 +102,11 @@ const device = (
         GSM
       </text>
       <g transform="translate(30 150)">
-        <circle r="8" fill="#1b2220" stroke="#4e5850" />
-        <circle r="5" fill="#861e23" stroke="#b84b4c" strokeWidth=".8" />
+        <circle r="9" fill="#1b2220" stroke="#4e5850" />
+        <circle r="6" fill="#861e23" stroke="#b84b4c" strokeWidth=".8" />
         <g data-pg="led">
-          <circle r="5" fill="#ee343b" />
-          <circle cx="-1" cy="-1" r="2.5" fill="#fff0dd" />
+          <circle r="17" fill="url(#pg-led-glow)" />
+          <circle r="6" fill="url(#pg-led-light)" />
         </g>
       </g>
       <circle

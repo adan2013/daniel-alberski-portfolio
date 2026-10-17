@@ -2,6 +2,8 @@
 
 I built DIY Arduino Dashboard when I was regularly driving across Europe in Euro Truck Simulator 2 and wanted to add more physical feel to that experience. I was not interested in a basic button panel or a few loose LEDs on a desk. I wanted a complete gauge unit in a proper enclosure, something that looked like a real cockpit fragment and reacted to what was happening in the game.
 
+[hero]
+
 In practice, this meant combining several layers: electronics, Arduino software, a desktop telemetry application, and visual design for custom gauge faces and indicators. These were my first serious steps in electronics, so each stage required separate research and many iterations. The project was built after work, with breaks in between, so it took over a year and a half from the first concept to the final device.
 
 I made one decision early: this would not be a demo, but a real device I would actually use. That changed the scope immediately. I had to think not only about features, but also ergonomics, aesthetics, and serviceability. Looking back, that decision is what made this project much larger than it first seemed.

@@ -4,7 +4,13 @@ import type { ReactNode } from "react";
 import type { Locale } from "@/lib/projects";
 import { CaseStudyFigure } from "../case-study-figure";
 import { useCaseStudyProgress } from "../use-case-study-progress";
-import { vhsCopy, vhsPhase, vhsPose, vhsTranslation } from "./model";
+import {
+  vhsCopy,
+  vhsPose,
+  vhsStepDurations,
+  vhsStops,
+  vhsTranslation,
+} from "./model";
 
 function setup(host: HTMLDivElement) {
   const parts = Object.fromEntries(
@@ -17,7 +23,7 @@ function setup(host: HTMLDivElement) {
     parts[name].setAttribute("opacity", String(value));
   const move = (name: string, x: number, y: number, z: number) =>
     parts[name].setAttribute("transform", vhsTranslation(x, y, z));
-  return (progress: number) => {
+  return (progress: number, seconds: number, still: boolean) => {
     const p = vhsPose(progress);
     opacity("laptop-screen", 1 - p.powerOff);
     move("bottom", -330 * p.discard, 0, -58 * p.explode);
@@ -66,12 +72,19 @@ function setup(host: HTMLDivElement) {
     opacity("clock", p.power);
     opacity("power-led", p.power);
     opacity("desktop", p.desktop);
-    // A sample clock time is replaced with the viewer's local time on power-up.
+    // Keep local time current while powered; blinking never changes text width.
     if (p.power > 0) {
       const now = new Date();
-      parts.clock.textContent = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+      for (const [part, value] of [
+        ["clock-hours", now.getHours()],
+        ["clock-minutes", now.getMinutes()],
+      ] as const) {
+        const text = String(value).padStart(2, "0");
+        if (parts[part].textContent !== text) parts[part].textContent = text;
+      }
     }
-    return false;
+    opacity("clock-colon", still || Math.floor(seconds) % 2 === 0 ? 1 : 0);
+    return p.power > 0;
   };
 }
 
@@ -95,9 +108,9 @@ export function VhsLive({
   ...art
 }: { locale: Locale } & Record<Art, ReactNode>) {
   const copy = vhsCopy[locale];
-  const { root, readout, slider, onProgressChange } = useCaseStudyProgress({
-    phases: copy.phases,
-    phaseAt: vhsPhase,
+  const { root, scene, onSceneChange } = useCaseStudyProgress({
+    stops: vhsStops,
+    stepDurations: vhsStepDurations,
     setup,
   });
   return (
@@ -105,11 +118,11 @@ export function VhsLive({
       <CaseStudyFigure
         title={copy.title}
         hint={copy.hint}
-        initialReadout={`01 / 07 · ${copy.phases[0]}`}
-        readoutRef={readout}
-        progressRef={slider}
+        phases={copy.phases}
+        scene={scene}
         progressLabel={copy.control}
-        onProgressChange={onProgressChange}
+        onSceneChange={onSceneChange}
+        locale={locale}
       >
         <svg
           viewBox="0 0 640 560"

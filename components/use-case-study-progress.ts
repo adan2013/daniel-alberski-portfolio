@@ -1,138 +1,136 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { useCaseStudyView } from "./case-study-story";
+import { useEffect, useRef, useState } from "react";
 
 type Draw = (progress: number, seconds: number, still: boolean) => boolean;
+type SceneTransition = "scrub" | "step";
 
-/** Shared scroll transport; each figure owns its geometry and narrative. */
+const SCRUB_DURATION_MS = 220;
+const STEP_DURATION_MS = 1000;
+
+/** Slider seeks quickly; arrows use the duration of each crossed scene interval. */
 export function useCaseStudyProgress({
-  phases,
-  phaseAt,
+  stops,
+  stepDurations,
   setup,
 }: {
-  phases: string[];
-  phaseAt: (progress: number) => number;
+  stops: readonly number[];
+  /** Milliseconds per interval: index 0 is the transition between scenes 0 and 1. */
+  stepDurations?: readonly number[];
   setup: (host: HTMLDivElement) => Draw;
 }) {
   const root = useRef<HTMLDivElement>(null);
-  const readout = useRef<HTMLOutputElement>(null);
-  const slider = useRef<HTMLInputElement>(null);
-  const wake = useRef(() => {});
-  const seek = useRef<(value: number) => void>(() => {});
-  const view = useCaseStudyView();
+  const seek = useRef<(scene: number, transition: SceneTransition) => void>(
+    () => {},
+  );
+  const selectedScene = useRef(0);
+  const [scene, setScene] = useState(0);
 
   useEffect(() => {
     const host = root.current;
-    const story = host?.closest<HTMLElement>(".case-story");
-    if (!host || !story) return;
+    if (!host) return;
     const draw = setup(host);
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
-    const mobile = matchMedia("(max-width: 1000px)");
-    let progress = 0,
-      target = 0,
-      frame = 0,
-      last = 0,
-      time = 0;
-    let visible = false,
-      dirty = true,
-      start = 0,
-      distance = 1;
-    const active = () =>
-      !document.hidden &&
-      (mobile.matches ? story.dataset.mobileView === "animation" : visible);
+    let progress = stops[selectedScene.current];
+    let from = progress;
+    let target = progress;
+    let targetScene = selectedScene.current;
+    let frame = 0;
+    let started = 0;
+    let duration = STEP_DURATION_MS;
+    let last = 0;
+    let time = 0;
+    let visible = false;
+
+    function paint() {
+      const continuous = draw(progress, time, reduced.matches);
+      host!.dataset.progress = progress.toFixed(3);
+      host!.dataset.phase = String(targetScene);
+      return continuous;
+    }
     function tick(now: number) {
       frame = 0;
-      if (!active()) return;
-      const dt = last ? Math.min((now - last) / 1000, 1 / 30) : 1 / 60;
+      if (document.hidden || !visible) return;
+      const dt = last ? Math.min((now - last) / 1000, 1 / 30) : 0;
       last = now;
       if (!reduced.matches) time += dt;
-      progress = reduced.matches
-        ? target
-        : progress + (target - progress) * (1 - Math.exp(-dt / 0.14));
-      if (Math.abs(target - progress) < 0.0005) progress = target;
-      const continuous = draw(progress, time, reduced.matches);
-      const phase = phaseAt(progress);
-      readout.current!.textContent = `${String(phase + 1).padStart(2, "0")} / ${String(phases.length).padStart(2, "0")} · ${phases[phase]}`;
-      host!.dataset.progress = progress.toFixed(3);
-      host!.dataset.phase = String(phase);
+      if (progress !== target) {
+        if (!started) started = now;
+        const fraction = Math.min(1, (now - started) / duration);
+        progress = reduced.matches ? target : from + (target - from) * fraction;
+        if (fraction === 1) progress = target;
+      }
+      const continuous = paint();
       if (progress !== target || (continuous && !reduced.matches))
         frame = requestAnimationFrame(tick);
     }
     function run() {
-      if (!active()) {
+      if (document.hidden || !visible) {
         cancelAnimationFrame(frame);
         frame = 0;
+        started = 0;
+        from = progress;
       } else if (!frame) {
         last = 0;
         frame = requestAnimationFrame(tick);
       }
     }
-    function describe() {
-      slider.current!.value = String(Math.round(target * 100));
-      slider.current!.setAttribute(
-        "aria-valuetext",
-        `${Math.round(target * 100)}% · ${phases[phaseAt(target)]}`,
-      );
-    }
-    function onScroll() {
-      if (dirty) {
-        const bounds = story!.getBoundingClientRect();
-        start = bounds.top + scrollY - 130;
-        distance = Math.max(1, bounds.height - innerHeight + 170);
-        dirty = false;
+    function onMotionChange() {
+      host!.dataset.reduced = String(reduced.matches);
+      if (reduced.matches) {
+        progress = target;
+        started = 0;
+        paint();
       }
-      if (!reduced.matches)
-        target = Math.max(0, Math.min(1, (scrollY - start) / distance));
-      describe();
       run();
     }
-    function onResize() {
-      dirty = true;
-      onScroll();
-    }
-    function onMotion() {
-      host!.dataset.reduced = String(reduced.matches);
-      if (reduced.matches) target = 1;
-      onScroll();
-    }
-    seek.current = (value) => {
-      target = Math.max(0, Math.min(1, value));
-      describe();
+    seek.current = (nextScene, transition) => {
+      const previousScene = targetScene;
+      targetScene = nextScene;
+      target = stops[nextScene];
+      from = progress;
+      started = 0;
+      duration = SCRUB_DURATION_MS;
+      if (transition === "step") {
+        duration = 0;
+        for (
+          let interval = Math.min(previousScene, nextScene);
+          interval < Math.max(previousScene, nextScene);
+          interval++
+        ) {
+          duration += stepDurations?.[interval] ?? STEP_DURATION_MS;
+        }
+        duration ||= STEP_DURATION_MS;
+      }
+      if (reduced.matches) progress = target;
+      paint();
       run();
     };
-    wake.current = run;
-    const intersection = new IntersectionObserver(([entry]) => {
+    paint();
+    const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
       run();
     });
-    intersection.observe(host);
-    const resize = new ResizeObserver(onResize);
-    resize.observe(story);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize);
+    observer.observe(host);
     document.addEventListener("visibilitychange", run);
-    reduced.addEventListener("change", onMotion);
-    onMotion();
+    reduced.addEventListener("change", onMotionChange);
     return () => {
       cancelAnimationFrame(frame);
-      intersection.disconnect();
-      resize.disconnect();
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
+      observer.disconnect();
       document.removeEventListener("visibilitychange", run);
-      reduced.removeEventListener("change", onMotion);
-      wake.current = () => {};
+      reduced.removeEventListener("change", onMotionChange);
       seek.current = () => {};
     };
-  }, [phases, phaseAt, setup]);
-  useEffect(() => {
-    wake.current();
-  }, [view]);
+  }, [stops, stepDurations, setup]);
+
   return {
     root,
-    readout,
-    slider,
-    onProgressChange: (value: number) => seek.current(value),
+    scene,
+    onSceneChange: (nextScene: number, transition: SceneTransition) => {
+      const selected = Math.max(0, Math.min(stops.length - 1, nextScene));
+      selectedScene.current = selected;
+      setScene(selected);
+      seek.current(selected, transition);
+    },
   };
 }

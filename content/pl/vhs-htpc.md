@@ -2,6 +2,8 @@
 
 VHS HTPC zaczął się od prostej potrzeby: chciałem wygodnie oglądać wideo na telewizorze z urządzenia, które nie będzie kolejną czarną skrzynką obok szafki RTV. Miałem pod ręką stary laptop, który jako komputer przenośny był już mało praktyczny, ale nadal miał mocny procesor i wystarczający zapas do codziennego odtwarzania materiałów online. Zamiast kupować nowy mini PC, postanowiłem dać mu drugie życie.
 
+[hero]
+
 Drugim elementem układanki był retro magnetowid Panasonic NV-J35HQ. To sprzęt, który pamiętam jeszcze z dzieciństwa, więc pomysł zbudowania nowego urządzenia właśnie w tej obudowie miał dla mnie dodatkową wartość. Chciałem zachować jego charakterystyczny wygląd, a jednocześnie zbudować funkcjonalny komputer multimedialny z własnym sterowaniem.
 
 Od początku było jasne, że to nie będzie projekt typu "przełóż płytę i gotowe". W środku magnetowidu jest mało miejsca, a płyta główna 17-calowego laptopa Asus K75VJ jest duża i długa. Każda decyzja konstrukcyjna wpływała na kolejne: położenie płyty, prowadzenie zasilania, dostęp do portów, chłodzenie i miejsce na elektronikę sterującą.

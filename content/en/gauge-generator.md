@@ -2,6 +2,8 @@
 
 The first Gauge Generator grew out of [DIY Arduino Dashboard](/en/projects/arduino-dashboard) in 2019. I was building a physical gauge cluster for Euro Truck Simulator and needed custom faces with different scales, indicators and markings from the car instrument cluster I was using as a base. Drawing every variation by hand soon stopped making sense, so I wrote a desktop application in C# to generate them.
 
+[hero]
+
 The application let me assemble a face from layers, configure its scales and export the finished image as a PNG. I had built it for one specific project, but I released the code and documentation. Years later, I found references from people using it to make their own gauges and scales. The idea had proved useful outside my workshop too.
 
 [media:2]

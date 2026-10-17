@@ -1,0 +1,103 @@
+.redark-anatomy {
+  width: 100%;
+}
+.rd-stage {
+  overflow: hidden;
+}
+.redark-anatomy .rd-solid {
+  --rd-top: #d9dfd0;
+  --rd-fill: #b5c1ad;
+  --rd-0: #91a28a;
+  --rd-1: #a2b298;
+  --rd-2: #b8c5ad;
+  --rd-3: #cbd4c0;
+  --rd-stroke: #687e5e;
+}
+.redark-anatomy .rd-dark {
+  --rd-top: #778b68;
+  --rd-fill: #576f4f;
+  --rd-0: #465f40;
+  --rd-1: #536c49;
+  --rd-2: #657c58;
+  --rd-3: #72896a;
+  --rd-stroke: #3c5839;
+}
+.redark-anatomy .rd-paper {
+  --rd-top: #f0f0e3;
+  --rd-fill: #d8ddc8;
+  --rd-0: #b6c1a3;
+  --rd-1: #c6cfb3;
+  --rd-2: #d4dbc3;
+  --rd-3: #e0e4d0;
+  --rd-stroke: #8e9e7e;
+}
+.redark-anatomy .rd-fill {
+  fill: var(--rd-fill);
+}
+.redark-anatomy .rd-top {
+  fill: var(--rd-top);
+}
+.redark-anatomy .rd-shade-0 {
+  fill: var(--rd-0);
+}
+.redark-anatomy .rd-shade-1 {
+  fill: var(--rd-1);
+}
+.redark-anatomy .rd-shade-2 {
+  fill: var(--rd-2);
+}
+.redark-anatomy .rd-shade-3 {
+  fill: var(--rd-3);
+}
+.redark-anatomy .rd-edge {
+  fill: none;
+  stroke: var(--rd-stroke);
+  stroke-width: 0.75;
+  stroke-linejoin: round;
+}
+.redark-anatomy .rd-seam {
+  fill: none;
+  stroke: var(--rd-stroke);
+  stroke-width: 0.4;
+  opacity: 0.55;
+}
+.redark-anatomy .rd-bolts circle {
+  fill: #d8dfc8;
+  stroke: #819573;
+  stroke-width: 0.6;
+}
+.redark-anatomy .rd-bolts path {
+  fill: none;
+  stroke: #697e5e;
+  stroke-width: 0.6;
+}
+.redark-anatomy .rd-rule {
+  fill: none;
+  stroke: #899b79;
+  stroke-width: 1;
+}
+.redark-anatomy .rd-small {
+  fill: #556c47;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 7.6px;
+}
+.redark-anatomy .rd-computer-brand {
+  fill: #dce5cb;
+}
+.redark-anatomy .rd-display {
+  fill: #d8e6ba;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.1px;
+}
+.redark-anatomy .rd-url {
+  fill: #526b46;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 5.7px;
+}
+.redark-anatomy .rd-paper-code {
+  fill: #486a3a;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  font-weight: 700;
+}

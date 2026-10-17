@@ -31,7 +31,9 @@ export async function CaseStudy({
 }) {
   const t = createTranslator(locale);
   const source = await readCaseStudy(p, locale);
-  const parts = source.split(/(\[media:\d+\]|\[video\]|\[architecture\])/g);
+  const parts = source.split(
+    /(\[media:\d+\]|\[video\]|\[architecture\]|\[hero\])/g,
+  );
   const main = projects.filter((p) => p.caseStudy);
   const next =
     main[(main.findIndex((x) => x.slug === p.slug) + 1) % main.length];
@@ -84,27 +86,32 @@ export async function CaseStudy({
             </dd>
           </div>
         </dl>
-        <div className="case-links mt-4.5 flex flex-wrap gap-6 [&>a]:text-[13px] [&>a]:text-accent [&>a:hover]:text-white [&>a:focus-visible]:text-white max-mobile:gap-x-5.5 max-mobile:gap-y-2.5 max-mobile:[&>a]:text-[12px]">
+        <div className="case-links mt-7 grid grid-cols-4 gap-3 max-tablet:grid-cols-2 max-mobile:mt-6">
           {p.links.map((link) => (
-            <Action href={link.url} key={link.url} tone="accent">
+            <Action
+              href={link.url}
+              icon={link.icon}
+              key={link.url}
+              variant="tile"
+              tone="accent"
+            >
               {link.label[locale]}
             </Action>
           ))}
         </div>
       </header>
       <CaseStudyStory locale={locale} animation={animation}>
-        <div className="case-cover group/cover mx-auto max-w-250">
-          <Media
-            media={{ ...p.media[0], ratio: "16/9" }}
-            locale={locale}
-            priority
-          />
-        </div>
         <article
-          className="case-body mx-auto my-16.25 max-w-185 [&_h2]:mt-13 [&_h2]:mb-5 [&_h2]:text-[30px] [&_h2]:font-medium [&_h2]:leading-tight [&_h2]:tracking-[-0.035em] [&_p]:mb-5.5 [&_p]:text-[18px] [&_p]:leading-[1.75] [&_ul]:pl-5.5 [&_ul]:text-[18px] [&_ul]:text-muted [&_li]:mb-2.5 [&>.media]:my-9.5 [&>.video]:my-9.5 max-mobile:mt-9 max-mobile:[&_h2]:mt-9.5 max-mobile:[&_h2]:text-[27px] max-mobile:[&_p]:text-[17px] print:max-w-full"
+          className="case-body mx-auto my-16.25 max-w-185 [&>h2]:mt-13 [&>h2]:mb-5 [&>h2]:text-[30px] [&>h2]:font-medium [&>h2]:leading-tight [&>h2]:tracking-[-0.035em] [&>p]:mb-5.5 [&>p]:text-[18px] [&>p]:leading-[1.75] [&>ul]:pl-5.5 [&>ul]:text-[18px] [&>ul]:text-muted [&>ul_li]:mb-2.5 [&>.media]:my-9.5 [&>.video]:my-9.5 max-mobile:mt-9 max-mobile:[&>h2]:mt-9.5 max-mobile:[&>h2]:text-[27px] max-mobile:[&>p]:text-[17px] print:max-w-full"
           aria-label={t("caseStudy.story")}
         >
           {parts.map((part, i) => {
+            if (part === "[hero]")
+              return (
+                <div key={i} className="case-cover group/cover my-9.5">
+                  <Media media={p.media[0]} locale={locale} />
+                </div>
+              );
             const match = part.match(/^\[media:(\d+)\]$/);
             if (match) {
               const m = p.media[Number(match[1])];

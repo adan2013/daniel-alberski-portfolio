@@ -2,6 +2,8 @@
 
 PiGuard started with an urgent need to secure an empty apartment. There was no permanent internet connection, which made GSM notifications a basic requirement. I already had a Raspberry Pi, a modem and a SIM card. Building the alarm let me use hardware that had been sitting in a drawer while finding out whether I could program the cellular communication myself.
 
+[hero]
+
 The requirements were specific. The device had to monitor three motion sensors, log every event and send both alarm and diagnostic text messages. After power returned, it had to start without my help, reconnect to the modem and confirm that it was ready. I did not plan to add a battery or UPS. PiGuard stops during a power cut, then returns to service on its own once 230 V power is restored.
 
 I had three weeks to complete it. I began with small scripts used only for modem experiments. Once the connection worked consistently, I started writing the final application. The electronics board and printed enclosure came last.

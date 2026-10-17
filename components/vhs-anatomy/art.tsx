@@ -556,12 +556,10 @@ const chassisFront = (
       />
       <g clipPath="url(#vh-clock-clip)">
         <text
+          className="vh-clock"
           x="278"
-          y="25"
+          y="27"
           textAnchor="middle"
-          fontFamily="monospace"
-          fontSize="18"
-          letterSpacing="1"
           fill="#6c816b"
           opacity=".19"
         >
@@ -569,16 +567,16 @@ const chassisFront = (
         </text>
         <text
           data-vh="clock"
+          className="vh-clock"
           x="278"
-          y="25"
+          y="27"
           textAnchor="middle"
-          fontFamily="monospace"
-          fontSize="18"
-          letterSpacing="1"
           fill="#d9edbd"
           opacity="0"
         >
-          20:15
+          <tspan data-vh="clock-hours">20</tspan>
+          <tspan data-vh="clock-colon">:</tspan>
+          <tspan data-vh="clock-minutes">15</tspan>
         </text>
       </g>
       <rect x="324" y="13" width="11" height="11" rx="2" fill="#17281f" />

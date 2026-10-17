@@ -35,23 +35,93 @@
   flex-wrap: wrap;
   font-size: 10px;
 }
-.case-figure-card-footer output {
-  color: var(--text);
-  font-variant-numeric: tabular-nums;
-}
 .case-figure-stage {
   display: block;
   width: 100%;
   max-height: calc(100svh - 275px);
   min-height: 270px;
 }
-.case-figure-progress {
-  display: block;
-  width: calc(100% - 44px);
-  height: 20px;
+.case-figure-controls {
+  position: relative;
+  height: 32px;
   margin: 0 22px 16px;
-  accent-color: var(--accent);
-  cursor: ew-resize;
+}
+.case-figure-arrows {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+.case-figure-progress {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.case-figure-track {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  left: 8px;
+  height: 2px;
+  transform: translateY(-50%);
+  background: #a8afb7;
+  pointer-events: none;
+}
+.case-figure-track-fill {
+  display: block;
+  width: var(--scene-percent);
+  height: 4px;
+  transform: translateY(-1px);
+  background: var(--accent);
+}
+.case-figure-thumb {
+  position: absolute;
+  top: 50%;
+  left: var(--scene-percent);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--accent);
+}
+.case-figure-arrow {
+  display: grid;
+  place-items: center;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+.case-figure-arrow:hover:not(:disabled),
+.case-figure-arrow:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.case-figure-arrow:focus-visible,
+.case-figure-progress:focus-visible + .case-figure-track {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.case-figure-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.case-figure-arrow svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 @media (max-width: 1000px) {
   .case-figure-card {
@@ -71,8 +141,7 @@
     padding-inline: 16px;
     gap: 5px;
   }
-  .case-figure-progress {
-    width: calc(100% - 32px);
+  .case-figure-controls {
     margin-inline: 16px;
     margin-bottom: 10px;
   }

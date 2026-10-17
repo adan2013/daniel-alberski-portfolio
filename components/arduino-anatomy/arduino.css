@@ -1,0 +1,90 @@
+.arduino-anatomy {
+  --ad-scale-ink: rgb(110 125 100);
+  width: 100%;
+}
+.ad-stage {
+  overflow: hidden;
+}
+.ad-solid {
+  --ad-top: #d9dfd3;
+  --ad-fill: #b8c3b5;
+  --ad-0: #98a897;
+  --ad-1: #a8b7a5;
+  --ad-2: #bdc8b8;
+  --ad-3: #cbd3c4;
+  --ad-stroke: #637862;
+}
+.ad-dark {
+  --ad-top: #64715f;
+  --ad-fill: #435342;
+  --ad-0: #334833;
+  --ad-1: #425540;
+  --ad-2: #50614b;
+  --ad-3: #5d6d55;
+  --ad-stroke: #2b422e;
+}
+.ad-pcb {
+  --ad-top: #8fa781;
+  --ad-fill: #728b68;
+  --ad-0: #5e7755;
+  --ad-1: #6e875e;
+  --ad-2: #819972;
+  --ad-3: #8fa57e;
+  --ad-stroke: #4e6c49;
+}
+.ad-wood {
+  --ad-top: #b5bba0;
+  --ad-fill: #a1ab8e;
+  --ad-0: #7e8d71;
+  --ad-1: #8e9b7d;
+  --ad-2: #a1ab8a;
+  --ad-3: #b1ba99;
+  --ad-stroke: #667b59;
+}
+.ad-fill {
+  fill: var(--ad-fill);
+}
+.ad-top {
+  fill: var(--ad-top);
+}
+.ad-shade-0 {
+  fill: var(--ad-0);
+}
+.ad-shade-1 {
+  fill: var(--ad-1);
+}
+.ad-shade-2 {
+  fill: var(--ad-2);
+}
+.ad-shade-3 {
+  fill: var(--ad-3);
+}
+.ad-edge {
+  fill: none;
+  stroke: var(--ad-stroke);
+  stroke-width: 0.75;
+  stroke-linejoin: round;
+}
+.ad-seam {
+  fill: none;
+  stroke: var(--ad-stroke);
+  stroke-width: 0.4;
+  opacity: 0.65;
+}
+.ad-screw circle {
+  fill: #d0d7c3;
+  stroke: #657e5c;
+  stroke-width: 0.6;
+}
+.ad-screw path {
+  fill: none;
+  stroke: #657e5c;
+  stroke-width: 0.65;
+}
+.ad-stage text {
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.arduino-anatomy [data-ad="new-faces"] .ad-scale-number {
+  fill: var(--ad-scale-ink);
+}

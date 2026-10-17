@@ -110,7 +110,13 @@
     "sending": "Wysyłanie…",
     "send": "Wyślij wiadomość",
     "success": "✓ Dziękuję! Wiadomość została wysłana.",
-    "error": "Nie udało się wysłać wiadomości. Spróbuj ponownie lub skontaktuj się ze mną przez LinkedIn."
+    "error": "Nie udało się wysłać wiadomości. Spróbuj ponownie lub skontaktuj się ze mną przez LinkedIn.",
+    "coffee": {
+      "eyebrow": "WESPRZYJ MOJĄ TWÓRCZOŚĆ",
+      "title": "Podoba Ci się to, co tworzę?",
+      "description": "Jeśli któryś z moich projektów Cię zainspirował lub po prostu Ci się spodobał, możesz wesprzeć moją twórczość, stawiając mi kawę.",
+      "linkLabel": "Wesprzyj Daniela na Buy Me a Coffee (otwiera nową kartę)"
+    }
   },
   "caseStudy": {
     "back": "Wróć do projektów",

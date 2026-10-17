@@ -1,23 +1,124 @@
 import type { Locale } from "@/lib/projects";
 import {
+  cameraOf,
   cylinder,
+  iso,
+  pathOf,
   slabOf,
-  ring,
-  lineOnTop,
   type SolidPaths,
-  type Projection,
 } from "../anatomy/iso-kit";
-import { scaleAngle, scaleCopy, WEIGHT_KG } from "./model";
+import {
+  mountedDial,
+  scaleAngle,
+  scaleCopy,
+  scaleProjection,
+  scaleWorld,
+  WEIGHT_KG,
+} from "./model";
 import { ScaleAnatomyLive } from "./live";
 import "./scale-anatomy.css";
 
-// The kit stays on the server. Only the completed art crosses the client boundary.
-const projection: Projection = {
-  origin: [287, 440],
-  scale: 0.94,
-  azimuth: 66,
-  elevation: 18,
-};
+const P = scaleProjection;
+const W = scaleWorld;
+const project = (x: number, y: number, z: number) => iso([x, y, z], P);
+const face = (points: [number, number, number][]) =>
+  pathOf(
+    points.map(([x, y, z]) => project(x, y, z)),
+    true,
+  );
+
+function roundedWallPoints(
+  y: number,
+  left: number,
+  right: number,
+  bottom: number,
+  top: number,
+  radius: number,
+  steps = 8,
+) {
+  const corners: [number, number, number, number][] = [
+    [right - radius, top - radius, 90, 0],
+    [right - radius, bottom + radius, 0, -90],
+    [left + radius, bottom + radius, -90, -180],
+    [left + radius, top - radius, 180, 90],
+  ];
+  const points: [number, number, number][] = [];
+  for (const [cx, cz, start, end] of corners) {
+    for (let step = 0; step <= steps; step++) {
+      const angle = ((start + ((end - start) * step) / steps) * Math.PI) / 180;
+      points.push([
+        cx + radius * Math.cos(angle),
+        y,
+        cz + radius * Math.sin(angle),
+      ]);
+    }
+  }
+  return points;
+}
+
+const roundedWall = (...args: Parameters<typeof roundedWallPoints>) =>
+  face(roundedWallPoints(...args));
+
+const housingBounds = { left: -115, right: 115, radius: 20 };
+const housingWall = (y: number) =>
+  roundedWall(
+    y,
+    housingBounds.left,
+    housingBounds.right,
+    W.bottom,
+    W.top,
+    housingBounds.radius,
+  );
+
+function housingSurface() {
+  const { left, right, radius } = housingBounds;
+  const camera = cameraOf(P);
+  // The silhouette meets the rounded profile where its normal is perpendicular
+  // to the view direction. The rear edge and both shoulders share these points.
+  const tangent =
+    Math.atan2(camera.sinE, camera.cosA * camera.cosE) + Math.PI / 2;
+  const profile: [number, number][] = [];
+  const corner = (cx: number, cz: number, start: number, end: number) => {
+    const steps = Math.ceil((Math.abs(end - start) * 180) / Math.PI / 3);
+    for (let step = 0; step <= steps; step++) {
+      const a = start + ((end - start) * step) / steps;
+      profile.push([cx + radius * Math.cos(a), cz + radius * Math.sin(a)]);
+    }
+  };
+  corner(left + radius, W.top - radius, tangent, Math.PI / 2);
+  corner(right - radius, W.top - radius, Math.PI / 2, 0);
+  corner(right - radius, W.bottom + radius, 0, tangent - Math.PI);
+
+  const front = profile.map(([x, z]) => project(x, W.front, z));
+  const back = profile.map(([x, z]) => project(x, W.back, z));
+  const side = [146, 158, 150];
+  const top = [217, 222, 214];
+  const bottom = [112, 126, 117];
+  return {
+    fill: pathOf([...front, ...back.toReversed()], true),
+    outline: [
+      pathOf(back),
+      pathOf([back[0], front[0]]),
+      pathOf([back.at(-1)!, front.at(-1)!]),
+    ].join(""),
+    strips: profile.slice(0, -1).map(([x, z], i) => {
+      const [nextX, nextZ] = profile[i + 1];
+      const normalZ = (nextX - x) / Math.hypot(nextX - x, nextZ - z);
+      const target = normalZ >= 0 ? top : bottom;
+      const fill = `rgb(${side
+        .map((channel, j) =>
+          Math.round(channel + (target[j] - channel) * Math.abs(normalZ)),
+        )
+        .join(" ")})`;
+      return {
+        d: pathOf([front[i], front[i + 1], back[i + 1], back[i]], true),
+        fill,
+      };
+    }),
+  };
+}
+const housing = housingSurface();
+
 function Solid({ paths }: { paths: SolidPaths }) {
   return (
     <g className="scale-solid">
@@ -34,6 +135,7 @@ function Solid({ paths }: { paths: SolidPaths }) {
     </g>
   );
 }
+
 function Screw({ x, y, r = 3 }: { x: number; y: number; r?: number }) {
   return (
     <g transform={`translate(${x} ${y})`} className="scale-screw">
@@ -42,268 +144,331 @@ function Screw({ x, y, r = 3 }: { x: number; y: number; r?: number }) {
     </g>
   );
 }
+
 const polar = (radius: number, degrees: number) => {
   const angle = (degrees * Math.PI) / 180;
   return [Math.sin(angle) * radius, -Math.cos(angle) * radius];
 };
 function arc(radius: number, start: number, end: number) {
-  const a = polar(radius, start),
-    b = polar(radius, end);
+  const a = polar(radius, start);
+  const b = polar(radius, end);
   return `M${a[0]} ${a[1]}A${radius} ${radius} 0 ${end - start > 180 ? 1 : 0} 1 ${b[0]} ${b[1]}`;
 }
 
 const base = (
   <g key="base">
-    <ellipse className="scale-shadow" cx="290" cy="463" rx="176" ry="31" />
+    <ellipse className="scale-shadow" cx="310" cy="483" rx="188" ry="30" />
     {[
-      [-116, -44],
-      [-116, 44],
-      [116, -44],
-      [116, 44],
-    ].map(([x, y], i) => (
-      <g key={i}>
-        <Solid paths={cylinder(x, y, 10, -13, 7, projection, 32, 1)} />
-        <Solid paths={cylinder(x, y, 8, -6, 6, projection, 32, 0.6)} />
+      [-120, -68],
+      [-120, 68],
+      [134, -62],
+      [120, 68],
+    ].map(([x, y]) => (
+      <g key={`${x}-${y}`}>
+        <Solid paths={cylinder(x, y, 10, -13, 7, P, 32, 1)} />
+        <Solid paths={cylinder(x, y, 8, -6, 6, P, 32, 0.6)} />
       </g>
     ))}
     <Solid
       paths={slabOf(
-        { x: -127, y: -65, w: 254, d: 130, r: 19 },
+        { x: -145, y: -85, w: 290, d: 170, r: 18 },
         0,
-        15,
-        projection,
+        14,
+        P,
         12,
-        2,
+        1.5,
       )}
     />
     <Solid
       paths={slabOf(
-        { x: -122, y: -60, w: 244, d: 120, r: 17 },
-        15,
-        4,
-        projection,
+        { x: -137, y: -77, w: 274, d: 154, r: 15 },
+        14,
+        6,
+        P,
         12,
         1,
       )}
     />
-    <g className="scale-pedestal">
-      <Solid
-        paths={slabOf(
-          { x: -78, y: -39, w: 156, d: 78, r: 14 },
-          19,
-          6,
-          projection,
-          12,
-          1,
-        )}
-      />
-      {[-64, 64].map((x) => (
-        <g key={x}>
-          <path className="scale-edge" d={ring(x, 26, 2, 25, projection, 24)} />
-          <path
-            className="iso-line scale-seam"
-            d={lineOnTop([x - 1.5, 26], [x + 1.5, 26], 25, projection)}
-          />
-        </g>
-      ))}
-      <Solid
-        paths={slabOf(
-          { x: -59, y: -32, w: 118, d: 64, r: 12 },
-          25,
-          45,
-          projection,
-          12,
-          1.5,
-        )}
-      />
-    </g>
   </g>
 );
+
+const outerFront = housingWall(W.front);
+const cavityFrontPoints = roundedWallPoints(
+  W.front,
+  -100,
+  100,
+  36,
+  222,
+  13,
+  32,
+);
+const cavityBackPoints = roundedWallPoints(-31, -87, 87, 42, 216, 12, 32);
+const frontOpening = face(cavityFrontPoints);
+const cavityBack = face(cavityBackPoints);
+const cavityWalls = cavityFrontPoints.flatMap(([x, y, z], i) => {
+  const next = (i + 1) % cavityFrontPoints.length;
+  const [nextX, , nextZ] = cavityFrontPoints[next];
+  const [backX, backY, backZ] = cavityBackPoints[i];
+  const dx = nextX - x;
+  const dz = nextZ - z;
+  const normalX = -dz * (backY - y);
+  const normalY = dz * (backX - x) - dx * (backZ - z);
+  const normalZ = dx * (backY - y);
+  const camera = cameraOf(P);
+  const facing =
+    normalX * camera.cosA * camera.cosE +
+    normalY * camera.sinA * camera.cosE +
+    normalZ * camera.sinE;
+  if (facing <= 0) return [];
+  const side = [135, 148, 139];
+  const target = normalZ >= 0 ? [89, 103, 97] : [170, 180, 172];
+  const blend = Math.abs(normalZ) / Math.hypot(normalX, normalZ);
+  return [
+    {
+      d: face([
+        cavityFrontPoints[i],
+        cavityFrontPoints[next],
+        cavityBackPoints[next],
+        cavityBackPoints[i],
+      ]),
+      fill: `rgb(${side.map((channel, j) => Math.round(channel + (target[j] - channel) * blend)).join(" ")})`,
+    },
+  ];
+});
 
 const mechanism = (
   <g key="mechanism">
-    <path
-      className="scale-cavity"
-      d="M172 229Q175 179 226 165L335 179Q384 198 384 254L366 365L190 376Z"
-    />
-    <path
-      className="scale-metal-side"
-      d="M223 206L232 204L232 375L223 377Z M325 216L334 214L334 385L325 387Z"
-    />
-    <path
-      className="scale-metal"
-      d="M217 207L223 206L223 377L217 378Z M319 217L325 216L325 387L319 388Z"
-    />
-    {[218, 354].map((y) => (
-      <g key={y}>
-        <rect
-          className="scale-metal"
-          x="213"
-          y={y}
-          width="23"
-          height="9"
-          rx="2"
+    <path className="scale-housing-well" d={frontOpening} />
+    <path className="scale-housing-well" d={cavityBack} />
+    {cavityWalls.map(({ d, fill }, i) => (
+      <path key={i} d={d} fill={fill} />
+    ))}
+    <path className="scale-housing-well-seam" d={cavityBack} />
+    {[-45, 45].map((x) => (
+      <g key={x}>
+        <path
+          className="scale-metal-side"
+          d={face([
+            [x - 3, -26, 61],
+            [x + 4, -26, 61],
+            [x + 4, -26, 194],
+            [x - 3, -26, 194],
+          ])}
         />
-        <rect
-          className="scale-metal"
-          x="315"
-          y={y + 10}
-          width="23"
-          height="9"
-          rx="2"
-        />
-        <Screw x={224} y={y + 4.5} r={2} />
-        <Screw x={326} y={y + 14.5} r={2} />
+        {[67, 184].map((z) => {
+          const [cx, cy] = project(x, -24, z);
+          return (
+            <g key={z}>
+              <circle className="scale-metal" cx={cx} cy={cy} r="5" />
+              <Screw x={cx} y={cy} r={2} />
+            </g>
+          );
+        })}
       </g>
     ))}
-    <path className="scale-metal" d="M216 264L338 278L338 292L216 278Z" />
-    <circle className="scale-metal-side" cx="278" cy="283" r="20" />
-    <circle className="scale-metal" cx="278" cy="283" r="12" />
-    <circle className="scale-hub" cx="278" cy="283" r="5" />
-    <path className="scale-metal" d="M272 183L285 185L285 227L272 225Z" />
-    {Array.from({ length: 10 }, (_, i) => (
-      <ellipse
-        key={i}
-        className="scale-spring"
-        cx="278"
-        cy={199 + i * 4}
-        rx="10"
-        ry="3"
-      />
-    ))}
-    <rect
+    <path
       className="scale-metal"
-      x="264"
-      y="236"
-      width="29"
-      height="7"
-      rx="2"
+      d={face([
+        [-49, -21, 119],
+        [49, -21, 119],
+        [49, -21, 127],
+        [-49, -21, 127],
+      ])}
     />
-    <Screw x={269} y={239} r={2} />
-    <Screw x={288} y={239} r={2} />
+    {(() => {
+      const [cx, cy] = project(0, -18, 123);
+      return (
+        <g>
+          <circle className="scale-metal-side" cx={cx} cy={cy} r="16" />
+          <circle className="scale-metal" cx={cx} cy={cy} r="10" />
+          <circle className="scale-hub" cx={cx} cy={cy} r="4" />
+        </g>
+      );
+    })()}
+    <path
+      className="scale-metal"
+      d={face([
+        [-5, -23, 201],
+        [5, -23, 201],
+        [5, -23, 217],
+        [-5, -23, 217],
+      ])}
+    />
+    {Array.from({ length: 10 }, (_, i) => {
+      const [cx, cy] = project(0, -20, 159 + i * 4);
+      return (
+        <ellipse
+          key={i}
+          className="scale-spring"
+          cx={cx}
+          cy={cy}
+          rx="10"
+          ry="3"
+        />
+      );
+    })}
+    <path
+      className="scale-metal"
+      d={face([
+        [-14, -18, 157],
+        [14, -18, 157],
+        [14, -18, 163],
+        [-14, -18, 163],
+      ])}
+    />
+    <g data-housing-surface>
+      <path className="scale-housing-surface" d={housing.fill} />
+      {housing.strips.map(({ d, fill }, i) => (
+        <path key={i} d={d} fill={fill} />
+      ))}
+      <path className="scale-edge" d={housing.outline} />
+    </g>
+    <path
+      className="scale-housing-front-structure"
+      d={`${outerFront}${frontOpening}`}
+      fillRule="evenodd"
+    />
+    <path className="scale-housing-front-seam" d={frontOpening} />
   </g>
 );
 
-const leftShell = (
-  <g key="left-shell">
-    <path
-      className="scale-metal-side"
-      d="M144 254Q141 165 216 145L277 160L276 188L200 260L208 365L184 387L158 365Z"
-    />
-    <path
-      className="scale-enamel"
-      d="M144 254Q141 173 218 169L277 176L277 198Q182 186 172 262L184 351L277 368L277 394L176 381Q148 377 147 345Z"
-    />
-    <path
-      className="iso-line scale-seam"
-      d="M268 187L216 182Q151 187 157 251L158 343Q159 368 179 370L267 383L267 377L184 364Q168 361 168 339L163 257Q161 197 221 190L268 195Z"
-    />
-    {[214, 238].map((y) => (
-      <g key={y}>
-        <path
-          className="scale-metal"
-          d={`M150 ${y}L170 ${y + 2}L170 ${y + 16}L150 ${y + 14}Z`}
-        />
-        <Screw x={155} y={y + 7} r={2} />
-        <Screw x={165} y={y + 9} r={2} />
-      </g>
-    ))}
-    <Screw x={214} y={184} />
-    <Screw x={178} y={365} />
-  </g>
-);
-const rightShell = (
-  <g key="right-shell">
-    <path
-      className="scale-metal-side"
-      d="M277 160L335 146Q421 160 429 249L421 338Q417 362 386 371L277 394L277 368L357 348L367 248Q366 188 277 188Z"
-    />
-    <path
-      className="scale-enamel"
-      d="M277 176L329 184Q398 198 400 267L393 353Q391 383 363 389L277 394L277 368L347 365Q367 361 369 340L375 265Q375 215 325 207L277 198Z"
-    />
-    <path
-      className="iso-line scale-seam"
-      d="M285 186L326 195Q387 208 389 266L382 350Q380 375 357 378L285 383L285 375L351 371Q374 367 376 348L382 266Q380 217 326 202L285 195Z"
-    />
-    {Array.from({ length: 6 }, (_, i) => (
+// Both front halves use this one profile, reflected in world space before
+// projection so their shape and thickness match without reversing perspective.
+function FrontHalf({ side }: { side: "left" | "right" }) {
+  const mirror = side === "left" ? 1 : -1;
+  const { left, radius } = housingBounds;
+  const arc = (
+    cx: number,
+    cz: number,
+    r: number,
+    start: number,
+    end: number,
+    steps: number,
+  ): [number, number][] =>
+    Array.from({ length: steps + 1 }, (_, i) => {
+      const angle = start + ((end - start) * i) / steps;
+      return [mirror * (cx + r * Math.cos(angle)), cz + r * Math.sin(angle)];
+    });
+  const outside: [number, number][] = [
+    [0, W.top],
+    ...arc(left + radius, W.top - radius, radius, Math.PI / 2, Math.PI, 12),
+    ...arc(
+      left + radius,
+      W.bottom + radius,
+      radius,
+      Math.PI,
+      Math.PI * 1.5,
+      12,
+    ),
+    [0, W.bottom],
+  ];
+  const opening = arc(0, W.dial, 75, -Math.PI / 2, -Math.PI * 1.5, 48);
+  const profile = [...outside, ...opening];
+  const front = profile.map(([x, z]) => project(x, W.panel, z));
+  const back = profile.map(([x, z]) => project(x, W.front, z));
+  const camera = cameraOf(P);
+  const depth: string[] = [];
+  const rearEdges: string[] = [];
+  const cuts: string[] = [];
+  profile.forEach(([x, z], i) => {
+    const next = (i + 1) % profile.length;
+    const [nextX, nextZ] = profile[next];
+    const normalX = mirror * (nextZ - z);
+    const normalZ = -mirror * (nextX - x);
+    const visible = normalX * camera.cosA * camera.cosE + normalZ * camera.sinE;
+    if (visible <= 1e-8) return;
+    const d = pathOf([front[i], front[next], back[next], back[i]], true);
+    if (Math.abs(x) < 1e-8 && Math.abs(nextX) < 1e-8) {
+      cuts.push(d);
+    } else {
+      depth.push(d);
+      rearEdges.push(pathOf([back[i], back[next]]));
+    }
+  });
+  return (
+    <g data-shell-half={side}>
+      <path className="scale-housing-panel-depth" d={depth.join("")} />
+      <path className="scale-housing-seam" d={rearEdges.join("")} />
+      <path className="scale-housing-lip" d={pathOf(front, true)} />
       <path
-        key={i}
-        className="scale-vent"
-        d={`M409 ${243 + i * 12}l9 -4l-1 5l-9 4Z`}
+        className="scale-housing-edge"
+        d={pathOf(front.slice(0, outside.length))}
       />
-    ))}
-    <Screw x={333} y={200} />
-    <Screw x={371} y={371} />
-    <path className="scale-metal" d="M381 303L403 302L403 316L381 317Z" />
-    <ellipse className="scale-metal-side" cx="405" cy="309" rx="6" ry="10" />
-    <path
-      className="iso-line scale-seam"
-      d="M401.4 301L408.6 301M399.5 305L410.5 305M399 309L411 309M399.5 313L410.5 313M401.4 317L408.6 317"
+      <path
+        className="scale-housing-seam"
+        d={pathOf(front.slice(outside.length))}
+      />
+      {cuts.length > 0 ? (
+        <g data-shell-cut opacity="0" className="scale-housing-cut-face">
+          <path d={cuts.join("")} />
+        </g>
+      ) : null}
+    </g>
+  );
+}
+
+const shell = (
+  <g>
+    <FrontHalf side="left" />
+    <FrontHalf side="right" />
+  </g>
+);
+
+const piston = (
+  <g key="piston">
+    <Solid
+      paths={slabOf({ x: -17, y: -17, w: 34, d: 34, r: 4 }, 238, 7, P, 6, 0.8)}
+    />
+    <Solid
+      paths={slabOf({ x: -11, y: -11, w: 22, d: 22, r: 3 }, 245, 49, P, 6, 0.7)}
     />
   </g>
 );
-const trayProjection: Projection = { ...projection, origin: [281, 184] };
+
 const tray = (
   <g key="tray">
     <Solid
       paths={slabOf(
-        { x: -14, y: -14, w: 28, d: 28, r: 3 },
-        0,
-        36,
-        trayProjection,
-        6,
-        1,
+        { x: -143, y: -82, w: 286, d: 164, r: 17 },
+        294,
+        13,
+        P,
+        12,
+        1.3,
       )}
     />
     <Solid
       paths={slabOf(
-        { x: -23, y: -20, w: 46, d: 40, r: 5 },
-        31,
-        6,
-        trayProjection,
-        6,
-        1,
-      )}
-    />
-    <Solid
-      paths={slabOf(
-        { x: -130, y: -79, w: 260, d: 158, r: 16 },
-        37,
-        12,
-        trayProjection,
-        12,
+        { x: -133, y: -72, w: 266, d: 144, r: 13 },
+        307,
         2,
-      )}
-    />
-    <Solid
-      paths={slabOf(
-        { x: -121, y: -70, w: 242, d: 140, r: 12 },
-        49,
-        2,
-        trayProjection,
+        P,
         12,
-        1,
+        0.8,
       )}
     />
   </g>
 );
+
+const weightLabel = project(0, 25, 338);
 const weight = (
   <g key="weight" className="scale-weight">
-    <Solid paths={cylinder(0, 0, 32, 51, 4, trayProjection, 64, 1)} />
-    <Solid paths={cylinder(0, 0, 28, 55, 40, trayProjection, 64, 2)} />
-    <Solid paths={cylinder(0, 0, 26, 95, 3, trayProjection, 64, 1)} />
-    <Solid paths={cylinder(0, 0, 10, 98, 7, trayProjection, 48, 1)} />
-    <Solid paths={cylinder(0, 0, 18, 105, 7, trayProjection, 64, 2)} />
+    <Solid paths={cylinder(0, 0, 31, 309, 4, P, 64, 1)} />
+    <Solid paths={cylinder(0, 0, 27, 313, 36, P, 64, 2)} />
+    <Solid paths={cylinder(0, 0, 25, 349, 3, P, 64, 1)} />
+    <Solid paths={cylinder(0, 0, 9, 352, 7, P, 48, 1)} />
+    <Solid paths={cylinder(0, 0, 17, 359, 7, P, 64, 2)} />
     <text
       className="scale-weight-label"
-      transform="matrix(.98 .13 0 1 284 109)"
+      x={weightLabel[0]}
+      y={weightLabel[1]}
       textAnchor="middle"
     >
       {WEIGHT_KG} kg
     </text>
   </g>
 );
+
 const dial = (
   <g key="dial">
     <circle className="scale-metal-side" cx="5" cy="2" r="126" />
@@ -311,7 +476,7 @@ const dial = (
     <circle className="scale-rim" r="120" />
     <circle className="scale-paper" r="114" />
     <circle className="scale-dial-rule" r="108" />
-    <g data-dial-layer="0">
+    <g data-dial-layer="0" opacity="0">
       {Array.from({ length: 101 }, (_, i) => {
         const a = polar(108, scaleAngle(i / 10)),
           b = polar(
@@ -329,7 +494,7 @@ const dial = (
         );
       })}
     </g>
-    <g data-dial-layer="1" className="scale-numerals">
+    <g data-dial-layer="1" className="scale-numerals" opacity="0">
       {Array.from({ length: 11 }, (_, i) => {
         const p = polar(81, scaleAngle(i));
         return (
@@ -345,13 +510,13 @@ const dial = (
         );
       })}
     </g>
-    <g data-dial-layer="3">
+    <g data-dial-layer="3" opacity="0">
       <path
         className="scale-warning"
         d={arc(100, scaleAngle(8), scaleAngle(10))}
       />
     </g>
-    <g data-dial-layer="4" className="scale-dial-label">
+    <g data-dial-layer="4" className="scale-dial-label" opacity="0">
       <text y="42" textAnchor="middle">
         kg
       </text>
@@ -363,11 +528,12 @@ const dial = (
       data-dial-layer="5"
       transform="translate(0 62)"
       className="scale-calibration"
+      opacity="0"
     >
       <circle r="7" />
       <path d="M-3 0L-1 2L3 -3" />
     </g>
-    <g data-dial-layer="2" transform={`rotate(${scaleAngle(WEIGHT_KG)})`}>
+    <g data-dial-layer="2" transform="rotate(0)" opacity="0">
       <path
         className="scale-needle-shadow"
         d="M-3 24L-1 -98L6 24Z"
@@ -385,12 +551,12 @@ const dial = (
 
 // Anchor points sit on the actual final projected artwork, in ascending row order.
 const anchors = [
-  [290, 213],
-  [258.5, 223],
-  [218, 254],
-  [121.4, 318.9],
-  [226, 335],
-  [218, 355],
+  [280, mountedDial.y - 108],
+  [320, mountedDial.y - 82],
+  [280, mountedDial.y - 101],
+  [180, mountedDial.y + 50],
+  [280, mountedDial.y + 52],
+  [280, mountedDial.y + 62],
 ];
 export function ScaleAnatomy({ locale }: { locale: Locale }) {
   const copy = scaleCopy[locale];
@@ -434,8 +600,8 @@ export function ScaleAnatomy({ locale }: { locale: Locale }) {
       locale={locale}
       base={base}
       mechanism={mechanism}
-      leftShell={leftShell}
-      rightShell={rightShell}
+      shell={shell}
+      piston={piston}
       tray={tray}
       weight={weight}
       dial={dial}

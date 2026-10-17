@@ -23,6 +23,7 @@ export function GitHub({ locale }: { locale: Locale }) {
         <Action
           className="text-link text-[14px] font-medium"
           href="https://github.com/adan2013"
+          icon="github"
         >
           {t("github.visit")}
         </Action>

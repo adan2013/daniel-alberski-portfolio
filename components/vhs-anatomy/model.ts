@@ -18,40 +18,31 @@ const ease = (p: number, from: number, to: number) => {
   return t * t * (3 - 2 * t);
 };
 
-// Scroll is a narrative timeline, not elapsed assembly or boot time.
+export const vhsStops = [0, 0.36, 0.54, 0.73, 0.82, 0.94, 1] as const;
+export const vhsStepDurations = [1000, 1000, 1000, 1000, 1800, 1000] as const;
+
+// Narrative timing, not elapsed assembly or boot time. Each scene stop holds
+// complete parts in their settled positions; fades only run between stops.
 export function vhsPose(p: number) {
   return {
     powerOff: ease(p, 0.045, 0.105),
     explode: ease(p, 0.12, 0.25),
-    discard: ease(p, 0.28, 0.39),
-    chassis: ease(p, 0.37, 0.49),
-    shuffle: ease(p, 0.49, 0.55),
-    board: ease(p, 0.55, 0.65),
-    disk: ease(p, 0.57, 0.67),
-    ports: ease(p, 0.59, 0.69),
-    extras: ease(p, 0.63, 0.73),
+    discard: ease(p, 0.28, vhsStops[1]),
+    chassis: ease(p, 0.37, 0.43),
+    shuffle: ease(p, 0.39, 0.43),
+    // Seat the salvaged parts in scene 3; scene 4 adds only the extra modules.
+    board: ease(p, 0.43, 0.52),
+    disk: ease(p, 0.44, 0.53),
+    ports: ease(p, 0.45, vhsStops[2]),
+    extras: ease(p, 0.55, vhsStops[3]),
     lid: ease(p, 0.74, 0.82),
-    cassette: ease(p, 0.83, 0.94),
-    cassetteVisible: ease(p, 0.81, 0.835),
+    // Reveal the stationary tape first, then soften its final entry into the slot.
+    cassette: ease(p, 0.85, vhsStops[5]),
+    cassetteVisible: ease(p, vhsStops[4], 0.85) * (1 - ease(p, 0.9, 0.925)),
     power: ease(p, 0.945, 0.975),
     desktop: ease(p, 0.965, 1),
   };
 }
-
-export const vhsPhase = (p: number) =>
-  p < 0.12
-    ? 0
-    : p < 0.37
-      ? 1
-      : p < 0.55
-        ? 2
-        : p < 0.74
-          ? 3
-          : p < 0.83
-            ? 4
-            : p < 0.945
-              ? 5
-              : 6;
 
 export const vhsCopy: Record<
   Locale,
@@ -64,32 +55,32 @@ export const vhsCopy: Record<
   }
 > = {
   pl: {
-    title: "VHS HTPC",
-    hint: "Przewiń lub przesuń suwak",
+    title: "Drugie życie laptopa i VHSa",
+    hint: "Wybierz scenę strzałkami lub suwakiem",
     control: "Przemiana laptopa w VHS HTPC",
     description:
-      "Laptop z uszkodzoną baterią wyłącza ekran i rozkłada się na części. Płyta główna, SSD i panel portów trafiają do otwartej obudowy magnetowidu razem z dodatkowymi modułami sterowania. Pokrywa zamyka obudowę. Kaseta WINDOWS wsuwa się w slot, wyświetlacz pokazuje godzinę, a telewizor pulpit systemu.",
+      "Laptop z uszkodzoną baterią wyłącza ekran i rozkłada się na części. Płyta główna, SSD i panel portów trafiają do otwartej obudowy magnetowidu. Następnie dołączają dodatkowe moduły sterowania. Pokrywa zamyka obudowę. Kaseta WINDOWS wsuwa się w slot, wyświetlacz pokazuje godzinę, a telewizor pulpit systemu.",
     phases: [
       "Stary laptop",
       "Demontaż",
-      "Nowa obudowa",
-      "Montaż",
+      "Obudowa i podzespoły",
+      "Dodatkowe moduły",
       "Pokrywa",
       "System operacyjny",
       "Uruchomienie",
     ],
   },
   en: {
-    title: "VHS HTPC",
-    hint: "Scroll or drag the slider",
+    title: "A second life for a laptop and VCR",
+    hint: "Choose a scene with the arrows or slider",
     control: "Laptop to VHS HTPC transformation",
     description:
-      "A laptop with a failed battery turns off and separates into parts. Its motherboard, SSD and ports move into an open VCR enclosure with extra control modules. The lid closes. A WINDOWS cassette slides into the slot, the display shows the time and the television shows a desktop.",
+      "A laptop with a failed battery turns off and separates into parts. Its motherboard, SSD and ports move into an open VCR enclosure. Extra control modules are then added. The lid closes. A WINDOWS cassette slides into the slot, the display shows the time and the television shows a desktop.",
     phases: [
       "Old laptop",
       "Disassembly",
-      "New enclosure",
-      "Assembly",
+      "Enclosure and components",
+      "Extra modules",
       "Cover",
       "Operating system",
       "Power on",

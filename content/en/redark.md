@@ -2,6 +2,8 @@
 
 I launched Redark in 2018 to share what I knew about computers and software. Over time, I also began documenting my own projects there, including Arduino Dashboard, a Raspberry Pi audiobook player and VHS HTPC. I wanted to publish the kind of detailed guides I would have found useful when solving the same problems.
 
+[hero]
+
 The first version ran on WordPress. I already knew the system and could launch the site quickly, but none of the available themes suited me, so I wrote my own in PHP. It got the blog online, although every new requirement added more code and more workarounds.
 
 [media:1]

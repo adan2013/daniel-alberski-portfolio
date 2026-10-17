@@ -2,6 +2,8 @@
 
 DIY Arduino Dashboard zbudowałem, kiedy regularnie jeździłem po Europie w Euro Truck Simulator 2 i chciałem dodać tej zabawie więcej fizycznego "czucia". Nie interesował mnie prosty panel z przyciskami ani kilka luźnych diodek na biurku. Chciałem pełny, zamknięty w obudowie zestaw wskaźników, który wygląda jak fragment prawdziwego kokpitu i reaguje na to, co dzieje się w grze.
 
+[hero]
+
 W praktyce oznaczało to połączenie kilku warstw naraz: elektroniki, oprogramowania Arduino, aplikacji desktopowej odbierającej telemetrię oraz projektu wizualnego tarcz i kontrolek. To były moje pierwsze poważne kroki w elektronice, więc każdy etap wymagał osobnego rozeznania i wielu iteracji. Projekt powstawał po godzinach i z przerwami, dlatego od pierwszego szkicu do gotowego urządzenia minęło ponad półtora roku.
 
 Od początku założyłem jedną rzecz: nie robię demonstratora, tylko działające urządzenie, którego faktycznie będę używał. Z tego powodu zależało mi nie tylko na funkcjach, ale też na ergonomii, estetyce i możliwości serwisowania. Z perspektywy czasu to właśnie ta decyzja podniosła skalę projektu najbardziej.

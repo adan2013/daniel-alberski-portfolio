@@ -2,6 +2,8 @@
 
 PiGuard powstał z nagłej potrzeby zabezpieczenia pustego mieszkania. Brak stałego łącza internetowego sprawił, że powiadomienia GSM stały się podstawowym wymaganiem. Miałem już Raspberry Pi, modem i kartę SIM. Zamiast kupować gotowy alarm, mogłem wykorzystać sprzęt, który leżał w szufladzie, i przy okazji sprawdzić, czy uda mi się samodzielnie zaprogramować komunikację z siecią komórkową.
 
+[hero]
+
 Założenia były konkretne. Urządzenie miało obserwować trzy czujki ruchu, zapisywać wszystkie zdarzenia i wysyłać SMS-y alarmowe oraz diagnostyczne. Po powrocie zasilania powinno uruchomić się bez mojej pomocy, ponownie zestawić komunikację z modemem i potwierdzić gotowość wiadomością. Nie planowałem akumulatora ani UPS-a. PiGuard nie działa podczas przerwy w dostawie prądu, ale sam wraca do pracy, gdy w gniazdku ponownie pojawia się 230 V.
 
 Na wykonanie całości miałem trzy tygodnie. Najpierw powstały małe skrypty służące wyłącznie do eksperymentów z modemem. Dopiero gdy komunikacja zaczęła działać powtarzalnie, zabrałem się za docelowy program. Płytka z elektroniką i drukowana obudowa były ostatnim etapem.

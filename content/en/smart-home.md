@@ -2,6 +2,8 @@
 
 I built a smart home system for everyone in the household to use every day. The main panel runs on a wall-mounted tablet in Fully Kiosk mode. The same dashboard is available on phones as a PWA, while traditional wall remotes handle the most common tasks in each room.
 
+[hero]
+
 Home Assistant works well as a bridge to devices from different manufacturers, but its standard interface did not suit the way I wanted to use my home. I wrote my own React frontend so I could control the information hierarchy, tile layout and touchscreen interactions. I would rather write the feature I need than spend hours fighting someone else’s interface.
 
 The project also has a Node.js backend. It runs the automation logic, notification system and device monitoring. Home Assistant remains the layer between my code and the hardware, including Zigbee devices and integrations that use MQTT.
