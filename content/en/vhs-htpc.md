@@ -24,7 +24,7 @@ The final structure uses three layers. The bottom layer handles power-related el
 
 Booting Windows from a remote was not enough on its own. I wanted physical feedback from the device: a button, a status LED, and a small display showing information that matters in normal use.
 
-I designed and hand-soldered a custom ESP8266-based board (NodeMCU v3) to handle control logic and PC communication. I added a real-time clock, front-panel wiring, and signal separation between the support electronics and the laptop motherboard. That setup gave me direct control over power behavior and button response while keeping safe boundaries between subsystems.
+I designed and hand-soldered a custom ESP8266-based board (NodeMCU v3) to handle control logic and PC communication. I added a real-time clock, front-panel wiring, and signal separation between the support electronics and the laptop motherboard. That setup gave me direct control over power behaviour and button response while keeping safe boundaries between subsystems.
 
 The second part of that layer is a dedicated segment-display driver. I built it by hand on a separate board using shift registers and transistors, then mounted the display at the front together with an IR receiver. It took a lot of mechanical work and soldering, but it turned the front panel into something truly useful in daily operation.
 

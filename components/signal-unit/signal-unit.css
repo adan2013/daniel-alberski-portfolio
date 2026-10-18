@@ -1,0 +1,903 @@
+/* Signal unit: the home hero figure, in the site palette (navy, slate,
+   paper and one red accent). */
+.su-fill {
+  fill: var(--h-fill);
+}
+.su-top {
+  fill: var(--h-top);
+}
+.su-shade-0 {
+  fill: var(--h-0);
+}
+.su-shade-1 {
+  fill: var(--h-1);
+}
+.su-shade-2 {
+  fill: var(--h-2);
+}
+.su-shade-3 {
+  fill: var(--h-3);
+}
+.su-edge {
+  fill: none;
+  stroke: var(--h-stroke);
+  stroke-width: 0.7;
+  stroke-linejoin: round;
+}
+.su-seam {
+  fill: none;
+  stroke: var(--h-stroke);
+  stroke-width: 0.4;
+  opacity: 0.65;
+}
+.su-shadow {
+  fill: #6c7d64;
+  opacity: 0.15;
+  filter: blur(12px);
+}
+.su-label-plate {
+  fill: #aebba5;
+  stroke: #73846c;
+  stroke-width: 0.4;
+}
+.su-engraved {
+  font: 4px monospace;
+  fill: #43553c;
+  letter-spacing: 0.3px;
+}
+.su-screen-recess {
+  fill: #2c3d29;
+}
+.su-check {
+  fill: none;
+  stroke: #506a42;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.su-signal {
+  fill: #b15d4d;
+  stroke: #f0d6c8;
+  stroke-width: 0.5;
+}
+.signal-unit .su-solid {
+  --h-top: #e9edf3;
+  --h-fill: #c9d1dc;
+  --h-0: #a7b2c2;
+  --h-1: #b8c1ce;
+  --h-2: #d0d7e1;
+  --h-3: #dce2ea;
+  --h-stroke: #67758b;
+}
+.signal-unit .su-dark {
+  --h-top: #34475f;
+  --h-fill: #1f3049;
+  --h-0: #14243b;
+  --h-1: #1b2c44;
+  --h-2: #26384f;
+  --h-3: #2e415a;
+  --h-stroke: #101d31;
+}
+.signal-unit .su-pcb {
+  --h-top: #3e5a80;
+  --h-fill: #2b4466;
+  --h-0: #203655;
+  --h-1: #283f60;
+  --h-2: #33507a;
+  --h-3: #3a5781;
+  --h-stroke: #1b2f4b;
+}
+.signal-unit .su-metal {
+  --h-top: #f4f6f9;
+  --h-fill: #d6dce5;
+  --h-0: #a6b0bf;
+  --h-1: #bcc5d1;
+  --h-2: #dae0e8;
+  --h-3: #e6eaf0;
+  --h-stroke: #7c889b;
+}
+.signal-unit .su-key-accent {
+  --h-top: #d4515f;
+  --h-fill: #b32636;
+  --h-0: #8c1d2a;
+  --h-1: #a02231;
+  --h-2: #bd3443;
+  --h-3: #c8414f;
+  --h-stroke: #7a1824;
+}
+.signal-unit .su-shadow {
+  fill: #14243b;
+  opacity: 0.12;
+}
+.signal-unit .su-label-plate {
+  fill: #c3cbd7;
+  stroke: #67758b;
+}
+.signal-unit .su-engraved {
+  fill: #26384f;
+}
+.signal-unit .su-screen-recess {
+  fill: #0f1c2f;
+}
+.signal-unit .su-check {
+  stroke: #b32636;
+}
+.signal-unit .su-signal {
+  fill: #b32636;
+  stroke: #f6d9dc;
+}
+/* DSEG7 / DSEG14 Classic by keshikan; SIL OFL in /fonts/DSEG-LICENSE.txt. */
+@font-face {
+  font-family: "DSEG7 Classic";
+  src: url("/fonts/dseg7-classic-regular.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "DSEG14 Classic";
+  src: url("/fonts/dseg14-classic-regular.woff2") format("woff2");
+  font-display: swap;
+}
+/* The figure sticks in the hero's scene column while the story plays. */
+.signal-unit {
+  height: 100%;
+}
+.su-stick {
+  position: sticky;
+  top: 104px;
+}
+/* Notes under the figure: a scroll hint at the top of the page, a
+   thank-you once the unit is live. Both share one line. */
+.su-notes {
+  display: grid;
+  margin-top: -18px;
+}
+.su-hint {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+  pointer-events: none;
+}
+.signal-unit[data-top="true"] .su-hint-scroll,
+.signal-unit[data-done="true"] .su-hint-done {
+  opacity: 1;
+  transform: none;
+}
+.su-hint svg {
+  width: 10px;
+  height: 14px;
+  flex: none;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: su-hint-nudge 1.6s ease-in-out infinite;
+}
+/* Phones get one note instead: the full experience needs a computer. */
+@media (max-width: 600px) {
+  .su-notes {
+    margin-top: 4px;
+  }
+  .signal-unit .su-notes .su-hint:not(.su-hint-mobile) {
+    opacity: 0;
+  }
+  .signal-unit .su-hint-mobile {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes su-hint-nudge {
+  0%,
+  100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .su-hint,
+  .su-hint svg {
+    transition: none;
+    animation: none;
+  }
+}
+/* On wide screens the figure reaches into the gutter beside the title. */
+@media (min-width: 1280px) {
+  .su-stick {
+    margin-left: -110px;
+  }
+}
+.su-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.signal-unit .su-mat {
+  --h-top: #3a4d66;
+  --h-fill: #2e405a;
+  --h-0: #1f2f46;
+  --h-1: #26384f;
+  --h-2: #2e415a;
+  --h-3: #34475f;
+  --h-stroke: #14243b;
+}
+.signal-unit .su-paper {
+  --h-top: #ffffff;
+  --h-fill: #e9edf3;
+  --h-0: #d0d7e1;
+  --h-1: #dce2ea;
+  --h-2: #eef1f6;
+  --h-3: #f4f6f9;
+  --h-stroke: #8a96a8;
+}
+.signal-unit .su-floor {
+  --h-top: #b8c1ce;
+  --h-fill: #a7b2c2;
+  --h-0: #8a96a8;
+  --h-1: #98a4b5;
+  --h-2: #a7b2c2;
+  --h-3: #b8c1ce;
+  --h-stroke: #67758b;
+}
+.signal-unit .su-holster {
+  --h-top: #3e4f66;
+  --h-fill: #26384f;
+  --h-0: #172840;
+  --h-1: #1f3049;
+  --h-2: #2b3e57;
+  --h-3: #34475f;
+  --h-stroke: #0f1c2f;
+}
+.signal-unit .su-cap {
+  --h-top: #8a96a8;
+  --h-fill: #26384f;
+  --h-0: #172840;
+  --h-1: #1f3049;
+  --h-2: #2e415a;
+  --h-3: #3a4d66;
+  --h-stroke: #0f1c2f;
+}
+.signal-unit .su-knob {
+  --h-top: #dfe5ed;
+  --h-fill: #a7b2c2;
+  --h-0: #67758b;
+  --h-1: #8a96a8;
+  --h-2: #b8c1ce;
+  --h-3: #ccd3dd;
+  --h-stroke: #3a4a61;
+}
+.signal-unit .su-lead-black {
+  --h-top: #4e6079;
+  --h-fill: #1f3049;
+  --h-0: #0f1c2f;
+  --h-1: #172840;
+  --h-2: #26384f;
+  --h-3: #2e415a;
+  --h-stroke: #0b1626;
+}
+.signal-unit .su-plug {
+  --h-top: #4e6079;
+  --h-fill: #26384f;
+  --h-0: #14243b;
+  --h-1: #1b2c44;
+  --h-2: #2b3e57;
+  --h-3: #34475f;
+  --h-stroke: #0f1c2f;
+}
+.signal-unit .su-terminal {
+  --h-top: #6f8fb8;
+  --h-fill: #4d6c94;
+  --h-0: #3a5578;
+  --h-1: #436185;
+  --h-2: #5577a1;
+  --h-3: #6183ad;
+  --h-stroke: #26405f;
+}
+.signal-unit .su-glass {
+  --h-top: #f4f6f9;
+  --h-fill: #e6eaf0;
+  --h-0: #c3cbd7;
+  --h-1: #d0d7e1;
+  --h-2: #e6eaf0;
+  --h-3: #eef1f6;
+  --h-stroke: #8a96a8;
+}
+.su-screw circle {
+  fill: #dce2ea;
+  stroke: #67758b;
+  stroke-width: 0.4;
+}
+.su-screw path {
+  stroke: #4c5a70;
+  stroke-width: 0.45;
+}
+.su-mat-rule {
+  fill: none;
+  stroke: #4e6079;
+  stroke-width: 0.5;
+}
+.su-mat-grid {
+  stroke: #3a4d66;
+  stroke-width: 0.35;
+}
+.su-pin circle {
+  fill: #d8c38d;
+}
+.su-floor-rule {
+  fill: none;
+  stroke: #a7b2c2;
+  stroke-width: 0.5;
+}
+.su-slot,
+.su-dark-inlay,
+.su-fan-hole {
+  fill: #14243b;
+  stroke: #67758b;
+  stroke-width: 0.3;
+}
+.su-rim-hole {
+  fill: #14243b;
+}
+.su-silk {
+  fill: none;
+  stroke: #8fa6c6;
+  stroke-width: 0.35;
+  opacity: 0.7;
+}
+.su-silk-danger {
+  fill: none;
+  stroke: #e6eaf0;
+  stroke-width: 0.5;
+  stroke-dasharray: 1.2 1;
+  opacity: 0.7;
+}
+.su-trace {
+  fill: none;
+  stroke: #6f8fb8;
+  stroke-width: 0.5;
+}
+.su-fin,
+.su-tape,
+.su-can-seam,
+.su-grip {
+  fill: none;
+  stroke: #7c889b;
+  stroke-width: 0.45;
+}
+.su-tape {
+  stroke: #b8c1ce;
+}
+.su-chip {
+  fill: #14243b;
+}
+.su-gold {
+  stroke: #d8c38d;
+  stroke-width: 1;
+}
+.su-cap-top {
+  fill: #c9d1dc;
+  stroke: #67758b;
+  stroke-width: 0.3;
+}
+.su-cap-vent {
+  fill: none;
+  stroke: #4e6079;
+  stroke-width: 0.5;
+}
+.su-perf {
+  fill: #8a96a8;
+}
+.su-leg {
+  fill: none;
+  stroke: #a6b0bf;
+  stroke-width: 0.5;
+}
+.su-label {
+  fill: #f6f7fa;
+  stroke: #a7b2c2;
+  stroke-width: 0.3;
+}
+.su-label-band {
+  fill: #b32636;
+}
+.su-label-line {
+  stroke: #8a96a8;
+  stroke-width: 0.6;
+}
+.su-ribbon {
+  fill: #c9d1dc;
+  stroke: #67758b;
+  stroke-width: 0.5;
+  stroke-linejoin: round;
+}
+.su-ribbon-line {
+  fill: none;
+  stroke: #a7b2c2;
+  stroke-width: 0.4;
+}
+.su-ribbon-red {
+  fill: none;
+  stroke: #b32636;
+  stroke-width: 1.1;
+}
+.su-blade {
+  fill: #4e6079;
+  stroke: #26384f;
+  stroke-width: 0.3;
+}
+.su-hub {
+  fill: #26384f;
+  stroke: #67758b;
+  stroke-width: 0.4;
+}
+.su-guard {
+  fill: none;
+  stroke: #a7b2c2;
+  stroke-width: 0.7;
+}
+.su-wall-label,
+.su-face-label,
+.su-face-brand,
+.su-meter-label {
+  font: 3px monospace;
+  letter-spacing: 0.3px;
+  text-anchor: middle;
+  fill: #67758b;
+}
+.su-face-label {
+  fill: #a7b2c2;
+  font-size: 2.6px;
+}
+.su-face-label.su-left {
+  text-anchor: start;
+}
+.su-face-brand {
+  text-anchor: start;
+  fill: #8a96a8;
+  font-size: 2.8px;
+  letter-spacing: 0.8px;
+}
+.su-face-rule {
+  fill: none;
+  stroke: #34475f;
+  stroke-width: 0.5;
+}
+
+/* Cables: rim, round body and a soft highlight. */
+.su-cable path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.su-c-rim {
+  stroke: var(--c-rim);
+  stroke-width: 4.6;
+}
+.su-c-body {
+  stroke: var(--c-body);
+  stroke-width: 3.4;
+}
+.su-c-hi {
+  stroke: var(--c-hi);
+  stroke-width: 0.9;
+  opacity: 0.8;
+}
+.su-c-usb {
+  --c-rim: #0f1c2f;
+  --c-body: #26384f;
+  --c-hi: #67758b;
+}
+.su-c-red {
+  --c-rim: #7a1824;
+  --c-body: #b32636;
+  --c-hi: #e07a85;
+}
+.su-c-black,
+.su-c-coax {
+  --c-rim: #0b1626;
+  --c-body: #1f3049;
+  --c-hi: #4e6079;
+}
+.su-c-yellow {
+  --c-rim: #9c8653;
+  --c-body: #d8c38d;
+  --c-hi: #f4ead0;
+}
+.su-c-sata {
+  --c-rim: #7a1824;
+  --c-body: #c8414f;
+  --c-hi: #ef9aa3;
+}
+.su-c-coax .su-c-rim {
+  stroke-width: 3.6;
+}
+.su-c-coax .su-c-body {
+  stroke-width: 2.6;
+}
+[data-su-drop="harness"] .su-c-rim,
+[data-su-drop="wires"] .su-c-rim {
+  stroke-width: 2.2;
+}
+[data-su-drop="harness"] .su-c-body,
+[data-su-drop="wires"] .su-c-body {
+  stroke-width: 1.5;
+}
+[data-su-drop="harness"] .su-c-hi,
+[data-su-drop="wires"] .su-c-hi {
+  stroke-width: 0.45;
+}
+[data-su-drop="sata"] .su-c-rim {
+  stroke-width: 3.8;
+}
+
+/* Fascia controls. */
+.su-rocker-frame {
+  fill: #0f1c2f;
+  stroke: #4e6079;
+  stroke-width: 0.4;
+}
+.su-rocker {
+  fill: #34475f;
+  stroke: #0f1c2f;
+  stroke-width: 0.3;
+}
+.su-rocker[data-on="true"] {
+  fill: #4e6079;
+}
+.su-rocker-mark {
+  fill: none;
+  stroke: #dfe5ed;
+  stroke-width: 0.6;
+}
+.su-led {
+  fill: #4e6079;
+  stroke: #0f1c2f;
+  stroke-width: 0.3;
+  transition: fill 0.12s;
+}
+.su-led[data-on="true"] {
+  fill: #ff5a68;
+  filter: drop-shadow(0 0 1.2px #ff5a68);
+}
+[data-su-led="run"][data-on="true"],
+[data-su-led="link"][data-on="true"],
+[data-su-led="laptop"][data-on="true"] {
+  fill: #e9edf3;
+  filter: drop-shadow(0 0 1.2px #ffffff);
+}
+.su-lcd-bezel {
+  fill: #0f1c2f;
+  stroke: #4e6079;
+  stroke-width: 0.4;
+}
+.su-lcd {
+  fill: #1b2c44;
+  transition: fill 0.3s;
+}
+.su-lcd[data-on="true"] {
+  fill: #c9d6e6;
+}
+.su-lcd-ghost,
+.su-lcd-text {
+  font:
+    10px "DSEG14 Classic",
+    monospace;
+  text-anchor: middle;
+}
+.su-lcd-mark circle {
+  fill: #14243b;
+  opacity: 0;
+}
+.su-lcd-mark[data-mark=":"] circle,
+.su-lcd-mark[data-mark="."] circle:not([data-colon]) {
+  opacity: 1;
+}
+[data-su-view="noconn"] {
+  pointer-events: none;
+}
+.su-ui-alert {
+  fill: #b32636;
+}
+.su-ui-alert-title,
+.su-ui-alert-text {
+  font: bold 5px monospace;
+  fill: #ffffff;
+  text-anchor: middle;
+}
+.su-ui-alert-text {
+  font-weight: normal;
+  font-size: 3.6px;
+  letter-spacing: 0.3px;
+}
+.su-lcd-ghost {
+  fill: #26384f;
+  opacity: 0.55;
+}
+[data-on="true"] ~ g .su-lcd-ghost {
+  fill: #aebdd0;
+}
+.su-lcd-text {
+  fill: #14243b;
+}
+.su-lcd-small {
+  font: 3px monospace;
+  letter-spacing: 0.4px;
+  fill: #26384f;
+}
+.su-key-well {
+  fill: #0f1c2f;
+}
+.su-key {
+  fill: #a7b2c2;
+  stroke: #4e6079;
+  stroke-width: 0.3;
+}
+.su-key-hi {
+  stroke: #e6eaf0;
+  stroke-width: 0.4;
+}
+.su-scale,
+.su-scale-major {
+  stroke: #67758b;
+  stroke-width: 0.4;
+}
+.su-scale-major {
+  stroke: #c9d1dc;
+}
+.su-ring-led {
+  fill: #34475f;
+}
+.su-ring-led[data-on="true"] {
+  fill: #ff5a68;
+  filter: drop-shadow(0 0 1px #ff5a68);
+}
+.su-knurl path {
+  stroke: #67758b;
+  stroke-width: 0.4;
+  fill: none;
+}
+.su-knob-cap {
+  fill: #e6eaf0;
+  stroke: #8a96a8;
+  stroke-width: 0.4;
+}
+.su-knob-dish {
+  fill: #d0d7e1;
+  stroke: #b8c1ce;
+  stroke-width: 0.3;
+}
+.su-knob-pointer {
+  stroke: #b32636;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+.su-usb-shell {
+  fill: #a7b2c2;
+  stroke: #4e6079;
+  stroke-width: 0.3;
+}
+.su-usb-hole {
+  fill: #0f1c2f;
+}
+.su-usb-tongue {
+  fill: #e6eaf0;
+}
+
+/* Laptop. */
+.su-port {
+  fill: #26384f;
+}
+.su-deck-well {
+  fill: #a7b2c2;
+  stroke: #8a96a8;
+  stroke-width: 0.4;
+}
+.su-key-skirt {
+  fill: #67758b;
+}
+.su-lkey {
+  fill: #eef1f6;
+}
+.su-lkey-red {
+  fill: #b32636;
+}
+.su-touchpad {
+  fill: #c9d1dc;
+  stroke: #a7b2c2;
+  stroke-width: 0.4;
+}
+.su-lid-bezel {
+  fill: #1f3049;
+}
+.su-camera {
+  fill: #0f1c2f;
+  stroke: #4e6079;
+  stroke-width: 0.4;
+}
+.su-ui-bg {
+  fill: #f6f7fa;
+}
+.su-ui-bar {
+  fill: #dfe5ed;
+}
+.su-ui-dot {
+  fill: #a7b2c2;
+}
+.su-ui-side {
+  fill: #e9edf3;
+}
+.su-ui-title,
+.su-ui-clock,
+.su-ui-file,
+.su-ui-num,
+.su-ui-term {
+  font: 3.6px monospace;
+  fill: #536176;
+}
+.su-ui-clock {
+  text-anchor: end;
+}
+.su-ui-on {
+  fill: #b32636;
+}
+.su-ui-num {
+  fill: #a7b2c2;
+  text-anchor: end;
+}
+.su-ui-term {
+  fill: #14243b;
+  font-size: 4.2px;
+}
+.su-ui-muted {
+  fill: #8a96a8;
+}
+.su-code {
+  fill: #a7b2c2;
+}
+.su-code-k {
+  fill: #26384f;
+}
+.su-code-s {
+  fill: #d4515f;
+  opacity: 0.75;
+}
+.su-ui-track {
+  fill: #dfe5ed;
+}
+.su-ui-fill {
+  fill: #b32636;
+}
+.su-ui-card {
+  fill: #ffffff;
+  stroke: #cbd3de;
+  stroke-width: 0.4;
+}
+.su-ui-strong {
+  font: bold 5px monospace;
+  fill: #14243b;
+}
+.su-ui-button {
+  fill: #14243b;
+}
+.su-ui-button[data-on="true"] {
+  fill: #b32636;
+}
+.su-ui-button-label {
+  font: 4px monospace;
+  fill: #f6f7fa;
+  text-anchor: middle;
+}
+
+/* Multimeter. */
+.su-meter-face {
+  fill: #34475f;
+  stroke: #0f1c2f;
+  stroke-width: 0.5;
+}
+.su-meter-lcd-bezel {
+  fill: #0f1c2f;
+}
+.su-meter-lcd {
+  fill: #c9d6e6;
+}
+.su-meter-ghost,
+.su-meter-digits {
+  font:
+    10px "DSEG7 Classic",
+    monospace;
+  text-anchor: end;
+}
+.su-meter-ghost {
+  fill: #aebdd0;
+}
+.su-meter-digits {
+  fill: #14243b;
+}
+.su-meter-unit {
+  font: 3.4px monospace;
+  fill: #26384f;
+}
+.su-meter-key {
+  fill: #a7b2c2;
+  stroke: #0f1c2f;
+  stroke-width: 0.3;
+}
+.su-meter-dial-ring {
+  fill: #26384f;
+  stroke: #0f1c2f;
+  stroke-width: 0.4;
+}
+.su-meter-tick {
+  stroke: #dfe5ed;
+  stroke-width: 0.7;
+}
+.su-meter-dial {
+  fill: #dfe5ed;
+  stroke: #8a96a8;
+  stroke-width: 0.4;
+}
+.su-meter-grip {
+  fill: #26384f;
+}
+.su-meter-pointer {
+  stroke: #ff5a68;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+.su-jack,
+.su-jack-red {
+  fill: #14243b;
+  stroke: #8a96a8;
+  stroke-width: 0.8;
+}
+.su-jack-red {
+  stroke: #b32636;
+}
+.su-jack-hole {
+  fill: #0b1626;
+}
+.su-meter-label {
+  fill: #c9d1dc;
+}
+
+/* Signals and the fourth wall. */
+.su-packet {
+  pointer-events: none;
+}
+.su-ack {
+  fill: #ffffff;
+  stroke: #b32636;
+  stroke-width: 1.2;
+}
+.su-hit-pad {
+  fill: transparent;
+}
+.su-hit {
+  cursor: pointer;
+}
+[data-su-click="knob"] {
+  cursor: ew-resize;
+  touch-action: none;
+}
+.su-hit:hover .su-knob-cap,
+.su-hit:hover .su-key,
+.su-hit:hover .su-meter-dial,
+.su-hit:hover .su-rocker {
+  stroke: #b32636;
+  stroke-width: 0.7;
+}

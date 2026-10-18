@@ -1,0 +1,362 @@
+/* Solids of the contact-form laser cutter, in the site palette. */
+.lc-solid {
+  --h-top: #d9dfd3;
+  --h-fill: #b8c3b5;
+  --h-0: #98a897;
+  --h-1: #a8b7a5;
+  --h-2: #bdc8b8;
+  --h-3: #cbd3c4;
+  --h-stroke: #637862;
+}
+.lc-dark {
+  --h-top: #64715f;
+  --h-fill: #435342;
+  --h-0: #334833;
+  --h-1: #425540;
+  --h-2: #50614b;
+  --h-3: #5d6d55;
+  --h-stroke: #334834;
+}
+.lc-metal {
+  --h-top: #e1e5da;
+  --h-fill: #bfc7b9;
+  --h-0: #8e9c8b;
+  --h-1: #a7b4a1;
+  --h-2: #c4cdbc;
+  --h-3: #d3dacb;
+}
+.lc-fill {
+  fill: var(--h-fill);
+}
+.lc-top {
+  fill: var(--h-top);
+}
+.lc-shade-0 {
+  fill: var(--h-0);
+}
+.lc-shade-1 {
+  fill: var(--h-1);
+}
+.lc-shade-2 {
+  fill: var(--h-2);
+}
+.lc-shade-3 {
+  fill: var(--h-3);
+}
+.lc-edge {
+  fill: none;
+  stroke: var(--h-stroke);
+  stroke-width: 0.7;
+  stroke-linejoin: round;
+}
+.lc-seam {
+  fill: none;
+  stroke: var(--h-stroke);
+  stroke-width: 0.4;
+  opacity: 0.65;
+}
+.lc-shadow {
+  fill: #6c7d64;
+  opacity: 0.15;
+  filter: blur(12px);
+}
+.lc-screw circle {
+  fill: #dce3d2;
+  stroke: #74856a;
+  stroke-width: 0.5;
+}
+.lc-screw path {
+  stroke: #65775d;
+  stroke-width: 0.6;
+}
+.lc-rule {
+  fill: none;
+  stroke: #8a9a7d;
+  stroke-width: 0.6;
+}
+.lc-label-plate {
+  fill: #aebba5;
+  stroke: #73846c;
+  stroke-width: 0.4;
+}
+.lc-engraved {
+  font: 4px monospace;
+  fill: #43553c;
+  letter-spacing: 0.3px;
+}
+.lc-glass {
+  fill: #e2e8d5;
+}
+.lc-button {
+  fill: #a5b298;
+  stroke: #65775b;
+  stroke-width: 0.5;
+}
+.lc-vent {
+  fill: #34482e;
+  opacity: 0.7;
+}
+.lc-ruler {
+  fill: #dce3d1;
+  stroke: #9da98f;
+  stroke-width: 0.6;
+}
+.lc-belt {
+  fill: #4a5e40;
+}
+.lc-belt-tooth {
+  fill: none;
+  stroke: #a6b497;
+  stroke-width: 0.65;
+}
+
+.lc-figure {
+  --lc-red: #e0283a;
+  --lc-blue: #2f7dff;
+  margin: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+/* No card: the machine stands on the contact section itself. */
+.lc-art {
+  display: block;
+  width: 100%;
+  max-height: none;
+  min-height: 0;
+}
+.lc-figure .lc-move-lamp {
+  transition: fill 0.12s;
+}
+.lc-figure[data-moving="true"] .lc-move-lamp {
+  fill: #f2c94c;
+  stroke: #8a6d12;
+}
+.lc-figure .lc-solid {
+  --h-top: #e9edf3;
+  --h-fill: #c9d1dc;
+  --h-0: #a7b2c2;
+  --h-1: #b8c1ce;
+  --h-2: #d0d7e1;
+  --h-3: #dce2ea;
+  --h-stroke: #67758b;
+}
+.lc-figure .lc-dark {
+  --h-top: #34475f;
+  --h-fill: #1f3049;
+  --h-0: #14243b;
+  --h-1: #1b2c44;
+  --h-2: #26384f;
+  --h-3: #2e415a;
+  --h-stroke: #101d31;
+}
+.lc-figure .lc-metal {
+  --h-top: #f4f6f9;
+  --h-fill: #d6dce5;
+  --h-0: #a6b0bf;
+  --h-1: #bcc5d1;
+  --h-2: #dae0e8;
+  --h-3: #e6eaf0;
+  --h-stroke: #7c889b;
+}
+.lc-figure .lc-ply {
+  --h-top: #ecdcc0;
+  --h-fill: #d9c29c;
+  --h-0: #b99f78;
+  --h-1: #c8ae86;
+  --h-2: #dcc7a3;
+  --h-3: #e4d1b0;
+  --h-stroke: #9c8360;
+}
+.lc-figure .lc-red {
+  --h-top: #d4515f;
+  --h-fill: #b32636;
+  --h-0: #8c1d2a;
+  --h-1: #a02231;
+  --h-2: #bd3443;
+  --h-3: #c8414f;
+  --h-stroke: #7a1824;
+}
+.lc-figure .lc-shadow {
+  fill: #14243b;
+  opacity: 0.12;
+}
+.lc-figure .lc-screw circle {
+  fill: #e6eaf0;
+  stroke: #67758b;
+}
+.lc-figure .lc-screw path {
+  stroke: #4c5a70;
+}
+.lc-figure .lc-rule {
+  stroke: #8a96a8;
+}
+.lc-figure .lc-label-plate {
+  fill: #c3cbd7;
+  stroke: #67758b;
+}
+.lc-figure .lc-engraved {
+  fill: #26384f;
+}
+.lc-figure .lc-glass {
+  fill: #0f1c2f;
+}
+.lc-figure .lc-button {
+  fill: #c9d1dc;
+  stroke: #67758b;
+}
+.lc-figure .lc-vent {
+  fill: #0f1c2f;
+}
+.lc-figure .lc-ruler {
+  fill: #e9edf3;
+  stroke: #8a96a8;
+}
+.lc-figure .lc-belt {
+  fill: #26384f;
+}
+.lc-figure .lc-belt-tooth {
+  stroke: #8a96a8;
+}
+.lc-grain {
+  fill: none;
+  stroke: #c4a77c;
+  stroke-width: 0.45;
+  opacity: 0.55;
+}
+/* The cut piece stays in the sheet: a faint scorch tint, not a hole. */
+.lc-hole {
+  fill: #b08a5c;
+  fill-opacity: 0.22;
+  stroke: none;
+}
+.lc-hole.is-hole {
+  fill: #6e5236;
+  fill-opacity: 0.32;
+}
+.lc-kerf {
+  fill: none;
+  stroke: #3a2516;
+  stroke-width: 0.85;
+  stroke-linejoin: round;
+}
+.lc-scorch {
+  fill: none;
+  stroke: #7a4a26;
+  stroke-width: 2.6;
+  stroke-linejoin: round;
+  opacity: 0.28;
+}
+.lc-burn {
+  fill: #3a2516;
+  opacity: 0.82;
+  stroke: #7a4a26;
+  stroke-opacity: 0.35;
+  stroke-width: 1.4;
+  animation: lc-burn-in 0.35s ease-out;
+  transition: opacity 0.3s;
+}
+.lc-burn.is-erasing {
+  opacity: 0;
+  fill: var(--lc-blue);
+}
+@keyframes lc-burn-in {
+  from {
+    fill: #ff9a5c;
+    opacity: 0.2;
+  }
+}
+.lc-spot,
+.lc-beam,
+.lc-beam-glow {
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+.lc-figure:not([data-laser="off"]) :is(.lc-spot, .lc-beam, .lc-beam-glow) {
+  opacity: 1;
+}
+.lc-spot-halo {
+  fill: var(--lc-beam, var(--lc-red));
+  opacity: 0.22;
+}
+.lc-spot-core {
+  fill: #fff4f5;
+  stroke: var(--lc-beam, var(--lc-red));
+  stroke-width: 0.8;
+}
+.lc-sparks {
+  fill: none;
+  stroke: #ffb36b;
+  stroke-width: 0.5;
+  stroke-linecap: round;
+}
+.lc-beam {
+  fill: none;
+  stroke: #fff4f5;
+  stroke-width: 0.7;
+  stroke-linecap: round;
+}
+.lc-beam-glow {
+  fill: none;
+  stroke: var(--lc-beam, var(--lc-red));
+  stroke-width: 2.6;
+  stroke-linecap: round;
+}
+.lc-figure[data-laser="blue"] {
+  --lc-beam: var(--lc-blue);
+}
+.lc-figure[data-laser="blue"] .lc-sparks {
+  stroke: #9cc4ff;
+}
+.lc-warning {
+  fill: #f2c94c;
+  stroke: #14243b;
+  stroke-width: 0.4;
+  stroke-linejoin: round;
+}
+.lc-warning-mark {
+  fill: none;
+  stroke: #14243b;
+  stroke-width: 0.6;
+}
+.lc-groove {
+  fill: none;
+  stroke: #0f1c2f;
+  stroke-width: 0.55;
+}
+.lc-fan {
+  fill: #0f1c2f;
+  stroke: #4e6079;
+  stroke-width: 0.5;
+}
+.lc-fan-hub {
+  fill: #4e6079;
+}
+.lc-lamp {
+  fill: #4e6079;
+  stroke: #0f1c2f;
+  stroke-width: 0.5;
+  transition: fill 0.12s;
+}
+.lc-figure[data-laser="red"] .lc-lamp {
+  fill: var(--lc-red);
+}
+.lc-figure[data-laser="blue"] .lc-lamp {
+  fill: var(--lc-blue);
+}
+/* DSEG14 Classic by keshikan; SIL OFL in /fonts/DSEG-LICENSE.txt. */
+@font-face {
+  font-family: "DSEG14 Classic";
+  src: url("/fonts/dseg14-classic-regular.woff2") format("woff2");
+  font-display: block;
+}
+.lc-segments {
+  font:
+    6.6px "DSEG14 Classic",
+    monospace;
+  letter-spacing: 0.15px;
+  fill: #ff4d5e;
+}
+.lc-segments-ghost {
+  fill: #ff4d5e;
+  opacity: 0.1;
+}

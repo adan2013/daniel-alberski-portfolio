@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import type { Locale } from "@/lib/projects";
+import { createTranslator } from "@/lib/i18n";
 import "./case-study-figure.css";
 
 export function CaseStudyFigure({
@@ -25,6 +26,7 @@ export function CaseStudyFigure({
   locale: Locale;
   legend?: ReactNode;
 }) {
+  const t = createTranslator(locale);
   return (
     <figure className="case-figure">
       <div className="case-figure-card iso-plate">
@@ -39,9 +41,7 @@ export function CaseStudyFigure({
             <button
               type="button"
               className="case-figure-arrow"
-              aria-label={
-                locale === "pl" ? "Poprzednia scena" : "Previous scene"
-              }
+              aria-label={t("caseStudy.previousScene")}
               disabled={scene === 0}
               onClick={() => onSceneChange(scene - 1, "step")}
             >
@@ -52,7 +52,7 @@ export function CaseStudyFigure({
             <button
               type="button"
               className="case-figure-arrow"
-              aria-label={locale === "pl" ? "Następna scena" : "Next scene"}
+              aria-label={t("caseStudy.nextScene")}
               disabled={scene === phases.length - 1}
               onClick={() => onSceneChange(scene + 1, "step")}
             >

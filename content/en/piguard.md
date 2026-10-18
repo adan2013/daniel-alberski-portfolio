@@ -32,7 +32,7 @@ The first ignition position disables SMS notifications while someone is in the a
 
 ## Electronics built for permanent installation
 
-A Raspberry Pi 3B+ sits at the center of the device. I soldered the connections on perfboard, crimped connectors onto every cable and routed the wiring so I could service the inside without cutting wires. I used the board to connect the sensors, LED, speaker and both ignition-switch positions.
+A Raspberry Pi 3B+ sits at the centre of the device. I soldered the connections on perfboard, crimped connectors onto every cable and routed the wiring so I could service the inside without cutting wires. I used the board to connect the sensors, LED, speaker and both ignition-switch positions.
 
 I designed the enclosure from scratch in Fusion 360. The second iteration became the final version. I added a ventilation opening in the lid, cable entries along the bottom and mounting points for hanging the device on a wall. I arranged the components around the cable routes while keeping the Raspberry Pi and modem accessible.
 
@@ -40,13 +40,13 @@ I designed the enclosure from scratch in Fusion 360. The second iteration became
 
 ## Configuration through a local hotspot
 
-The Raspberry Pi creates its own Wi-Fi hotspot because the apartment has no router. Access requires a password. Once connected to that network, I can open the control panel and check the uptime, all three inputs, modem parameters and recent logs. The panel can also send a test message, edit the configuration, synchronize the clock, and safely restart or shut down the device.
+The Raspberry Pi creates its own Wi-Fi hotspot because the apartment has no router. Access requires a password. Once connected to that network, I can open the control panel and check the uptime, all three inputs, modem parameters and recent logs. The panel can also send a test message, edit the configuration, synchronise the clock, and safely restart or shut down the device.
 
 [media:1]
 
 Logs are stored in rotating files on the memory card. Normal activity and errors go to separate files, and the panel displays the latest entries from both. For a device left in an empty apartment, this is more convenient than connecting a monitor or opening an SSH session for every check.
 
-On boot, systemd starts the application and waits for the modem's USB port to appear. PiGuard initializes the GSM connection, checks the SIM and network registration, then sends a report. A diagnostic message includes the operator, signal strength, uptime and state of each input. After a power cut, the startup SMS also tells me that electricity has returned and the alarm is working again.
+On boot, systemd starts the application and waits for the modem's USB port to appear. PiGuard initialises the GSM connection, checks the SIM and network registration, then sends a report. A diagnostic message includes the operator, signal strength, uptime and state of each input. After a power cut, the startup SMS also tells me that electricity has returned and the alarm is working again.
 
 [media:4]
 

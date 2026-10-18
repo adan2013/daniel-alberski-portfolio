@@ -23,51 +23,39 @@ export type Project = {
   premise: Localized;
   role: Localized;
   media: Media[];
-  links: { label: Localized; url: string; icon: LinkIconName }[];
+  links: { label: Localized; url: string | Localized; icon: LinkIconName }[];
   caseStudy?: string;
-  video?: string;
+  video?: { id: string; caption: Localized };
 };
 const l = (pl: string, en: string): Localized => ({ pl, en });
-const link = (pl: string, en: string, url: string, icon: LinkIconName) => ({
+const link = (
+  pl: string,
+  en: string,
+  url: string | Localized,
+  icon: LinkIconName,
+) => ({
   label: l(pl, en),
   url,
   icon,
 });
-export const tracks: { id: Track; name: Localized; description: Localized }[] =
-  [
-    {
-      id: "software",
-      name: l("Programowanie", "Software"),
-      description: l(
-        "Od interfejsu do backendu. Łączę części w działający system.",
-        "From interface to backend. I bring the parts together into a working system.",
-      ),
-    },
-    {
-      id: "hardware",
-      name: l("Hardware", "Hardware"),
-      description: l(
-        "Kod spotyka elektronikę i ograniczenia fizycznego świata.",
-        "Code meets electronics and the constraints of the physical world.",
-      ),
-    },
-    {
-      id: "ai",
-      name: l("AI", "AI"),
-      description: l(
-        "Nowe narzędzia, własne decyzje. Od specyfikacji po code review.",
-        "New tools, my decisions. From specifications to code review.",
-      ),
-    },
-    {
-      id: "3d",
-      name: l("Projektowanie i druk 3D", "3D design & printing"),
-      description: l(
-        "Od parametrycznego modelu do części, którą trzymam w dłoni.",
-        "From a parametric model to a part I can hold in my hand.",
-      ),
-    },
-  ];
+export const tracks: { id: Track; name: Localized }[] = [
+  {
+    id: "software",
+    name: l("Programowanie", "Software"),
+  },
+  {
+    id: "hardware",
+    name: l("Hardware", "Hardware"),
+  },
+  {
+    id: "ai",
+    name: l("AI", "AI"),
+  },
+  {
+    id: "3d",
+    name: l("Projektowanie i druk 3D", "3D design & printing"),
+  },
+];
 export const projects: Project[] = [
   {
     slug: "gauge-generator",
@@ -75,7 +63,7 @@ export const projects: Project[] = [
     date: "2026-08",
     tracks: ["software", "ai"],
     priority: "main",
-    tags: ["React", "SVG", "PDF", "AI workflow", "Graphics"],
+    tags: ["React", "SVG", "PDF", "Workflow z AI", "Grafika"],
     caseStudy: "gauge-generator",
     summary: l(
       "Na tym remasterze aplikacji z 2019 roku przetestowałem workflow z AI: od specyfikacji i szybkiego startu po pracę etapami. Sam podejmowałem decyzje architektoniczne i robiłem końcowe code review.",
@@ -140,7 +128,10 @@ export const projects: Project[] = [
       link(
         "Dokumentacja",
         "Documentation",
-        "https://gauge-generator.adanit.pl/docs/en",
+        l(
+          "https://gauge-generator.adanit.pl/docs/pl",
+          "https://gauge-generator.adanit.pl/docs/en",
+        ),
         "document",
       ),
       link(
@@ -226,7 +217,7 @@ export const projects: Project[] = [
     date: "2025-05",
     tracks: ["software", "ai", "3d"],
     priority: "secondary",
-    tags: ["OpenSCAD", "3D modeling"],
+    tags: ["OpenSCAD", "Modelowanie 3D"],
     summary: l(
       "Razem z siostrą zrobiliśmy ten generator w dwa dni. Skrypt OpenSCAD pozwala zmieniać geometrię i układ paletki, a następnie wygenerować model gotowy do druku. AI pomogło przy kodzie i modelowaniu.",
       "My sister and I built this generator in two days. The OpenSCAD script lets users change the palette geometry and layout, then generate a printable model. AI helped with the code and modelling.",
@@ -312,7 +303,13 @@ export const projects: Project[] = [
         src: "/projects/vhs-htpc-lcd-driver.jpg",
       },
     ],
-    video: "vgGN3KrSJ-c",
+    video: {
+      id: "vgGN3KrSJ-c",
+      caption: l(
+        "VHS HTPC w działaniu: pilot, wyświetlacz i system.",
+        "VHS HTPC in action: remote, display and system.",
+      ),
+    },
     links: [
       link(
         "Artykuł",
@@ -406,7 +403,7 @@ export const projects: Project[] = [
     date: "2021-10",
     tracks: ["software", "hardware"],
     priority: "secondary",
-    tags: ["Raspberry Pi", "Python", "ATtiny85", "Audio", "Accessibility"],
+    tags: ["Raspberry Pi", "Python", "ATtiny85", "Audio", "Dostępność"],
     summary: l(
       "Dedykowany czytnik audiobooków powstał dla starszej, niedowidzącej osoby, dla której standardowe urządzenia były zbyt skomplikowane. Duże fizyczne przyciski ułatwiają samodzielną obsługę, a Raspberry Pi z aplikacją w Pythonie i układem ATtiny85 odpowiada za bezpieczne włączanie i wyłączanie.",
       "A dedicated audiobook player created for an older, visually impaired person who found standard devices too complicated. Large physical buttons make it easier to use independently, while a Raspberry Pi running a Python application and an ATtiny85 circuit handle safe startup and shutdown.",
@@ -448,9 +445,15 @@ export const projects: Project[] = [
     date: "2021-06",
     tracks: ["software", "hardware"],
     priority: "main",
-    tags: ["Arduino", "C++", "C# / WPF", "SPI", "Gaming"],
+    tags: ["Arduino", "C++", "C# / WPF", "SPI", "Gry"],
     caseStudy: "arduino-dashboard",
-    video: "KW6sZINNi9Y",
+    video: {
+      id: "KW6sZINNi9Y",
+      caption: l(
+        "Zegary w działaniu podczas jazdy w symulatorze.",
+        "The gauges in action during a simulator drive.",
+      ),
+    },
     summary: l(
       "Fizyczne zegary samochodowe pokazują telemetrię z ETS2 i ATS. Całość obejmuje ręcznie wykonaną elektronikę i tarcze, aplikację C#/WPF z generatorem tarcz (Gauge Generator) oraz firmware Arduino w C++. Ograniczenia sprzętowe wymusiły optymalizację całego systemu.",
       "Physical vehicle gauges display telemetry from ETS2 and ATS. The project includes handmade electronics and gauge faces, a C#/WPF application with the Gauge Generator, and Arduino firmware written in C++. Hardware constraints required optimisation across the entire system.",
@@ -521,7 +524,7 @@ export const projects: Project[] = [
     date: "2020-07",
     tracks: ["software"],
     priority: "secondary",
-    tags: ["React Native", "Expo", "Mobile", "Bluetooth LE"],
+    tags: ["React Native", "Expo", "Aplikacje mobilne", "Bluetooth LE"],
     summary: l(
       "Prywatny MVP dla streamera prowadzącego transmisje IRL. Aplikacja w React Native i Expo przesyłała lokalizację z telefonu do widżetu mapy oraz odbierała pomiar tętna przez Bluetooth LE, aby oba dane były widoczne na streamie.",
       "A private MVP for an IRL streamer. The React Native and Expo application sent phone location data to a map widget and received heart-rate readings over Bluetooth LE, making both visible on the stream.",
@@ -636,7 +639,17 @@ export function tagLabel(tag: string, locale: Locale) {
     (
       {
         "Druk 3D": "3D printing",
+        "Workflow z AI": "AI workflow",
+        Grafika: "Graphics",
+        "Modelowanie 3D": "3D modelling",
+        Dostępność: "Accessibility",
+        Gry: "Gaming",
+        "Aplikacje mobilne": "Mobile",
       } as Record<string, string>
     )[tag] ?? tag
   );
+}
+
+export function linkUrl(link: Project["links"][number], locale: Locale) {
+  return typeof link.url === "string" ? link.url : link.url[locale];
 }

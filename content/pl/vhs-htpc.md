@@ -6,7 +6,7 @@ VHS HTPC zaczął się od prostej potrzeby: chciałem wygodnie oglądać wideo n
 
 Drugim elementem układanki był retro magnetowid Panasonic NV-J35HQ. To sprzęt, który pamiętam jeszcze z dzieciństwa, więc pomysł zbudowania nowego urządzenia właśnie w tej obudowie miał dla mnie dodatkową wartość. Chciałem zachować jego charakterystyczny wygląd, a jednocześnie zbudować funkcjonalny komputer multimedialny z własnym sterowaniem.
 
-Od początku było jasne, że to nie będzie projekt typu "przełóż płytę i gotowe". W środku magnetowidu jest mało miejsca, a płyta główna 17-calowego laptopa Asus K75VJ jest duża i długa. Każda decyzja konstrukcyjna wpływała na kolejne: położenie płyty, prowadzenie zasilania, dostęp do portów, chłodzenie i miejsce na elektronikę sterującą.
+Od początku było jasne, że to nie będzie projekt typu „przełóż płytę i gotowe”. W środku magnetowidu jest mało miejsca, a płyta główna 17-calowego laptopa Asus K75VJ jest duża i długa. Każda decyzja konstrukcyjna wpływała na kolejne: położenie płyty, prowadzenie zasilania, dostęp do portów, chłodzenie i miejsce na elektronikę sterującą.
 
 ## Najtrudniejsza część: geometria i upakowanie podzespołów
 
@@ -16,7 +16,7 @@ Sprawdziłem kilka wariantów obejścia tego problemu, między innymi zmianę sp
 
 Na etapie obróbki obudowy musiałem usunąć część wewnętrznych wzmocnień z tworzywa, wyciąć nowe otwory i dopasować przejścia dla portów oraz przewodów. Kluczowe było to, żeby nie zniszczyć bryły urządzenia od zewnątrz. Po złożeniu magnetowid nadal wygląda jak klasyczny sprzęt RTV, ale jego wnętrze zostało przeprojektowane pod nową funkcję.
 
-Efekt końcowy to konstrukcja oparta o trzy warstwy. Na dole trafiły elementy związane z zasilaniem, wyżej płyta główna laptopa, a obok i nad nią moduły pomocnicze: SSD, panel portów oraz moja elektronika sterująca. Taki układ pozwolił zmieścić wszystko w ograniczonej przestrzeni bez tworzenia przypadkowej plątaniny przewodów.
+Efekt końcowy to konstrukcja oparta na trzech warstwach. Na dole trafiły elementy związane z zasilaniem, wyżej płyta główna laptopa, a obok i nad nią moduły pomocnicze: SSD, panel portów oraz moja elektronika sterująca. Taki układ pozwolił zmieścić wszystko w ograniczonej przestrzeni bez tworzenia przypadkowej plątaniny przewodów.
 
 [media:1]
 

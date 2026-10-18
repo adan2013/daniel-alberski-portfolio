@@ -10,9 +10,9 @@ I made one decision early: this would not be a demo, but a real device I would a
 
 ## How the system works
 
-Arduino was only one part of the solution. The key was the full data flow. ETS/ATS exposes telemetry through the SCS Software library, but those values are raw. To turn them into meaningful behavior on physical gauges, I wrote a custom C#/WPF interpreter. Running on the PC side, it read the truck state, transformed it, and sent ready commands over USB to the microcontroller.
+Arduino was only one part of the solution. The key was the full data flow. ETS/ATS exposes telemetry through the SCS Software library, but those values are raw. To turn them into meaningful behaviour on physical gauges, I wrote a custom C#/WPF interpreter. Running on the PC side, it read the truck state, transformed it, and sent ready commands over USB to the microcontroller.
 
-This split was intentional. Keeping core logic on PC made debugging easier and shortened the test loop, because I could verify behavior without rebuilding device software all the time. On Arduino, I kept only what had to stay close to hardware: gauge needles, LEDs, and LCD control. That helped me keep the system responsive despite limited compute power.
+This split was intentional. Keeping core logic on PC made debugging easier and shortened the test loop, because I could verify behaviour without rebuilding device software all the time. On Arduino, I kept only what had to stay close to hardware: gauge needles, LEDs, and LCD control. That helped me keep the system responsive despite limited compute power.
 
 The interpreter UI also became a service panel for development and diagnostics. It let me run test modes, manually move needles, correct stepper home positions, and switch display or sound settings. During build stages, this tooling saved a lot of time.
 
@@ -20,11 +20,11 @@ The interpreter UI also became a service panel for development and diagnostics. 
 
 ## Key technical decisions and trade-offs
 
-The hardest part was balancing smooth needle movement with a 2.4-inch color LCD on Arduino. The display controller and SPI bus could consume a large part of available processing time, while the project still had to update multiple independent elements at once.
+The hardest part was balancing smooth needle movement with a 2.4-inch colour LCD on Arduino. The display controller and SPI bus could consume a large part of available processing time, while the project still had to update multiple independent elements at once.
 
-I handled this with strict refresh optimization. Instead of redrawing the full screen, I updated only the regions that actually changed, and only when necessary. I also built the UI from basic drawing primitives instead of relying on a heavy GUI layer. It was more work to implement, but it fit the hardware limits.
+I handled this with strict refresh optimisation. Instead of redrawing the full screen, I updated only the regions that actually changed, and only when necessary. I also built the UI from basic drawing primitives instead of relying on a heavy GUI layer. It was more work to implement, but it fit the hardware limits.
 
-Another trade-off came from ETS/ATS telemetry itself. Some states I needed were not available directly. One example was differential lock status. To keep that warning light in the dashboard, I added an application-side workaround based on a dedicated keyboard shortcut and state synchronization. It is not perfect, but in everyday use it worked reliably enough.
+Another trade-off came from ETS/ATS telemetry itself. Some states I needed were not available directly. One example was differential lock status. To keep that warning light in the dashboard, I added an application-side workaround based on a dedicated keyboard shortcut and state synchronisation. It is not perfect, but in everyday use it worked reliably enough.
 
 The third important decision was LED control. Instead of routing separate lines for each light, I used an MCP23017 I2C expander. That reduced wiring complexity, saved Arduino pins, and still gave me independent control over 16 indicators.
 
@@ -34,17 +34,17 @@ The third important decision was LED control. Instead of routing separate lines 
 
 Mechanical and visual work mattered just as much as code. I used a Volkswagen Golf IV cluster as the donor base and rebuilt it to match truck-like scales and my own indicator layout. The final assembly included a custom laser-cut plywood enclosure, fully custom wiring, and handmade gauge faces.
 
-The gauge faces required their own design process. Standard automotive scales did not fit simulator behavior, so I created custom graphics in my own [Gauge Generator](/en/projects/gauge-generator) application, which I continue to develop as a separate project in this portfolio. Then I tested materials and layer composition to control light transmission. The final multilayer solution kept the faces readable in daylight and delivered strong backlight effect at night.
+The gauge faces required their own design process. Standard automotive scales did not fit simulator behaviour, so I created custom graphics in my own [Gauge Generator](/en/projects/gauge-generator) application, which I continue to develop as a separate project in this portfolio. Then I tested materials and layer composition to control light transmission. The final multilayer solution kept the faces readable in daylight and delivered strong backlight effect at night.
 
 This part taught me a lot about tolerances and geometry, even without 3D printing. Every wire, spacer, and mount had to fit in tight physical space. I repeatedly returned to earlier steps to improve cable routing and specific mounting details.
 
 ## What the user gets while driving
 
-From a user perspective, this project was never just “moving needles.” I wanted the device to extend the game interface in a practical way, not simply mirror it. So beyond gauges and warning lights, I added an LCD on-board computer with multiple data views and basic personalization.
+From a user perspective, this project was never just “moving needles.” I wanted the device to extend the game interface in a practical way, not simply mirror it. So beyond gauges and warning lights, I added an LCD on-board computer with multiple data views and basic personalisation.
 
 During driving, I can read core information without constantly watching the game screen: current gear, cruise control, mileage, retarder state, speed limit, and short event messages. Visual and audio warnings also make feedback feel closer to a real vehicle than to plain game status labels.
 
-This was an important design exercise for me because it forced information prioritization. I had to decide what should always be visible, what should be contextual, and how to keep the display clear despite limited space and performance budget.
+This was an important design exercise for me because it forced information prioritisation. I had to decide what should always be visible, what should be contextual, and how to keep the display clear despite limited space and performance budget.
 
 [video]
 

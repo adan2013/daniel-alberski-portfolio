@@ -1,6 +1,6 @@
 ## Skąd wziął się ten projekt
 
-DIY Arduino Dashboard zbudowałem, kiedy regularnie jeździłem po Europie w Euro Truck Simulator 2 i chciałem dodać tej zabawie więcej fizycznego "czucia". Nie interesował mnie prosty panel z przyciskami ani kilka luźnych diodek na biurku. Chciałem pełny, zamknięty w obudowie zestaw wskaźników, który wygląda jak fragment prawdziwego kokpitu i reaguje na to, co dzieje się w grze.
+DIY Arduino Dashboard zbudowałem, kiedy regularnie jeździłem po Europie w Euro Truck Simulator 2 i chciałem dodać tej zabawie więcej fizycznego „czucia”. Nie interesował mnie prosty panel z przyciskami ani kilka luźnych diodek na biurku. Chciałem pełny, zamknięty w obudowie zestaw wskaźników, który wygląda jak fragment prawdziwego kokpitu i reaguje na to, co dzieje się w grze.
 
 [hero]
 
@@ -22,7 +22,7 @@ Dodatkowo interfejs interpretera pełnił rolę zaplecza serwisowego. Pozwalał 
 
 Największym wyzwaniem było pogodzenie płynnej pracy wskazówek z obsługą kolorowego ekranu LCD 2.4" na Arduino. Sam kontroler wyświetlacza i magistrala SPI potrafiły zjeść znaczną część dostępnego czasu procesora, a projekt musiał jednocześnie aktualizować kilka niezależnych elementów.
 
-Rozwiązałem to przez restrykcyjną optymalizację odświeżania. Zamiast rysować cały interfejs od nowa, aktualizowałem tylko te obszary ekranu, które faktycznie się zmieniły, i tylko wtedy, gdy było to potrzebne. Interfejs oparłem o proste prymitywy graficzne zamiast cięższej warstwy gotowych kontrolek. To nie było najwygodniejsze podejście na etapie implementacji, ale dobrze pasowało do ograniczeń sprzętu.
+Rozwiązałem to przez restrykcyjną optymalizację odświeżania. Zamiast rysować cały interfejs od nowa, aktualizowałem tylko te obszary ekranu, które faktycznie się zmieniły, i tylko wtedy, gdy było to potrzebne. Interfejs oparłem na prostych prymitywach graficznych zamiast cięższej warstwy gotowych kontrolek. To nie było najwygodniejsze podejście na etapie implementacji, ale dobrze pasowało do ograniczeń sprzętu.
 
 Drugim ciekawym kompromisem była telemetria ETS/ATS. Nie udostępniała ona wszystkich stanów, których potrzebowałem. Przykład: brak bezpośredniego odczytu blokady dyferencjału. Żeby zachować tę kontrolkę na panelu, dodałem obejście oparte na dedykowanym skrócie klawiszowym i synchronizacji stanu po stronie aplikacji. To nie jest rozwiązanie idealne, ale w codziennym użyciu działało wystarczająco dobrze.
 
@@ -40,9 +40,9 @@ Ta część projektu nauczyła mnie pracy z tolerancjami i geometrią, nawet bez
 
 ## Co użytkownik dostaje podczas jazdy
 
-Z perspektywy użytkowej ten zestaw nie kończył się na "ruszających się wskazówkach". Zależało mi, żeby urządzenie realnie rozszerzało interfejs gry, a nie tylko go kopiowało. Dlatego poza klasycznymi zegarami i kontrolkami dodałem komputer pokładowy na LCD, który pokazuje kilka widoków danych i umożliwia prostą personalizację.
+Z perspektywy użytkowej ten zestaw nie kończył się na „ruszających się wskazówkach”. Zależało mi, żeby urządzenie realnie rozszerzało interfejs gry, a nie tylko go kopiowało. Dlatego poza klasycznymi zegarami i kontrolkami dodałem komputer pokładowy na LCD, który pokazuje kilka widoków danych i umożliwia prostą personalizację.
 
-W praktyce podczas jazdy widzę najważniejsze informacje bez ciągłego zerknięcia na ekran gry: bieg, tempomat, przebieg, retarder, limit prędkości czy krótkie komunikaty zdarzeń. Do tego dochodzą ostrzeżenia świetlne i dźwiękowe, które działają bardziej jak sygnały z prawdziwego pojazdu niż jak suche statusy w interfejsie gry.
+W praktyce podczas jazdy widzę najważniejsze informacje bez ciągłego zerkania na ekran gry: bieg, tempomat, przebieg, retarder, limit prędkości czy krótkie komunikaty zdarzeń. Do tego dochodzą ostrzeżenia świetlne i dźwiękowe, które działają bardziej jak sygnały z prawdziwego pojazdu niż jak suche statusy w interfejsie gry.
 
 To była dla mnie ważna część projektu, bo wymusiła myślenie nie tylko o elektronice, ale o przepływie informacji i priorytetach danych. Musiałem zdecydować, co ma pojawiać się stale, co okresowo i jak nie przeładować ekranu mimo ograniczonej przestrzeni oraz mocy obliczeniowej.
 
@@ -50,7 +50,7 @@ To była dla mnie ważna część projektu, bo wymusiła myślenie nie tylko o e
 
 ## Co zrobiłbym inaczej
 
-Największy błąd to rezygnacja z dedykowanego PCB. Poszedłem drogą ręcznego okablowania i "zastępstwa płytki", co dało działający rezultat, ale kosztowało dużo więcej czasu niż powinno. Dzisiaj od początku przygotowałbym płytkę pod projekt i zostawił więcej zapasu na serwis.
+Największy błąd to rezygnacja z dedykowanego PCB. Poszedłem drogą ręcznego okablowania i „zastępstwa płytki”, co dało działający rezultat, ale kosztowało dużo więcej czasu niż powinno. Dzisiaj od początku przygotowałbym płytkę pod projekt i zostawił więcej zapasu na serwis.
 
 Druga rzecz to margines wydajności dla wyświetlacza. Udało się osiągnąć używalny efekt, ale przy bardziej dynamicznych zmianach danych było widać momenty przycięć. Gdybym budował ten projekt ponownie, mocniej rozdzieliłbym zadania między urządzeniami albo od razu dobrał platformę z większą rezerwą mocy.
 
@@ -62,4 +62,4 @@ Mimo tych ograniczeń uważam ten etap za bardzo wartościowy. To był projekt, 
 
 Finalnie powstał kompletny zestaw do ETS2/ATS: fizyczne wskaźniki, kontrolki, ekran pokładowy i własna warstwa integracji z telemetrią gry. To nie była pojedyncza funkcja, tylko pełny system łączący programowanie i elektronikę w jednym urządzeniu.
 
-Najważniejsze jest dla mnie to, że projekt nie skończył jako prototyp na zdjęciach. Działał w realnym użyciu, przeszedł wiele iteracji i dał mi solidne podstawy pod późniejsze projekty elektroniczne. W tym sensie DIY Arduino Dashboard był nie tylko gotowym produktem, ale też punktem zwrotnym w moim sposobie pracy nad projektami, które wychodzą poza sam kod.
+Najważniejsze jest dla mnie to, że projekt nie skończył się na prototypie ze zdjęć. Działał w realnym użyciu, przeszedł wiele iteracji i dał mi solidne podstawy pod późniejsze projekty elektroniczne. W tym sensie DIY Arduino Dashboard był nie tylko gotowym produktem, ale też punktem zwrotnym w moim sposobie pracy nad projektami, które wychodzą poza sam kod.

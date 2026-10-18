@@ -14,7 +14,7 @@ Na początku sprawdziłem Node-RED. Graficzne węzły wystarczały do prostych r
 
 Nie miałem wtedy rozbudowanego systemu, który wymagał wielkiej migracji. Dość szybko uznałem, że jako programista mam większą kontrolę nad zwykłym kodem. Własny backend pozwolił mi rozdzielać odpowiedzialności na serwisy, opisywać urządzenia typami i testować logikę bez uruchamiania jej na prawdziwym domu. Testy obejmują między innymi encje, automaty stanów, harmonogramy oraz poszczególne usługi.
 
-Dashboard utrzymuje jedno połączenie WebSocket z backendem. Backend subskrybuje zmiany w Home Assistant, udostępnia frontendowi potrzebne stany i przyjmuje polecenia sterujące. Token Home Assistanta nie trafia dzięki temu do przeglądarki. Sam dostęp do domowej sieci również nie wystarcza do sterowania urządzeniami: przy pierwszym uruchomieniu dashboard wymaga hasła, a backend odrzuca nieuwierzytelnione połączenia.
+Dashboard utrzymuje jedno połączenie WebSocket z backendem. Backend subskrybuje zmiany w Home Assistancie, udostępnia frontendowi potrzebne stany i przyjmuje polecenia sterujące. Token Home Assistanta nie trafia dzięki temu do przeglądarki. Sam dostęp do domowej sieci również nie wystarcza do sterowania urządzeniami: przy pierwszym uruchomieniu dashboard wymaga hasła, a backend odrzuca nieuwierzytelnione połączenia.
 
 [media:1]
 

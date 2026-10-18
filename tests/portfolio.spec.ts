@@ -134,8 +134,13 @@ test("next case study preserves the active project filter", async ({
     "/projects/vhs-htpc?track=hardware",
   );
   await page.locator(".next-project").click();
+  // Until it hydrates, the back link is a fallback to /#projects.
+  await expect(page.locator(".back-link").first()).toHaveAttribute(
+    "href",
+    /track=hardware/,
+  );
   await page.locator(".back-link").first().click();
-  await expect(page).toHaveURL(/track=hardware/);
+  await expect(page).toHaveURL(/\/\?track=hardware/);
   await expect(page.locator(".project-card")).toHaveCount(4);
 });
 
@@ -231,15 +236,11 @@ test("scene stops for reduced motion and content works without JavaScript", asyn
   const reduced = await browser.newContext({ reducedMotion: "reduce" });
   const page = await reduced.newPage();
   await page.goto("/");
-  const before = await page
-    .locator(".module-grid")
-    .evaluate((el) => getComputedStyle(el).transform);
+  const unit = page.locator(".signal-unit");
+  await expect(unit).toHaveAttribute("data-progress", "1.0000");
   await page.locator("#about").scrollIntoViewIfNeeded();
-  expect(
-    await page
-      .locator(".module-grid")
-      .evaluate((el) => getComputedStyle(el).transform),
-  ).toBe(before);
+  await expect(unit).toHaveAttribute("data-progress", "1.0000");
+  await expect(unit).toHaveAttribute("data-su-live", "true");
   await reduced.close();
   const nojs = await browser.newContext({ javaScriptEnabled: false });
   const staticPage = await nojs.newPage();
@@ -306,48 +307,39 @@ test("English routes have English document language and complete articles", asyn
   for (const p of projects.filter((p) => p.caseStudy)) {
     await page.goto(`/en/projects/${p.slug}`);
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
-    await expect(page.locator(".case-cover")).toHaveCount(0);
+    await expect(page.locator(".case-cover")).toHaveCount(1);
     expect(await page.locator(".case-body h2").count()).toBeGreaterThanOrEqual(
       4,
     );
   }
 });
 
-test("scene progresses through three states; video player loads without activation", async ({
+test("signal unit assembles on scroll, its meter answers clicks; video player loads without activation", async ({
   page,
 }) => {
   await page.goto("/");
-  await expect(page.locator(".geometry")).toHaveAttribute("data-phase", "flat");
-  const redModules = () =>
-    page
-      .locator(".face-front")
-      .evaluateAll(
-        (faces) =>
-          faces.filter(
-            (face) =>
-              getComputedStyle(face).backgroundColor === "rgb(179, 38, 54)",
-          ).length,
-      );
-  await expect.poll(redModules).toBe(1);
-  await page.locator(".track").nth(1).click();
-  await expect(page.locator(".geometry")).toHaveAttribute(
-    "data-track",
-    "hardware",
-  );
-  await expect.poll(redModules).toBe(1);
+  const unit = page.locator(".signal-unit");
+  await expect(unit).toHaveAttribute("data-progress", "0.0000");
+  // The multimeter works from the first frame.
+  const meterMode = unit.locator("[data-su-meter-mode]");
+  await expect(meterMode).toHaveText("V⎓");
+  await unit.locator('[data-su-click="meter"]').click();
+  await expect(meterMode).toHaveText("Ω");
   const introHeight = await page
     .locator(".intro")
     .evaluate((el) => el.getBoundingClientRect().height);
   await page.evaluate(
     (y) => scrollTo({ top: y, behavior: "instant" }),
-    introHeight * 0.35,
+    introHeight * 0.4,
   );
-  await expect(page.locator(".geometry")).toHaveAttribute("data-phase", "fold");
-  await page.locator("#projects").scrollIntoViewIfNeeded();
-  await expect(page.locator(".geometry")).toHaveAttribute(
-    "data-phase",
-    "space",
-  );
+  await expect
+    .poll(async () => Number(await unit.getAttribute("data-progress")))
+    .toBeGreaterThan(0.2);
+  await page
+    .locator("#projects")
+    .evaluate((el) => el.scrollIntoView({ behavior: "instant" }));
+  await expect(unit).toHaveAttribute("data-progress", "1.0000");
+  await expect(unit).toHaveAttribute("data-su-live", "true");
   for (const prefix of ["", "/en"]) {
     const request = page.waitForRequest(
       "https://www.youtube-nocookie.com/embed/KW6sZINNi9Y",

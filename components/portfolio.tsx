@@ -4,12 +4,13 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { PageShell } from "@/components/ui/page-shell";
 import { TagList } from "@/components/ui/tag-list";
 import Link from "next/link";
-import { useEffect, useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore, type ReactNode } from "react";
 import {
   projects,
   tracks,
   projectDate,
   projectName,
+  linkUrl,
   tagLabel,
   type Locale,
   type Track,
@@ -18,7 +19,6 @@ import {
 import { useTranslations } from "@/components/i18n-provider";
 import { projectPath } from "@/lib/localized-routes";
 import { Media } from "./media";
-import { Geometry } from "./geometry";
 import { ProjectFilters } from "./project-filters";
 import { TrackIcon } from "./track-icon";
 function validFilter(value: string | null): Track | "all" {
@@ -32,7 +32,13 @@ function subscribe(onChange: () => void) {
     removeEventListener("portfolio-filter", onChange);
   };
 }
-export function Portfolio({ locale }: { locale: Locale }) {
+export function Portfolio({
+  locale,
+  scene,
+}: {
+  locale: Locale;
+  scene: ReactNode;
+}) {
   const t = useTranslations();
   const search = useSyncExternalStore(
     subscribe,
@@ -96,14 +102,14 @@ export function Portfolio({ locale }: { locale: Locale }) {
             <span className="text-muted">{t("portfolio.hero.sublead")}</span>
           </p>
           <div className="hero-actions mt-7.5 flex items-center gap-7 max-tablet:flex-col max-tablet:items-start max-tablet:gap-4.5 max-tablet:[&>.text-link]:-mt-2.5 max-mobile:mt-6.25 max-mobile:flex-row max-mobile:items-center max-mobile:gap-6 max-mobile:[&>.text-link]:mt-0 max-mobile:[&>.text-link]:text-[12px] print:hidden">
-            <Action href="#projects" variant="primary">
-              {t("portfolio.hero.projects")}
+            <Action href="#contact" variant="primary">
+              {t("portfolio.hero.contact")}
             </Action>
             <Action
               className="text-link text-[14px] font-medium"
-              href="#contact"
+              href="#projects"
             >
-              {t("portfolio.hero.contact")}
+              {t("portfolio.hero.projects")}
             </Action>
           </div>
           <div className="hero-person mt-11.5 flex items-center gap-5 [&_strong]:text-[17px] [&_strong]:font-medium [&_p]:mt-0.75 [&_p]:max-w-75 [&_p]:text-[14px] max-desktop:mt-8 max-tablet:gap-3.5 max-tablet:[&_strong]:text-[15px] max-tablet:[&_p]:text-[12px] max-mobile:mt-7.5 max-mobile:[&_strong]:text-[16px] max-mobile:[&_p]:text-[13px] max-mobile:[&_p]:max-w-58.75">
@@ -125,7 +131,7 @@ export function Portfolio({ locale }: { locale: Locale }) {
           </div>
         </div>
         <div className="scene-column col-start-2 row-span-2 row-start-1 min-w-0 pt-18.5 pb-17.5 min-[1600px]:pt-23.75 max-tablet:pt-17.5 max-mobile:px-6 max-mobile:pt-4.5 max-mobile:pb-10 print:hidden">
-          <Geometry active={filter} />
+          {scene}
         </div>
         <section
           id="about"
@@ -307,8 +313,8 @@ function ProjectCard({
               p.links.map((link) => (
                 <Action
                   variant="curtain"
-                  key={link.url}
-                  href={link.url}
+                  key={linkUrl(link, locale)}
+                  href={linkUrl(link, locale)}
                   icon={link.icon}
                   className="external-link justify-center border border-field bg-transparent text-center text-[13px] font-medium text-ink hover:border-ink focus-visible:border-ink max-mobile:min-h-10 max-mobile:px-2 max-mobile:py-2 max-mobile:text-[11px]"
                 >

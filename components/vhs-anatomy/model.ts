@@ -55,7 +55,7 @@ export const vhsCopy: Record<
   }
 > = {
   pl: {
-    title: "Drugie życie laptopa i VHSa",
+    title: "Drugie życie laptopa i VHS-a",
     hint: "Wybierz scenę strzałkami lub suwakiem",
     control: "Przemiana laptopa w VHS HTPC",
     description:

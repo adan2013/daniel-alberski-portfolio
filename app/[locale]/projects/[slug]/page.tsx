@@ -5,6 +5,7 @@ import { locales } from "@/lib/i18n";
 import { projects, projectName } from "@/lib/projects";
 import { getRequestI18n } from "@/lib/request-i18n";
 import { languageAlternates } from "@/lib/localized-routes";
+import { socialMetadata } from "@/lib/site-metadata";
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -25,10 +26,18 @@ export async function generateMetadata({
   );
   if (!project) return {};
 
+  const title = projectName(project, locale);
+  const description = project.premise[locale];
   return {
-    title: projectName(project, locale),
-    description: project.premise[locale],
+    title,
+    description,
     alternates: languageAlternates(locale, `/projects/${slug}`),
+    ...socialMetadata(locale, {
+      title: `${title} — Daniel Alberski`,
+      description,
+      pathname: `/projects/${slug}`,
+      type: "article",
+    }),
   };
 }
 

@@ -1,5 +1,6 @@
 {
   "metadata": {
+    "title": "Daniel Alberski — Software Developer · React i TypeScript",
     "description": "Programuję od 2013 roku, komercyjnie od 2020. Frontend i React to moja specjalizacja. Poznaj moje projekty software, hardware, AI i druku 3D."
   },
   "navigation": {
@@ -7,25 +8,31 @@
     "main": "Nawigacja główna",
     "projects": "Projekty",
     "about": "O mnie",
+    "github": "GitHub",
     "contact": "Kontakt",
-    "switchLanguage": "Przełącz na angielski"
+    "switchLanguage": "Przełącz na angielski",
+    "openMenu": "Otwórz menu",
+    "closeMenu": "Zamknij menu"
   },
   "site": {
     "skipToContent": "Przejdź do treści",
-    "footerCopyright": "© {{year}} Daniel Alberski"
+    "footerCopyright": "© {{year}} Daniel Alberski",
+    "backToTop": "Na górę"
   },
   "portfolio": {
     "hero": {
       "eyebrow": "KOMERCYJNIE OD 2020. Z CIEKAWOŚCI OD 2013.",
-      "title": "SOFTWARE DEVELOPER.",
       "lead": "Projektuję i rozwijam oprogramowanie.",
       "sublead": "Od architektury po wdrożenie.",
       "projects": "Zobacz projekty",
       "contact": "Porozmawiajmy",
-      "portraitLabel": "Miejsce na portret Daniela, kadr 1:1",
-      "portrait": "Portret",
+      "portraitLabel": "Portret Daniela Alberskiego",
       "greeting": "Cześć, jestem Daniel.",
-      "bio": "Rozwijam się, budując własne projekty: od interfejsów i backendu po elektronikę oraz druk 3D."
+      "bio": "Rozwijam się, budując własne projekty: od interfejsów i backendu po elektronikę oraz druk 3D.",
+      "sceneLabel": "Otwarte urządzenie obok laptopa i multimetru: podzespoły trafiają do obudowy, kable się spinają, laptop wgrywa program, a urządzenie startuje i odpowiada.",
+      "sceneHint": "Przewiń stronę, aby skończyć ze mną ten projekt.",
+      "sceneDone": "Dzięki za pomoc, możesz się pobawić :)",
+      "desktopNote": "Aby zobaczyć pełen potencjał animacji, użyj komputera."
     },
     "about": {
       "eyebrow": "O MNIE",
@@ -57,7 +64,7 @@
       "intro": "Od pierwszych eksperymentów po systemy używane na co dzień. Każdy projekt był dla mnie innym wyzwaniem i okazją, żeby nauczyć się czegoś nowego.",
       "caseStudy": "CASE STUDY",
       "technologies": "Technologie",
-      "readMore": "Czytaj więcej"
+      "readMore": "Poznaj historię"
     }
   },
   "filters": {
@@ -111,6 +118,11 @@
     "send": "Wyślij wiadomość",
     "success": "✓ Dziękuję! Wiadomość została wysłana.",
     "error": "Nie udało się wysłać wiadomości. Spróbuj ponownie lub skontaktuj się ze mną przez LinkedIn.",
+    "caseStudy": {
+      "title": "Szukasz developera do zespołu?",
+      "titleAccent": "Porozmawiajmy.",
+      "description": "Jeśli ten projekt pokazuje sposób pracy, którego szukasz, napisz. Chętnie opowiem więcej o nim i o moim doświadczeniu komercyjnym."
+    },
     "coffee": {
       "eyebrow": "WESPRZYJ MOJĄ TWÓRCZOŚĆ",
       "title": "Podoba Ci się to, co tworzę?",
@@ -129,13 +141,10 @@
     "logic": "Logika i automatyzacje",
     "deviceCommunication": "Komunikacja z urządzeniami",
     "navigation": "Nawigacja między projektami",
-    "next": "NASTĘPNY PROJEKT"
-  },
-  "video": { "caption": "Zegary w działaniu podczas jazdy w symulatorze." },
-  "geometry": {
-    "flat": "PŁASZCZYZNA",
-    "fold": "TRANSFORMACJA",
-    "space": "KONSTRUKCJA"
+    "next": "NASTĘPNY PROJEKT",
+    "animation": "Animacja",
+    "previousScene": "Poprzednia scena",
+    "nextScene": "Następna scena"
   },
   "submit": {
     "title": "Wiadomość wysłana",

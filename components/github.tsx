@@ -11,6 +11,7 @@ export function GitHub({ locale }: { locale: Locale }) {
   return (
     <PageShell
       as="section"
+      id="github"
       className="github-section my-20 grid grid-cols-[1fr_2fr] gap-15 border-y border-line py-8 [&_h2]:mt-3.5 [&_h2]:text-[25px] [&_h2]:tracking-tight max-desktop:grid-cols-1 max-desktop:gap-5 max-mobile:my-12.5 max-mobile:py-6.75"
       aria-labelledby="github-heading"
     >

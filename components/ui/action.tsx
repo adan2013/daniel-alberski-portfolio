@@ -8,7 +8,8 @@ import type {
 import { cx } from "./class-names";
 import "./action.css";
 
-type ActionVariant = "ghost" | "inline" | "primary" | "curtain" | "tile";
+type ActionVariant =
+  "ghost" | "inline" | "primary" | "outline" | "curtain" | "tile";
 type ActionTone = "default" | "accent";
 type ActionCommonProps = {
   variant?: ActionVariant;
@@ -40,11 +41,15 @@ const actionVariantClasses: Record<ActionVariant, string> = {
     animatedActionClasses,
     "min-h-12 justify-center border border-accent bg-accent text-[14px] font-medium text-white before:bg-[color-mix(in_srgb,var(--accent)_88%,black)]",
   ),
+  outline: cx(
+    animatedActionClasses,
+    "min-h-12 justify-center border border-accent bg-transparent text-[14px] font-medium text-accent before:bg-accent",
+  ),
   curtain: cx(
     animatedActionClasses,
     "min-h-11 before:bg-[var(--curtain-color,var(--text))]",
   ),
-  tile: "group/action relative isolate flex min-h-36 min-w-0 flex-col items-start justify-between gap-6 overflow-hidden border border-field bg-white p-5 text-left text-[17px] leading-snug font-medium tracking-tight text-ink no-underline transition-colors duration-320 ease-out before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:origin-bottom before:scale-y-0 before:bg-accent before:transition-transform before:duration-320 before:ease-out before:content-[''] hover:border-accent hover:text-white hover:before:scale-y-100 focus-visible:border-accent focus-visible:text-white focus-visible:before:scale-y-100 max-mobile:min-h-32 max-mobile:p-4 max-mobile:text-[16px]",
+  tile: "group/action relative isolate flex min-h-36 min-w-0 flex-col items-start justify-between gap-6 overflow-hidden border border-field bg-white p-5 text-left text-[17px] leading-snug font-medium tracking-tight text-ink no-underline transition-colors duration-320 ease-out before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:origin-bottom before:scale-y-0 before:bg-accent before:transition-transform before:duration-320 before:ease-out before:content-[''] hover:border-accent hover:text-white hover:before:scale-y-100 focus-visible:border-accent focus-visible:text-white focus-visible:before:scale-y-100 max-mobile:min-h-0 max-mobile:flex-row max-mobile:items-center max-mobile:gap-2 max-mobile:px-3 max-mobile:py-2 max-mobile:text-[14px]",
 };
 const actionToneClasses: Record<ActionTone, string> = {
   default: "",
@@ -122,7 +127,9 @@ function SourceIcon({ icon }: { icon: LinkIconName }) {
 }
 
 function actionContent(variant: ActionVariant, children: ReactNode) {
-  return variant === "primary" || variant === "curtain" ? (
+  return variant === "primary" ||
+    variant === "outline" ||
+    variant === "curtain" ? (
     <ActionLabel>{children}</ActionLabel>
   ) : (
     children
@@ -159,7 +166,7 @@ export function Action(props: ActionProps) {
       variant === "tile" ? (
         <>
           {sourceIcon && (
-            <span className="text-accent transition-colors duration-320 group-hover/action:text-white group-focus-visible/action:text-white [&>svg]:size-10 [&>svg]:shrink-0">
+            <span className="text-accent transition-colors duration-320 group-hover/action:text-white group-focus-visible/action:text-white [&>svg]:size-10 [&>svg]:shrink-0 max-mobile:flex max-mobile:[&>svg]:size-4.5">
               {sourceIcon}
             </span>
           )}

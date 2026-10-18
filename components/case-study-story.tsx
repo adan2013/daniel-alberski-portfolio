@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { Locale } from "@/lib/projects";
+import { createTranslator } from "@/lib/i18n";
 import "./case-study-story.css";
 
 export function CaseStudyStory({
@@ -16,7 +17,7 @@ export function CaseStudyStory({
       {animation ? (
         <section
           className="case-animation"
-          aria-label={locale === "pl" ? "Animacja" : "Animation"}
+          aria-label={createTranslator(locale)("caseStudy.animation")}
         >
           {animation}
         </section>

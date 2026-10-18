@@ -1,5 +1,6 @@
 {
   "metadata": {
+    "title": "Daniel Alberski — Software Developer · React & TypeScript",
     "description": "Programming since 2013, professionally since 2020. Frontend and React are my speciality. Explore my software, hardware, AI and 3D-printing projects."
   },
   "navigation": {
@@ -7,25 +8,31 @@
     "main": "Main navigation",
     "projects": "Projects",
     "about": "About",
+    "github": "GitHub",
     "contact": "Contact",
-    "switchLanguage": "Switch to Polish"
+    "switchLanguage": "Switch to Polish",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "site": {
     "skipToContent": "Skip to content",
-    "footerCopyright": "© {{year}} Daniel Alberski"
+    "footerCopyright": "© {{year}} Daniel Alberski",
+    "backToTop": "Back to top"
   },
   "portfolio": {
     "hero": {
       "eyebrow": "PROFESSIONALLY SINCE 2020. CURIOUS SINCE 2013.",
-      "title": "SOFTWARE DEVELOPER.",
       "lead": "I design and develop software.",
       "sublead": "From architecture to deployment.",
       "projects": "Explore projects",
       "contact": "Let’s talk",
-      "portraitLabel": "Daniel’s portrait placeholder, 1:1 crop",
-      "portrait": "Portrait",
+      "portraitLabel": "Portrait of Daniel Alberski",
       "greeting": "Hi, I’m Daniel.",
-      "bio": "I develop my skills by building personal projects, from interfaces and backends to electronics and 3D printing."
+      "bio": "I develop my skills by building personal projects, from interfaces and backends to electronics and 3D printing.",
+      "sceneLabel": "An open unit beside a laptop and a multimeter: parts drop into the case, cables connect, the laptop loads the program, and the unit boots and answers.",
+      "sceneHint": "Scroll down to finish this project with me.",
+      "sceneDone": "Thanks for the help, now go play with it :)",
+      "desktopNote": "Open this page on a computer to see the animation at its best."
     },
     "about": {
       "eyebrow": "ABOUT ME",
@@ -111,6 +118,11 @@
     "send": "Send message",
     "success": "✓ Thank you! Your message has been sent.",
     "error": "The message could not be sent. Please try again or contact me on LinkedIn.",
+    "caseStudy": {
+      "title": "Hiring a developer?",
+      "titleAccent": "Let’s talk.",
+      "description": "If this project shows the way of working you’re looking for, drop me a message. I’m happy to tell you more about it and about my commercial experience."
+    },
     "coffee": {
       "eyebrow": "SUPPORT MY WORK",
       "title": "Like what I create?",
@@ -129,13 +141,10 @@
     "logic": "Logic and automations",
     "deviceCommunication": "Device communication",
     "navigation": "Project navigation",
-    "next": "NEXT PROJECT"
-  },
-  "video": { "caption": "The gauges in action during a simulator drive." },
-  "geometry": {
-    "flat": "PLANE",
-    "fold": "TRANSFORMATION",
-    "space": "STRUCTURE"
+    "next": "NEXT PROJECT",
+    "animation": "Animation",
+    "previousScene": "Previous scene",
+    "nextScene": "Next scene"
   },
   "submit": {
     "title": "Message sent",
