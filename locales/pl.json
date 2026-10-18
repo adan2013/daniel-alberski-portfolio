@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Daniel Alberski — Software Developer · React i TypeScript",
-    "description": "Programuję od 2013 roku, komercyjnie od 2020. Frontend i React to moja specjalizacja. Poznaj moje projekty software, hardware, AI i druku 3D."
+    "description": "Programuję od 2013 roku, komercyjnie od 2020. Tworzę oprogramowanie od architektury po wdrożenie: web, backend, aplikacje mobilne i urządzenia. Poznaj moje projekty software, hardware, AI i druku 3D."
   },
   "navigation": {
     "brandLabel": "Daniel Alberski — portfolio",
@@ -36,9 +36,9 @@
     },
     "about": {
       "eyebrow": "O MNIE",
-      "title": "Frontend, architektura",
+      "title": "Software, architektura",
       "titleAccent": "i własne projekty.",
-      "paragraph1": "Programuję od 2013 roku, a komercyjnie pracuję od 2020. Najwięcej doświadczenia mam we frontendzie i ekosystemie React. To także obszar, w którym najbardziej lubię pracować. Moje doświadczenie komercyjne obejmuje również backend i aplikacje mobilne.",
+      "paragraph1": "Programuję od 2013 roku, a komercyjnie pracuję od 2020. Tworzyłem aplikacje webowe, backend i aplikacje mobilne, a dziś łączę oprogramowanie także z elektroniką. Najdłużej pracuję w ekosystemie React i TypeScript, ale technologię dobieram do problemu, nie odwrotnie.",
       "paragraph2": "W pracy zawodowej zajmowałem się architekturą oprogramowania i pełniłem rolę Tech Leada, cały czas aktywnie pisząc kod. Decyzje architektoniczne weryfikowałem więc bezpośrednio w implementacji, zamiast traktować je jako osobny etap pracy. Ten sam sposób działania przenoszę do własnych projektów: zaczynam od konkretnego problemu, wybieram narzędzia i doprowadzam rozwiązanie do działającej wersji.",
       "journeyIntro": "Zaczynałem od projektów skupionych na samym oprogramowaniu. ",
       "redarkName": "Redark",
@@ -64,15 +64,9 @@
       "intro": "Od pierwszych eksperymentów po systemy używane na co dzień. Każdy projekt był dla mnie innym wyzwaniem i okazją, żeby nauczyć się czegoś nowego.",
       "caseStudy": "CASE STUDY",
       "technologies": "Technologie",
+      "tracks": "Obszary",
       "readMore": "Poznaj historię"
     }
-  },
-  "filters": {
-    "all": "Wszystkie projekty",
-    "legend": "Filtruj projekty",
-    "hint": "Wybierz ścieżkę, aby zawęzić listę poniżej.",
-    "countLabel": "Liczba projektów: {{count}}",
-    "summary": "{{selected}} · {{count}} z {{total}} projektów"
   },
   "github": {
     "eyebrow": "AKTYWNOŚĆ",

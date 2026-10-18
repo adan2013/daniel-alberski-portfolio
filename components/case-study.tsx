@@ -2,7 +2,7 @@ import { Action } from "@/components/ui/action";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { PageShell } from "@/components/ui/page-shell";
 import { TagList } from "@/components/ui/tag-list";
-import { Suspense, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import {
   projects,
@@ -16,9 +16,9 @@ import {
 } from "@/lib/projects";
 import { readCaseStudy } from "@/lib/case-studies";
 import { createTranslator } from "@/lib/i18n";
-import { localizedPath, projectPath } from "@/lib/localized-routes";
+import { projectPath } from "@/lib/localized-routes";
 import { Media } from "./media";
-import { BackToProjects, NextProjectLink } from "./case-navigation";
+import { BackToProjects } from "./case-navigation";
 import { Video } from "./video";
 import { CaseStudyStory } from "./case-study-story";
 import { Contact } from "./contact";
@@ -42,18 +42,7 @@ export async function CaseStudy({
   return (
     <main id="main" className="case-main">
       <PageShell className="pt-9.5 max-mobile:pt-5.5">
-        <Suspense
-          fallback={
-            <Action
-              className="back-link text-[14px] text-muted"
-              href={`${localizedPath(locale)}#projects`}
-            >
-              {t("caseStudy.back")}
-            </Action>
-          }
-        >
-          <BackToProjects locale={locale} />
-        </Suspense>
+        <BackToProjects locale={locale} slug={p.slug} />
         <header className="case-head pt-12.5 pb-12 [&>.eyebrow]:mb-5 [&>.eyebrow]:text-muted [&>h1]:max-w-275 [&>h1]:text-[clamp(40px,6.8vw,92px)] [&>h1]:font-medium [&>h1]:leading-[1.05] [&>h1]:tracking-[-0.06em] max-mobile:pt-6.5 max-mobile:pb-7.5 max-mobile:[&>h1]:text-[43px]">
           <Eyebrow>
             CASE STUDY /{" "}
@@ -172,26 +161,14 @@ export async function CaseStudy({
           className="case-end flex items-center justify-between gap-7.5 border-t border-line pt-9 pb-16.25 text-[14px] [&_small]:mb-1.5 [&_small]:block [&_small]:text-[11px] [&_small]:text-muted max-mobile:flex-col max-mobile:items-start max-mobile:gap-5 max-mobile:pb-8.75"
           aria-label={t("caseStudy.navigation")}
         >
-          <Suspense>
-            <BackToProjects locale={locale} />
-          </Suspense>
-          <Suspense
-            fallback={
-              <Action
-                className="next-project text-right text-[18px] max-mobile:text-left"
-                href={projectPath(locale, next.slug)}
-              >
-                <small>{t("caseStudy.next")}</small>
-                {projectName(next, locale)}
-              </Action>
-            }
+          <BackToProjects locale={locale} slug={p.slug} />
+          <Action
+            className="next-project text-right text-[18px] max-mobile:text-left"
+            href={projectPath(locale, next.slug)}
           >
-            <NextProjectLink
-              locale={locale}
-              slug={next.slug}
-              name={projectName(next, locale)}
-            />
-          </Suspense>
+            <small>{t("caseStudy.next")}</small>
+            {projectName(next, locale)}
+          </Action>
         </nav>
       </PageShell>
       <Contact locale={locale} variant="caseStudy" />

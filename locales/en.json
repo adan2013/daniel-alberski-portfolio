@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Daniel Alberski — Software Developer · React & TypeScript",
-    "description": "Programming since 2013, professionally since 2020. Frontend and React are my speciality. Explore my software, hardware, AI and 3D-printing projects."
+    "description": "Programming since 2013, professionally since 2020. I build software from architecture to deployment: web, backend, mobile and devices. Explore my software, hardware, AI and 3D-printing projects."
   },
   "navigation": {
     "brandLabel": "Daniel Alberski — portfolio",
@@ -36,9 +36,9 @@
     },
     "about": {
       "eyebrow": "ABOUT ME",
-      "title": "Frontend, architecture",
+      "title": "Software, architecture",
       "titleAccent": "and personal projects.",
-      "paragraph1": "I’ve been programming since 2013 and working professionally since 2020. Frontend and the React ecosystem are where I have the most experience. They’re also the areas I most enjoy working in. My professional experience also includes backend and mobile application development.",
+      "paragraph1": "I’ve been programming since 2013 and working professionally since 2020. I’ve built web applications, backends and mobile apps, and today I also connect software with electronics. React and TypeScript are where I have the longest track record, but I choose the technology to fit the problem, not the other way round.",
       "paragraph2": "In my professional work, I’ve worked on software architecture and as a Tech Lead while continuing to write code. I therefore tested architectural decisions directly in the implementation instead of treating them as a separate stage. I take the same approach to personal projects: I start with a concrete problem, choose the tools and bring the solution to a working state.",
       "journeyIntro": "I started with projects focused entirely on software. ",
       "redarkName": "Redark",
@@ -64,15 +64,9 @@
       "intro": "From early experiments to systems used every day. Each project brought a different challenge and an opportunity to learn something new.",
       "caseStudy": "CASE STUDY",
       "technologies": "Technologies",
+      "tracks": "Areas",
       "readMore": "Read the story"
     }
-  },
-  "filters": {
-    "all": "All projects",
-    "legend": "Filter projects",
-    "hint": "Choose a path to filter the projects below.",
-    "countLabel": "Project count: {{count}}",
-    "summary": "{{selected}} · {{count}} of {{total}} projects"
   },
   "github": {
     "eyebrow": "ACTIVITY",

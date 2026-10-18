@@ -4,7 +4,7 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { PageShell } from "@/components/ui/page-shell";
 import { TagList } from "@/components/ui/tag-list";
 import Link from "next/link";
-import { useEffect, useSyncExternalStore, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import {
   projects,
   tracks,
@@ -13,25 +13,12 @@ import {
   linkUrl,
   tagLabel,
   type Locale,
-  type Track,
   type Project,
 } from "@/lib/projects";
 import { useTranslations } from "@/components/i18n-provider";
 import { projectPath } from "@/lib/localized-routes";
 import { Media } from "./media";
-import { ProjectFilters } from "./project-filters";
 import { TrackIcon } from "./track-icon";
-function validFilter(value: string | null): Track | "all" {
-  return tracks.some((t) => t.id === value) ? (value as Track) : "all";
-}
-function subscribe(onChange: () => void) {
-  addEventListener("popstate", onChange);
-  addEventListener("portfolio-filter", onChange);
-  return () => {
-    removeEventListener("popstate", onChange);
-    removeEventListener("portfolio-filter", onChange);
-  };
-}
 export function Portfolio({
   locale,
   scene,
@@ -40,21 +27,14 @@ export function Portfolio({
   scene: ReactNode;
 }) {
   const t = useTranslations();
-  const search = useSyncExternalStore(
-    subscribe,
-    () => location.search,
-    () => "",
-  );
-  const filter = validFilter(new URLSearchParams(search).get("track"));
   useEffect(() => {
-    if (search !== location.search) return;
     let cancelled = false;
     try {
       if (sessionStorage.getItem("restore-portfolio") !== "yes") return;
       const saved = JSON.parse(
         sessionStorage.getItem("portfolio-return") || "null",
       );
-      if (saved?.url !== location.pathname + location.search) return;
+      if (saved?.url !== location.pathname) return;
       document.fonts.ready.then(() => {
         if (cancelled) return;
         sessionStorage.removeItem("restore-portfolio");
@@ -64,17 +44,7 @@ export function Portfolio({
     return () => {
       cancelled = true;
     };
-  }, [search]);
-  function select(value: Track | "all") {
-    const url = new URL(location.href);
-    if (value === "all") url.searchParams.delete("track");
-    else url.searchParams.set("track", value);
-    history.replaceState(null, "", url);
-    dispatchEvent(new Event("portfolio-filter"));
-  }
-  const visible = projects.filter(
-    (p) => filter === "all" || p.tracks.includes(filter),
-  );
+  }, []);
   return (
     <>
       <PageShell
@@ -206,18 +176,12 @@ export function Portfolio({
           </div>
           <p>{t("portfolio.projects.intro")}</p>
         </div>
-        <ProjectFilters value={filter} onChange={select} locale={locale} />
         <div
           id="project-list"
-          className="project-list flex flex-col gap-6.5 max-mobile:gap-6"
+          className="project-list grid grid-cols-3 gap-5 max-desktop:grid-cols-2 max-mobile:grid-cols-1 max-mobile:gap-4"
         >
-          {visible.map((project) => (
-            <ProjectCard
-              key={project.slug}
-              project={project}
-              locale={locale}
-              filter={filter}
-            />
+          {projects.map((project) => (
+            <ProjectCard key={project.slug} project={project} locale={locale} />
           ))}
         </div>
       </PageShell>
@@ -227,17 +191,15 @@ export function Portfolio({
 function ProjectCard({
   project: p,
   locale,
-  filter,
 }: {
   project: Project;
   locale: Locale;
-  filter: Track | "all";
 }) {
   const t = useTranslations();
-  const url = `${projectPath(locale, p.slug)}${filter !== "all" ? `?track=${filter}` : ""}`;
+  const url = projectPath(locale, p.slug);
   return (
     <article
-      className={`project-card group/project grid scroll-mt-28 grid-cols-[2fr_3fr] border border-line transition-colors duration-200 hover:border-field max-mobile:flex max-mobile:flex-col print:break-inside-avoid ${p.priority} ${p.priority === "main" ? "bg-white" : "bg-page"}`}
+      className={`project-card group/project relative flex min-w-0 scroll-mt-28 flex-col border transition-colors duration-200 print:break-inside-avoid ${p.priority} ${p.caseStudy ? "border-line bg-white hover:border-accent focus-within:border-accent" : "border-line bg-page hover:border-field"}`}
       id={p.slug}
       onClickCapture={(e) => {
         if (
@@ -250,7 +212,7 @@ function ProjectCard({
             sessionStorage.setItem(
               "portfolio-return",
               JSON.stringify({
-                url: location.pathname + location.search,
+                url: location.pathname,
                 scroll: scrollY,
                 project: p.slug,
               }),
@@ -259,91 +221,98 @@ function ProjectCard({
         }
       }}
     >
-      <div className="project-visual flex min-w-0 items-center p-4 max-tablet:p-3 max-mobile:pb-0">
-        {p.caseStudy ? (
-          <Link
-            href={url}
-            className="block w-full"
-            aria-label={`${t("portfolio.projects.readMore")} — ${projectName(p, locale)}`}
-          >
-            <Media media={p.media[0]} locale={locale} />
-          </Link>
-        ) : (
+      <div className="project-visual relative p-3 pb-0">
+        <div className="overflow-hidden [&_.media]:aspect-[16/10]! [&_img]:transition-transform [&_img]:duration-500 [&_img]:ease-out motion-safe:group-hover/project:[&_img]:scale-[1.03]">
           <Media media={p.media[0]} locale={locale} />
+        </div>
+        {p.caseStudy && (
+          <span className="case-badge absolute top-3 left-3 z-1 bg-accent px-2.5 py-1.5 text-[10px] leading-none font-medium tracking-[0.12em] text-white uppercase">
+            {t("portfolio.projects.caseStudy")}
+          </span>
         )}
       </div>
-      <div className="project-copy flex min-w-0 flex-col p-6 pl-4 max-tablet:p-4 max-mobile:p-4">
-        <div className="project-meta mb-3 flex items-center justify-between gap-3 text-[11px] text-muted [&>span]:tracking-[0.08em]">
+      <div className="project-copy flex min-w-0 flex-1 flex-col p-5 pt-4 max-tablet:p-4">
+        <div className="project-meta mb-2.5 flex items-center justify-between gap-3 text-[11px] text-muted">
           <time dateTime={p.date}>{projectDate(p.date, locale)}</time>
-          {p.caseStudy && (
-            <span className="flex items-center gap-2 text-muted before:size-1.5 before:bg-accent before:content-['']">
-              {t("portfolio.projects.caseStudy")}
-            </span>
-          )}
+          <ul
+            className="project-tracks flex items-center gap-1.5"
+            aria-label={t("portfolio.projects.tracks")}
+          >
+            {p.tracks.map((track) => {
+              const name = tracks.find((t) => t.id === track)!.name[locale];
+              return (
+                <li
+                  key={track}
+                  tabIndex={0}
+                  className="group/track relative z-2 -m-1 p-1 outline-none focus-visible:outline-2 focus-visible:outline-accent"
+                >
+                  <TrackIcon
+                    track={track}
+                    className="size-4.5 text-ink transition-colors duration-150 group-hover/track:text-accent group-focus-visible/track:text-accent"
+                  />
+                  <span
+                    role="tooltip"
+                    className="pointer-events-none absolute right-0 bottom-full mb-1.5 translate-y-1 bg-ink px-2.5 py-1.5 text-[12px] leading-none font-medium whitespace-nowrap text-page opacity-0 transition duration-150 ease-out after:absolute after:top-full after:right-2.5 after:border-x-[5px] after:border-t-[5px] after:border-x-transparent after:border-t-ink after:content-[''] group-hover/track:translate-y-0 group-hover/track:opacity-100 group-focus-visible/track:translate-y-0 group-focus-visible/track:opacity-100"
+                  >
+                    {name}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
         </div>
-        <h3 className="mb-3 text-[28px] font-medium leading-[1.2] tracking-[-0.04em] max-tablet:text-[26px] group-[.secondary]/project:text-[26px]">
-          {p.caseStudy ? (
-            <Link
-              href={url}
-              className="transition-colors duration-200 hover:text-accent focus-visible:text-accent"
-            >
-              {projectName(p, locale)}
-            </Link>
-          ) : (
-            projectName(p, locale)
-          )}
+        <h3
+          className={`mb-2.5 text-[22px] font-medium leading-[1.2] tracking-[-0.035em] transition-colors duration-200 ${p.caseStudy ? "group-hover/project:text-accent group-focus-within/project:text-accent" : ""}`}
+        >
+          {projectName(p, locale)}
         </h3>
-        <p className="mb-4 text-[16px] leading-[1.6]">{p.summary[locale]}</p>
-        <TagList aria-label={t("portfolio.projects.technologies")}>
+        <p className="mb-4 text-[15px] leading-[1.6]">{p.summary[locale]}</p>
+        <TagList
+          className="mb-5"
+          aria-label={t("portfolio.projects.technologies")}
+        >
           {p.tags.map((tag) => (
             <span key={tag}>{tagLabel(tag, locale)}</span>
           ))}
         </TagList>
-        <ul className="project-tracks mt-3 mb-4 flex flex-wrap gap-x-4 gap-y-2 text-[11px] leading-normal text-muted">
-          {p.tracks.map((track) => (
-            <li key={track} className="flex items-center gap-1.5">
-              <TrackIcon track={track} className="size-5 text-ink" />
-              <span>{tracks.find((t) => t.id === track)!.name[locale]}</span>
-            </li>
-          ))}
-        </ul>
-        {(p.caseStudy || p.links.length > 0) && (
-          <div className="project-actions mt-auto flex flex-wrap items-stretch gap-2 border-t border-line pt-4 max-mobile:gap-1.5">
-            {!p.caseStudy &&
-              p.links.map((link) => (
+        {p.caseStudy ? (
+          <div className="project-actions mt-auto border-t border-line pt-4">
+            <Link
+              href={url}
+              className="read-more flex h-9 items-center justify-between text-[13px] font-medium text-accent after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:-outline-offset-1 focus-visible:after:outline-accent"
+            >
+              {t("portfolio.projects.readMore")}
+              <span className="sr-only"> — {projectName(p, locale)}</span>
+              <svg
+                className="size-4 transition-transform duration-200 ease-out motion-safe:group-hover/project:translate-x-1"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.25"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M2.5 8h10M8.5 4l4 4-4 4" />
+              </svg>
+            </Link>
+          </div>
+        ) : (
+          p.links.length > 0 && (
+            <div className="project-actions @container mt-auto flex gap-1.5 border-t border-line pt-4">
+              {p.links.map((link) => (
                 <Action
                   variant="curtain"
                   key={linkUrl(link, locale)}
                   href={linkUrl(link, locale)}
                   icon={link.icon}
-                  className="external-link justify-center border border-field bg-transparent text-center text-[13px] font-medium text-ink hover:border-ink focus-visible:border-ink max-mobile:min-h-10 max-mobile:px-2 max-mobile:py-2 max-mobile:text-[11px]"
+                  className="external-link h-9 min-h-0! shrink-0 justify-center border border-field bg-transparent px-2.5 py-0 text-[12px] whitespace-nowrap @max-[19rem]:px-2 @max-[19rem]:[&_svg]:hidden font-medium text-ink hover:border-ink focus-visible:border-ink"
                 >
                   {link.label[locale]}
                 </Action>
               ))}
-            {p.caseStudy && (
-              <Action
-                variant="primary"
-                className="read-more ml-auto text-center text-[13px] max-mobile:min-h-10 max-mobile:px-2 max-mobile:py-2 max-mobile:text-[11px] max-mobile:[&_svg]:ml-1.5 max-mobile:[&_svg]:size-3.5"
-                href={url}
-              >
-                {t("portfolio.projects.readMore")}
-                <svg
-                  className="ml-2 inline-block size-4 align-[-0.2em]"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.25"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M2.5 8h10M8.5 4l4 4-4 4" />
-                </svg>
-                <span className="sr-only"> — {projectName(p, locale)}</span>
-              </Action>
-            )}
-          </div>
+            </div>
+          )
         )}
       </div>
     </article>

@@ -43,38 +43,27 @@ test("metadata follows the plan and each main project has both narratives", asyn
       ).toBeGreaterThan(1000);
 });
 
-test("four filters preserve chronology, six case studies and three secondary cards", async ({
-  page,
-}) => {
+test("nine projects in a 3x3 grid with six case studies", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
   await expect(page.locator(".project-card")).toHaveCount(9);
+  expect(
+    await page
+      .locator(".project-card")
+      .evaluateAll((els) => els.map((e) => e.id)),
+  ).toEqual(projects.map((p) => p.slug));
   await expect(page.locator(".project-card.main .read-more")).toHaveCount(6);
   await expect(page.locator(".project-card.secondary .read-more")).toHaveCount(
     0,
   );
-  for (const [id, slugs] of Object.entries({
-    software: projects.map((p) => p.slug),
-    hardware: ["piguard", "vhs-htpc", "book-reader", "arduino-dashboard"],
-    ai: ["gauge-generator", "piguard", "palettes"],
-    "3d": ["piguard", "palettes", "vhs-htpc"],
-  })) {
-    await page
-      .locator(`.track`)
-      .nth(["software", "hardware", "ai", "3d"].indexOf(id))
-      .click();
-    await expect(page).toHaveURL(new RegExp(`track=${id}`));
-    await expect(page.locator(".project-card")).toHaveCount(slugs.length);
-    expect(
-      await page
-        .locator(".project-card")
-        .evaluateAll((els) => els.map((e) => e.id)),
-    ).toEqual(slugs);
-  }
-  await page.locator(".all-filter").click();
-  await expect(page.locator(".project-card")).toHaveCount(9);
+  await expect(page.locator(".project-card .case-badge")).toHaveCount(6);
+  const columns = await page
+    .locator("#project-list")
+    .evaluate((el) => getComputedStyle(el).gridTemplateColumns.split(" "));
+  expect(columns).toHaveLength(3);
 });
 
-test("case study cards have only a red read more action", async ({ page }) => {
+test("case study cards have a single read more link", async ({ page }) => {
   for (const prefix of ["", "/en"]) {
     await page.goto(prefix || "/");
     for (const project of projects.filter((p) => p.caseStudy)) {
@@ -85,9 +74,8 @@ test("case study cards have only a red read more action", async ({ page }) => {
         "href",
         `${prefix}/projects/${project.slug}`,
       );
-      await expect(readMore).toHaveCSS("background-color", "rgb(179, 38, 54)");
-      await expect(readMore).toHaveCSS("color", "rgb(255, 255, 255)");
-      await expect(readMore).toHaveCSS("border-top-color", "rgb(179, 38, 54)");
+      await expect(readMore).toHaveCSS("color", "rgb(179, 38, 54)");
+      await expect(page.locator(`#${project.slug} a`)).toHaveCount(1);
     }
     for (const project of projects.filter(
       (p) => !p.caseStudy && p.links.length > 0,
@@ -105,43 +93,16 @@ test("case study cards have only a red read more action", async ({ page }) => {
   }
 });
 
-test("return from case study restores filter and reading position", async ({
-  page,
-}) => {
-  await page.goto("/?track=hardware");
-  await expect(page.locator(".project-card")).toHaveCount(4);
+test("return from case study restores reading position", async ({ page }) => {
+  await page.goto("/");
   await page.locator("#vhs-htpc .read-more").scrollIntoViewIfNeeded();
   const y = await page.evaluate(() => scrollY);
   await page.locator("#vhs-htpc .read-more").click();
   await expect(page.locator("h1")).toHaveText("VHS HTPC");
   await page.locator(".back-link").first().click();
-  await expect(page.locator(".project-card")).toHaveCount(4);
-  await expect(page.locator(".track").nth(1)).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
+  await expect(page.locator(".project-card")).toHaveCount(9);
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(y - 8);
   await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(y + 8);
-});
-
-test("next case study preserves the active project filter", async ({
-  page,
-}) => {
-  await page.goto("/?track=hardware");
-  await page.locator("#piguard .read-more").click();
-  await expect(page.locator(".next-project")).toHaveAttribute(
-    "href",
-    "/projects/vhs-htpc?track=hardware",
-  );
-  await page.locator(".next-project").click();
-  // Until it hydrates, the back link is a fallback to /#projects.
-  await expect(page.locator(".back-link").first()).toHaveAttribute(
-    "href",
-    /track=hardware/,
-  );
-  await page.locator(".back-link").first().click();
-  await expect(page).toHaveURL(/\/\?track=hardware/);
-  await expect(page.locator(".project-card")).toHaveCount(4);
 });
 
 test("fixed typography and NR palette", async ({ page }) => {
@@ -249,7 +210,7 @@ test("scene stops for reduced motion and content works without JavaScript", asyn
   await expect(
     staticPage
       .locator("#about")
-      .getByText(/Najwięcej doświadczenia mam we frontendzie/),
+      .getByText(/Najdłużej pracuję w ekosystemie React i TypeScript/),
   ).toBeVisible();
   await staticPage.locator("#gauge-generator .read-more").click();
   await expect(staticPage.locator("h1")).toHaveText("Gauge Generator 2.0");
