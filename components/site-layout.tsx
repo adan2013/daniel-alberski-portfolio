@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import { Footer } from "./footer";
 import { Header } from "./header";
 import { I18nProvider } from "./i18n-provider";
@@ -30,6 +31,7 @@ export function SiteLayout({
           {children}
           <Footer />
         </I18nProvider>
+        <Analytics />
       </body>
     </html>
   );
